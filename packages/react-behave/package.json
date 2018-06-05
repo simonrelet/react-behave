@@ -6,6 +6,13 @@
   "bugs": {
     "url": "https://github.com/simonrelet/react-libraries/issues"
   },
+  "keywords": [
+    "react",
+    "behave",
+    "behaviour",
+    "container",
+    "component"
+  ],
   "main": "build/cjs/index.js",
   "module": "build/es/index.js",
   "license": "MIT",
