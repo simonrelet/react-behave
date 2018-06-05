@@ -11,9 +11,15 @@ function code(value) {
   return `\`${value}\``;
 }
 
+function formatName(propName, info) {
+  return info.required
+    ? `<strong><code>${propName}</code>*</strong>`
+    : code(propName);
+}
+
 function formatProp(propName, info) {
   const props = [
-    code(propName),
+    formatName(propName, info),
     code(info.type.name),
     info.defaultValue ? code(info.defaultValue.value) : '',
     // Line breaks are not allowed in tables.
@@ -24,16 +30,17 @@ function formatProp(propName, info) {
 }
 
 function formatProps(props) {
-  return (
-    '## Props\n\n' +
-    '| Name | Type | Default value | Description |\n' +
-    '| -- | -- | -- | -- |\n' +
-    Object.keys(props)
-      .sort()
-      .map(propName => formatProp(propName, props[propName]))
-      .join('\n') +
-    '\n'
-  );
+  const formattedProps = Object.keys(props)
+    .sort()
+    .map(propName => formatProp(propName, props[propName]));
+
+  return [
+    '## Props\n',
+    '_Mandatory props are marked with a `*`._\n',
+    '| Name | Type | Default value | Description |',
+    '| ---- | :--: | :-----------: | ----------- |',
+    ...formattedProps,
+  ].join('\n');
 }
 
 function safeParse(src) {

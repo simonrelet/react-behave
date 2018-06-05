@@ -1,6 +1,6 @@
 # Responsive
 
-> Create a component managing responsivity.
+> Render content depending on the screen size.
 
 ## Usage
 
@@ -18,9 +18,11 @@ const screenSizes = {
 
 class App extends Component {
   render() {
-    <Responsive up="md" screenSizes={screenSizes}>
-      <p>Only visible on medium and bigger screens</p>
-    </Responsive>;
+    return (
+      <Responsive minimum="md" screenSizes={screenSizes}>
+        <p>Only visible on medium and bigger screens</p>
+      </Responsive>
+    );
   }
 }
 ```
@@ -28,7 +30,7 @@ class App extends Component {
 ## Screen sizes
 
 The screen sizes are defined in an object.
-Each key is the name of a screen size that will be used by `down` and `up` props and the value is the starting width in pixels of this range.
+Each key is the name of a screen size that will be used by `maximum` and `minimum` props and the value is the starting width in pixels of this range.
 
 For example:
 
@@ -46,12 +48,47 @@ Define the following screen sizes:
 - `md`: [960, 1280[
 - `lg`: [1280, ∞[
 
+## Render methods
+
+### `<Responsive children />`
+
+The children will only be rendered if the current width is satisfied by `maximum` and `minimum`.
+
+See the [Usage](#usage) for an example.
+
+### `<Responsive render />`
+
+The render function will only be called if the current width is satisfied by `maximum` and `minimum`.
+This function takes the width as first parameter.
+
+Warning: `<Responsive children />` takes precedence over `<Responsive render />` so don’t use both.
+
+Example:
+
+```jsx
+const screenSizes = {
+  // [...]
+};
+
+function LargeScreen() {
+  return (
+    <Responsive
+      minimum="lg"
+      screenSizes={screenSizes}
+      render={width => <p>The width is '{width}'</p>}
+    />
+  );
+}
+```
+
 ## Props
 
-| Name          | Type     | Default value | Description                                                                            |
-| ------------- | -------- | ------------- | -------------------------------------------------------------------------------------- |
-| `children`    | `node`   |               | Children to render if the current width is satisfied by `down` and `up`.               |
-| `down`        | `string` |               | Maximum screen width. Must be one of the `screenSizes`.                                |
-| `render`      | `func`   |               | Render function. Warning: `children` takes precedence over `render` so don’t use both. |
-| `screenSizes` | `object` |               | Screen sizes to use. See [Screen sizes](#screen-sizes)                                 |
-| `up`          | `string` |               | Minimum screen width. Must be one of the `screenSizes`.                                |
+_Mandatory props are marked with a `*`._
+
+| Name                                        |   Type   | Default value | Description                                                          |
+| ------------------------------------------- | :------: | :-----------: | -------------------------------------------------------------------- |
+| `children`                                  |  `node`  |               | Children to render. See the [render methods](#responsive-children-). |
+| `maximum`                                   | `string` |               | Maximum screen width. Must be one of the `screenSizes`.              |
+| `minimum`                                   | `string` |               | Minimum screen width. Must be one of the `screenSizes`.              |
+| `render`                                    |  `func`  |               | Render function. See the [render methods](#responsive-render-).      |
+| <strong><code>screenSizes</code>\*</strong> | `object` |               | Screen sizes to use. See [Screen sizes](#screen-sizes).              |

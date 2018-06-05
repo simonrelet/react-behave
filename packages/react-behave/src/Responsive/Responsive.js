@@ -6,7 +6,8 @@ import React, { Component } from 'react';
 import EventListener from 'react-event-listener';
 
 // Corresponds to 10 frames at 60 Hz
-const RESIZE_INTERVAL = 166;
+// Delay to next tick for tests.
+const RESIZE_INTERVAL = process.env.NODE_ENV === 'test' ? 0 : 166;
 
 function smallerOrEqualTo(screenSizes, refWidth, width) {
   return screenSizes[width] <= screenSizes[refWidth];
@@ -41,9 +42,11 @@ function getScreenWidth(screenSizes, windowWidth) {
  *
  * class App extends Component {
  *   render() {
- *     <Responsive up="md" screenSizes={screenSizes}>
- *       <p>Only visible on medium and bigger screens</p>
- *     </Responsive>
+ *     return (
+ *       <Responsive minimum="md" screenSizes={screenSizes}>
+ *         <p>Only visible on medium and bigger screens</p>
+ *       </Responsive>
+ *     );
  *   }
  * }
  * ```
@@ -51,7 +54,7 @@ function getScreenWidth(screenSizes, windowWidth) {
  * ## Screen sizes
  *
  * The screen sizes are defined in an object.
- * Each key is the name of a screen size that will be used by `down` and `up` props and the value is the starting width in pixels of this range.
+ * Each key is the name of a screen size that will be used by `maximum` and `minimum` props and the value is the starting width in pixels of this range.
  *
  * For example:
  *
@@ -68,11 +71,45 @@ function getScreenWidth(screenSizes, windowWidth) {
  * - `sm`: [0, 960[
  * - `md`: [960, 1280[
  * - `lg`: [1280, ∞[
+ *
+ * ## Render methods
+ *
+ * ### `<Responsive children />`
+ *
+ * The children will only be rendered if the current width is satisfied by `maximum` and `minimum`.
+ *
+ * See the [Usage](#usage) for an example.
+ *
+ * ### `<Responsive render />`
+ *
+ * The render function will only be called if the current width is satisfied by `maximum` and `minimum`.
+ * This function takes the width as first parameter.
+ *
+ * Warning: `<Responsive children />` takes precedence over `<Responsive render />` so don’t use both.
+ *
+ * Example:
+ *
+ * ```jsx
+ * const screenSizes = {
+ *   // [...]
+ * };
+ *
+ * function LargeScreen() {
+ *   return (
+ *     <Responsive
+ *       minimum="lg"
+ *       screenSizes={screenSizes}
+ *       render={width => <p>The width is '{width}'</p>}
+ *     />
+ *   );
+ * }
+ * ```
  */
 class Responsive extends Component {
   static propTypes = {
     /**
-     * Children to render if the current width is satisfied by `down` and `up`.
+     * Children to render.
+     * See the [render methods](#responsive-children-).
      */
     children: PropTypes.node,
 
@@ -80,11 +117,17 @@ class Responsive extends Component {
      * Maximum screen width.
      * Must be one of the `screenSizes`.
      */
-    down: PropTypes.string,
+    maximum: PropTypes.string,
+
+    /**
+     * Minimum screen width.
+     * Must be one of the `screenSizes`.
+     */
+    minimum: PropTypes.string,
 
     /**
      * Render function.
-     * Warning: `children` takes precedence over `render` so don’t use both.
+     * See the [render methods](#responsive-render-).
      */
     render: PropTypes.func,
 
@@ -93,12 +136,6 @@ class Responsive extends Component {
      * See [Screen sizes](#screen-sizes).
      */
     screenSizes: PropTypes.object.isRequired,
-
-    /**
-     * Minimum screen width.
-     * Must be one of the `screenSizes`.
-     */
-    up: PropTypes.string,
   };
 
   state = {
@@ -132,7 +169,7 @@ class Responsive extends Component {
 
   render() {
     const { width } = this.state;
-    const { children, down, render, screenSizes, up } = this.props;
+    const { children, maximum, minimum, render, screenSizes } = this.props;
 
     if (!width) {
       return null;
@@ -140,12 +177,12 @@ class Responsive extends Component {
 
     let visible = true;
 
-    if (up) {
-      visible = biggerOrEqualTo(screenSizes, up, width);
+    if (minimum) {
+      visible = biggerOrEqualTo(screenSizes, minimum, width);
     }
 
-    if (visible && down) {
-      visible = smallerOrEqualTo(screenSizes, down, width);
+    if (visible && maximum) {
+      visible = smallerOrEqualTo(screenSizes, maximum, width);
     }
 
     return (
