@@ -32,20 +32,20 @@ const inputOptions = {
   ],
 };
 
-const outputOptionsCJS = {
-  file: pkg.main,
-  format: 'cjs',
-  sourcemap: true,
-};
-
-const outputOptionsES = {
-  file: pkg.module,
-  format: 'es',
-  sourcemap: true,
-};
+const outputOptions = [
+  {
+    file: pkg.main,
+    format: 'cjs',
+    sourcemap: true,
+  },
+  {
+    file: pkg.module,
+    format: 'es',
+    sourcemap: true,
+  },
+];
 
 module.exports = {
   inputOptions,
-  outputOptionsCJS,
-  outputOptionsES,
+  outputOptions,
 };

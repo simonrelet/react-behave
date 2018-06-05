@@ -4,20 +4,20 @@ process.env.NODE_ENV = 'development';
 require('../config/env');
 
 const rollup = require('rollup');
-const config = require('./rollupConfig');
+const config = require('../lib/rollupConfig');
 
 process.on('unhandledRejection', err => {
   throw err;
 });
 
 const watchOptions = Object.assign(
-  { output: [config.outputOptionsCJS, config.outputOptionsES] },
+  { output: config.outputOptions },
   config.inputOptions
 );
 
 const message =
   `${config.inputOptions.input} -> ` +
-  [config.outputOptionsCJS.file, config.outputOptionsES.file].join(', ');
+  config.outputOptions.map(opt => opt.file).join(', ');
 
 function start() {
   const watcher = rollup.watch(watchOptions);
