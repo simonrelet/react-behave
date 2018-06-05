@@ -1,6 +1,6 @@
 {
   "name": "@simonrelet/react-utils",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A library of utility functions for React.",
   "repository": "simonrelet/react-libraries",
   "bugs": {
@@ -26,7 +26,7 @@
     "lodash.omit": "^4.5.0"
   },
   "devDependencies": {
-    "@simonrelet/react-libraries": "^1.0.0",
+    "@simonrelet/react-libraries": "^0.1.0",
     "jsdoc-to-markdown": "^4.0.1",
     "react": "^16.2.0",
     "react-scripts": "^1.1.4"

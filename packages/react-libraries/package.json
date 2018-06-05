@@ -1,6 +1,6 @@
 {
   "name": "@simonrelet/react-libraries",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Configuration and scripts for React libraries.",
   "repository": "simonrelet/react-libraries",
   "bugs": {
@@ -17,7 +17,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@simonrelet/babel-preset-react-libraries": "^1.0.0",
+    "@simonrelet/babel-preset-react-libraries": "^0.1.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",

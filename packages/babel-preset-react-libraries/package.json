@@ -1,6 +1,6 @@
 {
   "name": "@simonrelet/babel-preset-react-libraries",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Babel preset for React libraries.",
   "repository": "simonrelet/react-libraries",
   "bugs": {

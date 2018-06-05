@@ -1,6 +1,6 @@
 {
   "name": "react-behave",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A library of React behavioral components.",
   "repository": "simonrelet/react-libraries",
   "bugs": {
@@ -26,14 +26,14 @@
     "react-dom": "^0.14.9 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@simonrelet/react-utils": "^1.0.0",
+    "@simonrelet/react-utils": "^0.1.0",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
     "react-event-listener": "^0.5.8",
     "react-popper": "^1.0.0-beta.6"
   },
   "devDependencies": {
-    "@simonrelet/react-libraries": "^1.0.0",
+    "@simonrelet/react-libraries": "^0.1.0",
     "@storybook/addon-a11y": "^3.4.5",
     "@storybook/addon-actions": "^3.4.5",
     "@storybook/addon-backgrounds": "^3.4.5",
