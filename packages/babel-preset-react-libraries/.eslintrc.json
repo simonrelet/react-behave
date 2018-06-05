@@ -1,9 +1,0 @@
-{
-  "extends": "react-app",
-  "parserOptions": {
-    "sourceType": "script"
-  },
-  "rules": {
-    "strict": ["warn", "global"]
-  }
-}

@@ -6,8 +6,8 @@
   "bugs": {
     "url": "https://github.com/simonrelet/react-libraries/issues"
   },
-  "main": "build/cjs/index.js",
-  "module": "build/es/index.js",
+  "main": "build/index.js",
+  "module": "build/index.es.js",
   "license": "MIT",
   "files": [
     "build"
