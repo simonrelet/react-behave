@@ -14,9 +14,9 @@ import EventListener from 'react-event-listener';
  * import { ClickOutside } from 'react-behave';
  *
  * class App extends Component {
- *  handleClickOutside(event) {
- *    console.log('click', event);
- *  }
+ *   handleClickOutside(event) {
+ *     console.log('click', event);
+ *   }
  *
  *   render() {
  *     return (
