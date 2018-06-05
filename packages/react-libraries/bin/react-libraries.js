@@ -45,6 +45,7 @@ function safeSpawn(...args) {
 switch (script) {
   case 'build':
   case 'clean':
+  case 'doc':
   case 'start': {
     const result = safeSpawn(
       'node',

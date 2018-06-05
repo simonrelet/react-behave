@@ -1,5 +1,4 @@
 import { checkA11y } from '@storybook/addon-a11y';
-import backgrounds from '@storybook/addon-backgrounds';
 import centered from '@storybook/addon-centered';
 import { withConsole } from '@storybook/addon-console';
 import { withKnobs } from '@storybook/addon-knobs';
@@ -13,17 +12,9 @@ function loadStories() {
   req.keys().forEach(filename => req(filename));
 }
 
-addDecorator(withKnobs);
 addDecorator((story, context) => withConsole()(story)(context));
+addDecorator(withKnobs);
 addDecorator(checkA11y);
-addDecorator(
-  backgrounds([
-    { name: 'Default', value: '#fafafa', default: true },
-    { name: 'Dark', value: '#424242' },
-    { name: 'Paper', value: '#fff' },
-  ]),
-);
-
 addDecorator(centered);
 
 setOptions({

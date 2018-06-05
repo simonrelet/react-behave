@@ -6,7 +6,7 @@
 
 ...Of behavioral components.
 
-The components and Higher Order Components (HOC) of this library will only contain behaviour and not UI specific elements.
+The components of this library will only contain behaviour and not UI specific elements.
 If you are familiar with the [Presentational/Container](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) concept, one can say this library only provides containers.
 
 This means:
@@ -18,7 +18,7 @@ This means:
 
 ## Documentaion
 
-The documentation can be found [here](docs).
+The documentation of each component can be found [here](https://github.com/simonrelet/react-libraries/tree/master/packages/react-behave/docs).
 
 ---
 

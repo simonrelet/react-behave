@@ -1,1 +1,1 @@
-export { default as createResponsivity } from './createResponsivity';
+export { default as Responsive } from './Responsive';
