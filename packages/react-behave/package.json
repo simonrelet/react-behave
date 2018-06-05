@@ -17,7 +17,8 @@
   "module": "build/es/index.js",
   "license": "MIT",
   "files": [
-    "build"
+    "build",
+    "docs"
   ],
   "scripts": {
     "build": "react-libraries build",
