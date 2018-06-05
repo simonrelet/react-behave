@@ -1,0 +1,28 @@
+{
+  "name": "@simonrelet/react-libraries",
+  "version": "1.0.0",
+  "repository": "simonrelet/react-libraries",
+  "bugs": {
+    "url": "https://github.com/simonrelet/react-libraries/issues"
+  },
+  "files": [
+    "bin",
+    "config",
+    "lib",
+    "scripts"
+  ],
+  "bin": {
+    "react-libraries": "bin/react-libraries.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@simonrelet/babel-preset-react-libraries": "^1.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "cross-spawn": "^6.0.5",
+    "dotenv": "^5.0.1",
+    "dotenv-expand": "^4.2.0",
+    "rimraf": "^2.6.2"
+  }
+}
