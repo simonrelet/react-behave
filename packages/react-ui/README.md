@@ -1,3 +1,3 @@
-# react-ui
+# @simonrelet/react-ui
 
-> My React library
+> A library of React UI components.

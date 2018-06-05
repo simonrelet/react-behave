@@ -1,3 +1,3 @@
-# my-react-library
+# react-behave
 
-> My React library
+> A library of React behavioral components.

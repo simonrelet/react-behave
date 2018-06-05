@@ -1,6 +1,7 @@
 {
   "name": "@simonrelet/react-libraries",
   "version": "1.0.0",
+  "description": "Configuration and scripts for React libraries.",
   "repository": "simonrelet/react-libraries",
   "bugs": {
     "url": "https://github.com/simonrelet/react-libraries/issues"
