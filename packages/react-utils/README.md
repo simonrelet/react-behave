@@ -11,7 +11,9 @@ npm install --save @simonrelet/react-utils
 ```
 
 <!-- The API documentation will be added here -->
+
 <!-- Run `yarn doc` -->
+
 ## Functions
 
 <dl>
@@ -35,46 +37,50 @@ npm install --save @simonrelet/react-utils
 <a name="getDisplayName"></a>
 
 ## getDisplayName(component) ⇒ <code>string</code>
+
 Get the display name of a component.
 
 **Kind**: global function  
-**Returns**: <code>string</code> - The component's name.  
+**Returns**: <code>string</code> - The component's name.
 
-| Param | Type | Description |
-| --- | --- | --- |
+| Param     | Type                         | Description          |
+| --------- | ---------------------------- | -------------------- |
 | component | <code>React.Component</code> | The React component. |
 
 <a name="getOtherProps"></a>
 
 ## getOtherProps(component, props) ⇒ <code>Object</code>
+
 Extract the props that are not defined in the `propTypes` of a component.
 
 **Kind**: global function  
-**Returns**: <code>Object</code> - The other props.  
+**Returns**: <code>Object</code> - The other props.
 
-| Param | Type | Description |
-| --- | --- | --- |
-| component | <code>React.Component</code> | The React component. |
-| props | <code>Object</code> | The props of the component. |
+| Param     | Type                         | Description                 |
+| --------- | ---------------------------- | --------------------------- |
+| component | <code>React.Component</code> | The React component.        |
+| props     | <code>Object</code>          | The props of the component. |
 
 <a name="renderMethod"></a>
 
 ## renderMethod(methods, props) ⇒ <code>React.Element</code>
+
 Render a component using of the defined methods.
 
-**Kind**: global function  
+**Kind**: global function
 
-| Param | Type | Description |
-| --- | --- | --- |
-| methods | <code>Object</code> | The render methods. |
-| methods.children | <code>React.Node</code> | The children of the component. Optional. |
-| methods.component | <code>React.Component</code> | A React component. Optional. |
-| methods.render | <code>function</code> | A render function. Optional. |
-| props | <code>props</code> | The props to pass down. Optional. |
+| Param             | Type                         | Description                              |
+| ----------------- | ---------------------------- | ---------------------------------------- |
+| methods           | <code>Object</code>          | The render methods.                      |
+| methods.children  | <code>React.Node</code>      | The children of the component. Optional. |
+| methods.component | <code>React.Component</code> | A React component. Optional.             |
+| methods.render    | <code>function</code>        | A render function. Optional.             |
+| props             | <code>props</code>           | The props to pass down. Optional.        |
 
 <a name="setRef"></a>
 
 ## setRef(ref, handler)
+
 Provide the reference to the handler depending on the handler's type.
 
 **Kind**: global function  
@@ -82,21 +88,20 @@ Provide the reference to the handler depending on the handler's type.
 
 - <code>Error</code> Will throw an error for unsupported handler types.
 
-
-| Param | Type | Description |
-| --- | --- | --- |
-| ref | <code>Object</code> | The reference. |
-| handler | <code>function</code> \| <code>Object</code> | The handler. |
+| Param   | Type                                         | Description    |
+| ------- | -------------------------------------------- | -------------- |
+| ref     | <code>Object</code>                          | The reference. |
+| handler | <code>function</code> \| <code>Object</code> | The handler.   |
 
 <a name="toInnerRef"></a>
 
 ## toInnerRef(Component) ⇒ <code>React.Component</code>
+
 Higher order component renaming the prop `ref` to `innerRef`.
 
 **Kind**: global function  
-**Returns**: <code>React.Component</code> - The HOC  
+**Returns**: <code>React.Component</code> - The HOC
 
-| Param | Type | Description |
-| --- | --- | --- |
+| Param     | Type                         | Description          |
+| --------- | ---------------------------- | -------------------- |
 | Component | <code>React.Component</code> | The React component. |
-
