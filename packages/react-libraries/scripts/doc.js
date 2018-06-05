@@ -17,10 +17,27 @@ function formatName(propName, info) {
     : code(propName);
 }
 
+function formatType(type) {
+  if (type.value) {
+    switch (type.name) {
+      case 'arrayOf':
+        return `${code(type.name)}<${formatType(type.value)}>`;
+
+      case 'union':
+        return type.value.map(formatType).join('\\|');
+
+      default:
+        break;
+    }
+  }
+
+  return code(type.name);
+}
+
 function formatProp(propName, info) {
   const props = [
     formatName(propName, info),
-    code(info.type.name),
+    formatType(info.type),
     info.defaultValue ? code(info.defaultValue.value) : '',
     // Line breaks are not allowed in tables.
     info.description ? info.description.replace(/\n+/g, ' ') : '',
