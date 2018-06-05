@@ -13,8 +13,9 @@
     "container",
     "component"
   ],
-  "main": "build/index.js",
-  "module": "build/index.es.js",
+  "main": "build/react-behave.js",
+  "module": "build/react-behave.es.js",
+  "unpkg": "build/umd/react-behave.production.min.js",
   "license": "MIT",
   "files": [
     "build",
@@ -25,20 +26,20 @@
     "build-storybook": "build-storybook -c storybook -o build-storybook",
     "clean": "react-libraries clean",
     "doc": "react-libraries doc",
-    "start": "react-libraries start",
+    "start": "react-libraries build -w",
     "storybook": "start-storybook -c storybook -p 4000",
     "test": "react-scripts test --env=jsdom"
   },
   "peerDependencies": {
-    "prop-types": "^15.5.4",
-    "react": "^0.14.9 || ^15.0.0 || ^16.0.0",
-    "react-dom": "^0.14.9 || ^15.0.0 || ^16.0.0"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "dependencies": {
     "@simonrelet/react-utils": "^0.1.0",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
-    "react-event-listener": "^0.5.8",
+    "prop-types": "^15.5.7",
+    "react-event-listener": "^0.6.0",
     "react-popper": "^1.0.0-beta.6"
   },
   "devDependencies": {
@@ -55,7 +56,6 @@
     "@storybook/react": "^3.4.5",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "prop-types": "^15.5.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "^1.1.4",

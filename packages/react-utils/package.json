@@ -11,8 +11,9 @@
     "utilities",
     "utility"
   ],
-  "main": "build/index.js",
-  "module": "build/index.es.js",
+  "main": "build/react-utils.js",
+  "module": "build/react-utils.es.js",
+  "unpkg": "build/umd/react-utils.production.min.js",
   "license": "MIT",
   "files": [
     "build"
@@ -21,11 +22,11 @@
     "build": "react-libraries build",
     "clean": "react-libraries clean",
     "doc": "jsdoc2md --files \"src/**/*.js\" >> README.md",
-    "start": "react-libraries start",
+    "start": "react-libraries build -w",
     "test": "react-scripts test --env=jsdom"
   },
   "peerDependencies": {
-    "react": "^0.14.9 || ^15.0.0 || ^16.0.0"
+    "react": "^16.0.0"
   },
   "dependencies": {
     "lodash.omit": "^4.5.0"

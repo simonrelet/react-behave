@@ -2,7 +2,9 @@
 
 'use strict';
 
+const chalk = require('chalk');
 const spawn = require('cross-spawn');
+const pkg = require('../package');
 
 process.on('unhandledRejection', err => {
   throw err;
@@ -45,8 +47,7 @@ function safeSpawn(...args) {
 switch (script) {
   case 'build':
   case 'clean':
-  case 'doc':
-  case 'start': {
+  case 'doc': {
     const result = safeSpawn(
       'node',
       [require.resolve(`../scripts/${script}`)].concat(args.slice(1)),
@@ -58,7 +59,7 @@ switch (script) {
   }
 
   default:
-    console.log(`Unknown script "${script}".`);
-    console.log('Perhaps you need to update @simonrelet/react-libraries?');
+    console.log(`Unknown script ${chalk.cyan(script)}.`);
+    console.log(`Perhaps you need to update ${chalk.cyan(pkg.name)}?`);
     break;
 }
