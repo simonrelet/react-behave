@@ -1,6 +1,6 @@
-# react-behave
+# ${NAME}
 
-> A library of React behavioral components.
+> ${DESCRIPTION}
 
 ## ...Of what?
 
@@ -21,23 +21,23 @@ This means:
 ### npm
 
 ```sh
-npm install --save react-behave
+npm install --save ${NAME}
 ```
 
 ### yarn
 
 ```sh
-yarn add react-behave
+yarn add ${NAME}
 ```
 
 ### UMD
 
-- Development: https://unpkg.com/react-behave@0.1.0/build/umd/react-behave.development.js
-- Production: https://unpkg.com/react-behave@0.1.0 or https://unpkg.com/react-behave@0.1.0/build/umd/react-behave.production.min.js
+- Development: https://unpkg.com/${NAME}@${VERSION}/build/umd/react-behave.development.js
+- Production: https://unpkg.com/${NAME}@${VERSION} or https://unpkg.com/${NAME}@${VERSION}/build/umd/react-behave.production.min.js
 
 ## Documentaion
 
-The documentation of each component can be found [here](https://github.com/simonrelet/react-libraries/tree/react-behave-0.1.0/packages/react-behave/docs).
+The documentation of each component can be found [here](https://github.com/simonrelet/react-libraries/tree/react-behave-${VERSION}/packages/react-behave/docs).
 
 ---
 

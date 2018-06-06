@@ -1,0 +1,27 @@
+{{!--
+Use backquotes `` instead of <code />.
+https://github.com/jsdoc2md/dmd/blob/master/partials/shared/value/link.hbs
+--}}
+{{~#if html~}}
+`
+
+{{~#link to~}}
+{{#if url~}}
+<a href="{{{url}}}">{{#if ../../caption}}{{../../../caption}}{{else}}{{name}}{{/if}}</a>
+{{~else~}}
+{{#if ../../caption}}{{../../../caption}}{{else}}{{name}}{{/if~}}
+{{/if~}}
+{{/link~}}
+
+`
+{{~else~}}
+
+{{#link to~}}
+{{#if url~}}
+[`{{#if ../../caption}}{{escape ../../../caption}}{{else}}{{escape name}}{{/if}}`]({{{url}}})
+{{~else~}}
+`{{#if ../../caption}}{{escape ../../../caption}}{{else}}{{escape name}}{{/if~}}`
+{{~/if~}}
+{{/link~}}
+
+{{/if~}}

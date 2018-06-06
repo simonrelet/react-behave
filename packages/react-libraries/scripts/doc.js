@@ -2,88 +2,55 @@
 
 const glob = require('glob');
 const reactDocs = require('react-docgen');
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
+const jsdoc2md = require('jsdoc-to-markdown');
+const formatReactComponentDoc = require('../lib/formatReactComponentDoc');
 
-const files = glob.sync('src/**/*.js');
+const files = glob.sync('src/**/*.js', {
+  ignore: ['**/index.js', '**/*.stories.js', '**/*.test.js'],
+});
 
-function code(value) {
-  return `\`${value}\``;
-}
-
-function formatName(propName, info) {
-  return info.required
-    ? `<strong><code>${propName}</code>*</strong>`
-    : code(propName);
-}
-
-function formatType(type) {
-  if (type.value) {
-    switch (type.name) {
-      case 'arrayOf':
-        return `${code(type.name)}<${formatType(type.value)}>`;
-
-      case 'union':
-        return type.value.map(formatType).join('\\|');
-
-      default:
-        break;
-    }
-  }
-
-  return code(type.name);
-}
-
-function formatProp(propName, info) {
-  const props = [
-    formatName(propName, info),
-    formatType(info.type),
-    info.defaultValue ? code(info.defaultValue.value) : '',
-    // Line breaks are not allowed in tables.
-    info.description ? info.description.replace(/\n+/g, ' ') : '',
-  ].join(' | ');
-
-  return `| ${props} |`;
-}
-
-function formatProps(props) {
-  const formattedProps = Object.keys(props)
-    .sort()
-    .map(propName => formatProp(propName, props[propName]));
-
-  return [
-    '## Props\n',
-    '_Mandatory props are marked with a `*`._\n',
-    '| Name | Type | Default value | Description |',
-    '| ---- | :--: | :-----------: | ----------- |',
-    ...formattedProps,
-  ].join('\n');
-}
-
-function safeParse(src) {
+function parse(src, name) {
   try {
-    return reactDocs.parse(src);
+    const info = reactDocs.parse(src);
+    return formatReactComponentDoc(info, name);
   } catch (_) {
-    return null;
+    // Try to parse regular JavaScript file.
+    return jsdoc2md.renderSync({
+      source: src,
+      // Disable caching to avoid missmatch documentation.
+      'no-cache': true,
+      // The first heading will be `# myFunction`.
+      'heading-depth': 1,
+      // Use our custom partials
+      partial: glob.sync(
+        path.resolve(__dirname, '..', 'resources', 'partials', '**/*.hbs')
+      ),
+    });
   }
 }
 
 files.forEach(file => {
+  const name = path.basename(file, '.js');
   const src = fs.readFileSync(file, 'utf8');
-  const info = safeParse(src);
+  const content = parse(src, name);
 
-  if (info) {
-    const md = [
-      `# ${info.displayName}`,
-      info.description,
-      formatProps(info.props),
-    ]
-      .filter(Boolean)
-      .join('\n\n');
-
-    const outputFile = path.join('docs', `${info.displayName}.md`);
-    fs.writeFileSync(outputFile, md);
+  if (content) {
+    const outputFile = path.join('docs', `${name}.md`);
+    fs.outputFileSync(outputFile, content);
 
     console.log(`${file} -> ${outputFile}`);
   }
 });
+
+const pkg = fs.readJSONSync(path.resolve('package.json'));
+const readme = fs
+  .readFileSync('README-template.md', 'utf8')
+  .replace(/\$\{VERSION\}/g, pkg.version)
+  .replace(/\$\{DESCRIPTION\}/g, pkg.description)
+  .replace(/\$\{NAME\}/g, pkg.name);
+
+fs.writeFileSync('README.md', readme);
+
+console.log(`README-template.md -> README.md`);
