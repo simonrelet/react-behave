@@ -31,13 +31,13 @@ import getDisplayName from './getDisplayName';
  * @returns {React.Component} The wrapping component.
  */
 function toInnerRef(Component) {
-  function ToInnerRef(props, ref) {
+  function forwardRef(props, ref) {
     return <Component {...props} innerRef={ref} />;
   }
 
-  ToInnerRef.displayName = `ToInnerRef(${getDisplayName(Component)})`;
+  forwardRef.displayName = `ToInnerRef(${getDisplayName(Component)})`;
 
-  return React.forwardRef(ToInnerRef);
+  return React.forwardRef(forwardRef);
 }
 
 export default toInnerRef;

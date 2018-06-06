@@ -37,7 +37,10 @@ import omit from 'lodash.omit';
  * @returns {Object} The other props.
  */
 function getOtherProps(component, props) {
-  return omit(props, Object.keys(component.propTypes));
+  if (component.propTypes) {
+    return omit(props, Object.keys(component.propTypes));
+  }
+  return props;
 }
 
 export default getOtherProps;

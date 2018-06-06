@@ -171,10 +171,6 @@ class Responsive extends Component {
     const { width } = this.state;
     const { children, maximum, minimum, render, screenSizes } = this.props;
 
-    if (!width) {
-      return null;
-    }
-
     let visible = true;
 
     if (minimum) {

@@ -60,5 +60,13 @@
     "react-dom": "^16.2.0",
     "react-scripts": "^1.1.4",
     "react-test-renderer": "^16.3.2"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/*.stories.js",
+      "!src/**/index.js",
+      "!src/ReactSixteenAdapter.js"
+    ]
   }
 }

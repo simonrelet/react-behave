@@ -27,23 +27,6 @@ describe('<Responsive />', () => {
     window.innerWidth = initialInnerWidth;
   });
 
-  // const t = [
-  //   {
-  //     getComponent: props => (
-  //       <Responsive {...props}>
-  //         <p>Hello</p>
-  //       </Responsive>
-  //     ),
-  //   },
-  //   {
-  //     getComponent: props => (
-  //       <Responsive {...props}>
-  //         {}
-  //       </Responsive>
-  //     )
-  //   }
-  // ];
-
   describe('<Responsive children />', () => {
     it('renders its content when there is no constraints', () => {
       const wrapper = mount(
