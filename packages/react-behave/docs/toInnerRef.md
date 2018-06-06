@@ -10,7 +10,7 @@ This HOC can be seen as an abstraction over the [`React.forwardRef`][fr] API.
 
 ```jsx
 import React from 'react';
-import { toInnerRef } from '@simonrelet/react-utils';
+import { toInnerRef } from 'react-behave';
 
 const MyComponent = ({ innerRef, ...props }) => (
   <div ref={innerRef} {...props} />

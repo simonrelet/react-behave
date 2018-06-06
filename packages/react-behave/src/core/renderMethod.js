@@ -7,7 +7,7 @@ import React from 'react';
  *
  * ```jsx
  * import React, { Component } from 'react';
- * import { renderMethod } from '@simonrelet/react-utils';
+ * import { renderMethod } from 'react-behave';
  *
  * class WithUser extends Component {
  *   render() {

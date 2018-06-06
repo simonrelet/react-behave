@@ -12,7 +12,7 @@ import omit from 'lodash.omit';
  * ```jsx
  * import React, { Component } from 'react';
  * import PropTypes from 'prop-types';
- * import { getOtherProps } from '@simonrelet/react-utils';
+ * import { getOtherProps } from 'react-behave';
  *
  * class App extends Component {
  *   static propTypes = {

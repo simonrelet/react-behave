@@ -12,7 +12,7 @@ import getDisplayName from './getDisplayName';
  *
  * ```jsx
  * import React from 'react';
- * import { toInnerRef } from '@simonrelet/react-utils';
+ * import { toInnerRef } from 'react-behave';
  *
  * const MyComponent = ({ innerRef, ...props }) => (
  *   <div ref={innerRef} {...props} />

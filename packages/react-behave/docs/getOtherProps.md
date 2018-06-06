@@ -11,7 +11,7 @@ This is an alternative to using the [object rest spread proposal][pors] where yo
 ```jsx
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getOtherProps } from '@simonrelet/react-utils';
+import { getOtherProps } from 'react-behave';
 
 class App extends Component {
   static propTypes = {

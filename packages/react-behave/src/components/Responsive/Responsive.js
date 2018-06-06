@@ -1,9 +1,9 @@
-import { renderMethod } from '@simonrelet/react-utils';
 import debounce from 'lodash.debounce';
 import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import EventListener from 'react-event-listener';
+import renderMethod from '../../core/renderMethod';
 
 // Corresponds to 10 frames at 60 Hz
 // Delay to next tick for tests.

@@ -6,7 +6,7 @@ Helper function to support multiple render methods.
 
 ```jsx
 import React, { Component } from 'react';
-import { renderMethod } from '@simonrelet/react-utils';
+import { renderMethod } from 'react-behave';
 
 class WithUser extends Component {
   render() {

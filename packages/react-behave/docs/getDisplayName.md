@@ -5,7 +5,7 @@ Get the display name of a component.
 ## Usage
 
 ```js
-import { getDisplayName } from '@simonrelet/react-utils';
+import { getDisplayName } from 'react-behave';
 import MyComponent from './MyComponent';
 
 const displayName = getDisplayName(MyComponent);

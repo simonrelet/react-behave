@@ -35,9 +35,9 @@
     "react-dom": "^16.0.0"
   },
   "dependencies": {
-    "@simonrelet/react-utils": "^0.1.0",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
+    "lodash.omit": "^4.5.0",
     "prop-types": "^15.5.7",
     "react-event-listener": "^0.6.0",
     "react-popper": "^1.0.0-beta.6"
