@@ -5,7 +5,6 @@
     1. React Behave
     2. React Libraries
     3. React UI
-    4. React Utils
   * Keep the sections sorted in the same order:
     1. Breaking changes
     2. Enhancements
@@ -20,7 +19,7 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## 0.1.0 (June 6, 2018)
 
 ### React Behave
 
@@ -30,6 +29,11 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Create `DropDown` component.
 - Create `MergeRefs` component.
 - Create `Responsive` component.
+- Create `getDisplayName` function.
+- Create `getOtherProps` function.
+- Create `renderMethods` function.
+- Create `setRef` function.
+- Create `toInnerRef` function.
 
 ### React Libraries
 
@@ -38,13 +42,3 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Build libraries using [rollup.js](https://rollupjs.org/).
 - Build documentation using [react-docgen](https://github.com/reactjs/react-docgen).
 - Clean generated folders.
-
-### React Utils
-
-#### Enhancements
-
-- Add `getDisplayName` function.
-- Add `getOtherProps` function.
-- Add `renderMethods` function.
-- Add `setRef` function.
-- Add `toInnerRef` function.
