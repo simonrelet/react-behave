@@ -21,7 +21,7 @@
   "scripts": {
     "build": "react-libraries build",
     "clean": "react-libraries clean",
-    "doc": "jsdoc2md --files \"src/**/*.js\" >> README.md",
+    "doc": "react-libraries doc",
     "start": "react-libraries build -w",
     "test": "react-scripts test --env=jsdom"
   },
@@ -33,7 +33,6 @@
   },
   "devDependencies": {
     "@simonrelet/react-libraries": "^0.1.0",
-    "jsdoc-to-markdown": "^4.0.1",
     "react": "^16.2.0",
     "react-scripts": "^1.1.4"
   }

@@ -1,23 +1,23 @@
 {
   "build/umd/react-utils.production.min.js": {
-    "bundled": 44906,
-    "minified": 7930,
-    "gzipped": 3160
+    "bundled": 47280,
+    "minified": 7721,
+    "gzipped": 3062
   },
   "build/react-utils.js": {
-    "bundled": 3772,
-    "minified": 1657,
-    "gzipped": 756
+    "bundled": 5610,
+    "minified": 1176,
+    "gzipped": 585
   },
   "build/umd/react-utils.development.js": {
-    "bundled": 44906,
-    "minified": 7930,
-    "gzipped": 3160
+    "bundled": 47280,
+    "minified": 7721,
+    "gzipped": 3062
   },
   "build/react-utils.es.js": {
-    "bundled": 3438,
-    "minified": 1379,
-    "gzipped": 666,
+    "bundled": 5293,
+    "minified": 913,
+    "gzipped": 494,
     "treeshaked": {
       "rollup": {
         "code": 34,

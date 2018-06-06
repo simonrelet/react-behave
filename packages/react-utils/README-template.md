@@ -23,4 +23,4 @@ yarn add ${NAME}
 
 ## Documentaion
 
-The documentation of each function can be found [here](https://github.com/simonrelet/react-libraries/tree/react-utils${VERSION}/packages/react-utils/docs).
+The documentation of each function can be found [here](https://github.com/simonrelet/react-libraries/tree/react-utils-${VERSION}/packages/react-utils/docs).
