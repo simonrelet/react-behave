@@ -1,4 +1,4 @@
-# DropDown
+# Dropdown
 
 [create-ref]: https://reactjs.org/docs/react-api.html#reactcreateref
 [react-popper]: https://github.com/FezVrasta/react-popper
@@ -11,7 +11,7 @@ Render a dropdown around a component.
 
 ```jsx
 import React, { Component } from 'react';
-import { DropDown } from 'react-behave';
+import { Dropdown } from 'react-behave';
 
 class App extends Component {
   state = {
@@ -28,7 +28,7 @@ class App extends Component {
 
   render() {
     return (
-      <DropDown
+      <Dropdown
         onClickOutside={this.handleClickOutside}
         open={this.state.open}
         render={ref => (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import Select from './Select';
-import DropDown from '../DropDown';
+import Dropdown from '../Dropdown';
 
 const items = [
   { key: 'apple', label: 'Apple' },
@@ -103,7 +103,7 @@ describe('<Select />', () => {
     });
 
     it('closes on click outside', () => {
-      wrapper.find(DropDown).prop('onClickOutside')();
+      wrapper.find(Dropdown).prop('onClickOutside')();
       wrapper.update();
       expect(wrapper.find('ul')).toHaveLength(0);
       expect(wrapper.state('open')).toBe(false);
@@ -216,7 +216,7 @@ describe('<Select filterable />', () => {
     });
 
     it('closes on click outside', () => {
-      wrapper.find(DropDown).prop('onClickOutside')();
+      wrapper.find(Dropdown).prop('onClickOutside')();
       wrapper.update();
       expect(wrapper.find('ul')).toHaveLength(0);
       expect(wrapper.state('open')).toBe(false);

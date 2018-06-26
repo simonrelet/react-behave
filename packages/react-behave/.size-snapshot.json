@@ -1,23 +1,23 @@
 {
   "build/umd/react-behave.production.min.js": {
-    "bundled": 342134,
+    "bundled": 342096,
     "minified": 88059,
-    "gzipped": 27365
+    "gzipped": 27368
   },
   "build/react-behave.js": {
     "bundled": 49513,
     "minified": 19179,
-    "gzipped": 4551
+    "gzipped": 4555
   },
   "build/umd/react-behave.development.js": {
-    "bundled": 367017,
+    "bundled": 366979,
     "minified": 95855,
-    "gzipped": 29687
+    "gzipped": 29690
   },
   "build/react-behave.es.js": {
     "bundled": 48700,
     "minified": 18435,
-    "gzipped": 4449,
+    "gzipped": 4450,
     "treeshaked": {
       "rollup": {
         "code": 15840,

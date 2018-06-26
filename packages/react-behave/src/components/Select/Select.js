@@ -3,7 +3,7 @@ import isEqual from 'lodash.isequal';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import toInnerRef from '../../core/toInnerRef';
-import DropDown from '../DropDown';
+import Dropdown from '../Dropdown';
 import MergeRefs from '../MergeRefs';
 
 function getDerivedStateFromInputValue(props, inputValue) {
@@ -648,7 +648,7 @@ class Select extends Component {
 
   render() {
     return (
-      <DropDown
+      <Dropdown
         onClickOutside={this.handleClickOutside}
         open={this.state.open}
         render={ref => (

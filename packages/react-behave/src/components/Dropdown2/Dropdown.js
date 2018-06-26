@@ -36,7 +36,7 @@ function renderContent(onClickOutside, popperProps, popperRef, renderDropDown) {
  *
  * ```jsx
  * import React, { Component } from 'react';
- * import { DropDown } from 'react-behave';
+ * import { Dropdown } from 'react-behave';
  *
  * class App extends Component {
  *   state = {
@@ -53,7 +53,7 @@ function renderContent(onClickOutside, popperProps, popperRef, renderDropDown) {
  *
  *   render() {
  *     return (
- *       <DropDown
+ *       <Dropdown
  *         onClickOutside={this.handleClickOutside}
  *         open={this.state.open}
  *         render={ref => (
@@ -74,7 +74,7 @@ function renderContent(onClickOutside, popperProps, popperRef, renderDropDown) {
  * }
  * ```
  */
-function DropDown({ onClickOutside, open, placement, render, renderDropDown }) {
+function Dropdown({ onClickOutside, open, placement, render, renderDropDown }) {
   return (
     <Manager>
       <Reference>{({ ref }) => render(ref)}</Reference>
@@ -94,7 +94,7 @@ function DropDown({ onClickOutside, open, placement, render, renderDropDown }) {
   );
 }
 
-DropDown.propTypes = {
+Dropdown.propTypes = {
   /**
    * _Parameters_: `event: MouseEvent`
    *
@@ -133,9 +133,9 @@ DropDown.propTypes = {
   renderDropDown: PropTypes.func.isRequired,
 };
 
-DropDown.defaultProps = {
+Dropdown.defaultProps = {
   open: false,
   placement: 'bottom-start',
 };
 
-export default DropDown;
+export default Dropdown;
