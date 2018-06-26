@@ -18,8 +18,6 @@
   ],
   "main": "build/react-behave.js",
   "module": "build/react-behave.es.js",
-  "unpkg": "build/umd/react-behave.production.min.js",
-  "unpkg-dev": "build/umd/react-behave.development.js",
   "license": "MIT",
   "files": [
     "build",
