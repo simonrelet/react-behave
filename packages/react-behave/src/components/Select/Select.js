@@ -195,6 +195,8 @@ class Select extends Component {
      * - `onClick`
      * - `onKeyDown`
      * - `onKeyPress`
+     * - 'aria-expanded'
+     * - 'aria-haspopup'
      */
     renderButton: PropTypes.func,
 
@@ -265,6 +267,7 @@ class Select extends Component {
      * - `key`
      * - `onKeyDown`
      * - `ref`
+     * - `role`
      * - `tabIndex`
      */
     renderItems: PropTypes.func,

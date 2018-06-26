@@ -188,6 +188,8 @@ This object contains:
 - `onClick`
 - `onKeyDown`
 - `onKeyPress`
+- 'aria-expanded'
+- 'aria-haspopup'
 
 ### `renderDropDown`: `Function` (optional)
 
@@ -293,6 +295,7 @@ This object contains:
 - `key`
 - `onKeyDown`
 - `ref`
+- `role`
 - `tabIndex`
 
 ### `value`: `Any` (optional)

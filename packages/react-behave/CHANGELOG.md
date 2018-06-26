@@ -17,13 +17,29 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 ## Unreleased
 
+### Breaking changes
+
+- Renamed `DropDown` to `Dropdown`.
+
+### Enhancements
+
+- Create `Select` component.
+- The prop `Responsive.screenSizes` is now optional.
+- Add `Dropdown.placement`.
+- `toInnerRef` doesn't passes the `innerRef` if `ref` is falsy.
+
+### Documentation
+
+- Update documentation of `Responsive`, `ClickOutside`, `Dropdown`, `MergeRefs`.
+
+## 0.1.0 (June 6, 2018)
+
 ### Enhancements
 
 - Create `ClickOutside` component.
 - Create `DropDown` component.
 - Create `MergeRefs` component.
 - Create `Responsive` component.
-- Create `Select` component.
 - Create `getDisplayName` function.
 - Create `getOtherProps` function.
 - Create `renderMethods` function.
