@@ -495,24 +495,14 @@ class Select extends Component {
 
   closeDropDown(focusBackButton = false) {
     this._focusBackButton = focusBackButton;
-
-    this.setState({
-      open: false,
-      highlightedItem: this.props.value,
-      inputValue: '',
-      visibleItems: this.props.items,
-    });
+    this.setState({ open: false });
   }
 
   // `inputValue` is defined when the focus is on the button and the user presses a key.
   openDropDown(inputValue = '') {
-    const derivedState = inputValue
-      ? getDerivedStateFromInputValue(this.props, inputValue)
-      : {};
-
     this.setState({
       open: true,
-      ...derivedState,
+      ...getDerivedStateFromInputValue(this.props, inputValue),
     });
   }
 
@@ -552,6 +542,8 @@ class Select extends Component {
       onClick: this.handleButtonClick,
       onKeyDown: this.handleButtonKeyDown,
       onKeyPress: this.handleButtonKeyPress,
+      'aria-haspopup': true,
+      'aria-expanded': this.state.open,
     };
 
     if (this.props.manualProps) {
@@ -604,6 +596,7 @@ class Select extends Component {
       key: 'items',
       tabIndex: 0,
       onKeyDown: this.handleItemsOrInputKeyDown,
+      role: 'menu',
     };
 
     const empty = children.length === 0 ? this.props.renderEmpty() : null;

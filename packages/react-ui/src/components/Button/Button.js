@@ -1,143 +1,109 @@
-import classNames from 'classnames';
+import {
+  darken,
+  getLuminance,
+  lighten,
+  readableColor,
+  transparentize,
+} from 'polished';
 import PropTypes from 'prop-types';
 import React from 'react';
-// Side effect import as the Button component apply CSS classes on the SVGIcon
-import '../../icons/SVGIcon';
-import injectStyles from '../../core/injectStyles';
+import styled from 'styled-components';
 
-export const severities = ['normal', 'primary', 'success', 'warning', 'danger'];
-
-function createSeverityStyle(color, palette) {
-  const emphasizeColor = palette.emphasize(color, 0.07);
-  const focusBoxShadow =
-    color === palette.white
-      ? palette.fade(palette.primary, 0.5)
-      : palette.fade(color, 0.5);
-
-  return {
-    backgroundColor: color,
-    color: palette.getTextColorForBackground(
-      color,
-      palette.text.primary,
-      palette.textContrast.primary,
-    ),
-
-    '&:focus': {
-      boxShadow: `0 0 0 0.2rem ${focusBoxShadow}`,
-    },
-
-    '&:hover': {
-      backgroundColor: emphasizeColor,
-    },
-  };
+function emphasize(color) {
+  return getLuminance(color) > 0.5 ? darken(0.15, color) : lighten(0.15, color);
 }
 
-function styles({ borderRadius, palette, relativeSpacing }) {
-  return {
-    root: {
-      alignItems: 'center',
-      border: {
-        width: 1,
-        style: 'solid',
-        color: 'transparent',
-      },
-      borderRadius,
-      cursor: 'pointer',
-      display: 'inline-flex',
-      fontFamily: 'inherit',
-      fontSize: '1rem',
-      outline: 'none',
-      padding: [relativeSpacing(), relativeSpacing(2)],
-      transition: 'all 120ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    },
+const defaultColor = 'white';
 
-    severitynormal: {
-      ...createSeverityStyle(palette.white, palette),
-      // borderColor: palette.grey,
-    },
+const attrs = {
+  color: p => p.theme.palette[p.color || defaultColor],
 
-    severityprimary: createSeverityStyle(palette.primary, palette),
-    severitysuccess: createSeverityStyle(palette.success, palette),
-    severitywarning: createSeverityStyle(palette.warning, palette),
-    severitydanger: createSeverityStyle(palette.error, palette),
+  padding: p => [
+    p.theme.relativeSpacing(),
+    p.theme.relativeSpacing(p.withIconRight ? 1 : 2),
+    p.theme.relativeSpacing(),
+    p.theme.relativeSpacing(p.withIconLeft ? 1 : 2),
+  ],
+};
 
-    withIconLeft: {
-      paddingLeft: relativeSpacing(),
-    },
+const StyledButton = styled.button.attrs(attrs)`
+  align-items: center;
+  background-color: ${p => p.color};
+  border: none;
+  border-radius: ${p => p.theme.borderRadius};
+  color: ${p => readableColor(p.color)};
+  cursor: pointer;
+  display: inline-flex;
+  font-family: inherit;
+  font-size: ${p => (p.dense ? '0.875rem' : '1rem')};
+  outline: none;
+  padding: ${p => p.padding.join(' ')};
+  transition: all 120ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
-    withIconRight: {
-      paddingRight: relativeSpacing(),
-    },
+  &:focus {
+    box-shadow: 0 0 0 0.2rem
+      ${p =>
+        transparentize(
+          0.5,
+          p.color === p.theme.palette.white ? p.theme.palette.primary : p.color,
+        )};
+  }
 
-    dense: {
-      fontSize: '0.875rem',
-    },
+  &:active {
+    background-color: ${p => emphasize(p.color)};
+    color: ${p => readableColor(emphasize(p.color))};
+  }
+`;
 
-    content: {
-      flex: 'none',
-    },
-
-    contentWithLeftIcon: {
-      marginLeft: relativeSpacing(),
-    },
-    contentWithRightIcon: {
-      marginRight: relativeSpacing(),
-    },
-  };
-}
+const StyledContent = styled.span`
+  margin-left: ${p => (p.withIconLeft ? p.theme.relativeSpacing() : '0')}
+  margin-right: ${p => (p.withIconRight ? p.theme.relativeSpacing() : '0')}
+`;
 
 function Button({
   children,
-  classes,
+  color,
   dense,
   innerRef,
   renderIconLeft,
   renderIconRight,
-  severity,
   ...otherProps
 }) {
   const iconLeft = renderIconLeft();
   const iconRight = renderIconRight();
 
   return (
-    <button
+    <StyledButton
       {...otherProps}
-      className={classNames(classes.root, classes[`severity${severity}`], {
-        [classes.withIconLeft]: !!iconLeft,
-        [classes.withIconRight]: !!iconRight,
-        [classes.dense]: dense,
-      })}
-      ref={innerRef}
+      innerRef={innerRef}
+      color={color}
+      dense={dense}
+      withIconLeft={!!iconLeft}
+      withIconRight={!!iconRight}
     >
       {iconLeft}
-      <span
-        className={classNames(classes.content, {
-          [classes.contentWithLeftIcon]: !!iconLeft,
-          [classes.contentWithRightIcon]: !!iconRight,
-        })}
-      >
+      <StyledContent withIconLeft={!!iconLeft} withIconRight={!!iconRight}>
         {children}
-      </span>
+      </StyledContent>
       {iconRight}
-    </button>
+    </StyledButton>
   );
 }
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  classes: PropTypes.object.isRequired,
+  color: PropTypes.string,
   dense: PropTypes.bool,
   innerRef: PropTypes.any,
   renderIconLeft: PropTypes.func,
   renderIconRight: PropTypes.func,
-  severity: PropTypes.oneOf(severities),
 };
 
 Button.defaultProps = {
+  color: defaultColor,
   dense: false,
   renderIconLeft: () => null,
   renderIconRight: () => null,
-  severity: severities[0],
 };
 
-export default injectStyles(styles)(Button);
+export default Button;

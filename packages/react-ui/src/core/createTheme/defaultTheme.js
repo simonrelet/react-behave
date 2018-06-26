@@ -1,5 +1,5 @@
 import { screenSizes, screenSizesNames } from '../../constants';
-import colorsUtils from './colorsUtils';
+import { transparentize } from 'polished';
 
 function spacing(scale = 1) {
   return `${0.5 * scale}rem`;
@@ -11,30 +11,30 @@ function relativeSpacing(scale = 1) {
 
 const colors = {
   black: '#000',
-  white: '#fff',
+  error: '#c82333',
   grey: '#ccc',
-  primary: '#2196f3',
-  secondary: '#4caf50',
-  success: '#4caf50',
-  error: '#f44336',
-  warning: '#ff9800',
+  primary: '#0064ff',
+  secondary: '#8541ff',
+  success: '#28a745',
+  warning: '#ffc107',
+  white: '#fff',
 };
 
 const palette = {
-  ...colorsUtils,
   ...colors,
-  divider: colorsUtils.fade(colors.black, 0.12),
+  divider: transparentize(0.88, colors.black),
+  highlight: transparentize(0.9, colors.black),
   text: {
-    primary: colorsUtils.fade(colors.black, 0.87),
-    secondary: colorsUtils.fade(colors.black, 0.54),
-    disabled: colorsUtils.fade(colors.black, 0.38),
-    hint: colorsUtils.fade(colors.black, 0.38),
+    primary: transparentize(0.13, colors.black),
+    secondary: transparentize(0.46, colors.black),
+    disabled: transparentize(0.62, colors.black),
+    hint: transparentize(0.62, colors.black),
   },
   textContrast: {
-    primary: colorsUtils.fade(colors.white, 0.87),
-    secondary: colorsUtils.fade(colors.white, 0.54),
-    disabled: colorsUtils.fade(colors.white, 0.38),
-    hint: colorsUtils.fade(colors.white, 0.38),
+    primary: colors.white,
+    secondary: transparentize(0.13, colors.white),
+    disabled: transparentize(0.46, colors.white),
+    hint: transparentize(0.46, colors.white),
   },
   background: {
     app: '#fafafa',
@@ -52,15 +52,15 @@ const breakpoints = {
 };
 
 function createShadow(opacity, px) {
-  const color = colorsUtils.fade(colors.black, opacity);
+  const color = transparentize(opacity, colors.black);
   return `${px[0]}px ${px[1]}px ${px[2]}px ${px[3]}px ${color}`;
 }
 
 function createShadows(umbra, prenumbra, ambient) {
   return [
-    createShadow(0.2, umbra),
-    createShadow(0.14, prenumbra),
-    createShadow(0.12, ambient),
+    createShadow(0.8, umbra),
+    createShadow(0.86, prenumbra),
+    createShadow(0.88, ambient),
   ].join(',');
 }
 
@@ -103,7 +103,7 @@ const zIndex = {
 
 const typography = {
   fontFamily: 'Helvetica Neue, Helvetica, Arial',
-  fontSize: 16,
+  fontSize: '16px',
 };
 
 export default {
@@ -114,5 +114,5 @@ export default {
   spacing,
   typography,
   zIndex,
-  borderRadius: 4,
+  borderRadius: '4px',
 };

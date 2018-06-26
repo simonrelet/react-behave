@@ -38,13 +38,13 @@
     "react-dom": "^16.0.0"
   },
   "dependencies": {
+    "change-case": "^3.0.2",
     "classnames": "^2.2.5",
-    "jss": "^9.8.1",
-    "jss-preset-default": "^4.5.0",
     "lodash.mergewith": "^4.6.1",
+    "polished": "^1.9.2",
     "prop-types": "^15.5.7",
     "react-behave": "^0.1.0",
-    "react-jss": "^8.4.0"
+    "styled-components": "^3.3.2"
   },
   "devDependencies": {
     "@simonrelet/react-libraries": "^0.1.0",

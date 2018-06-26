@@ -21,10 +21,10 @@
     "doc": "react-libraries doc"
   },
   "dependencies": {
-    "@babel/core": "7.0.0-beta.42",
-    "@babel/preset-env": "7.0.0-beta.42",
-    "@babel/preset-react": "7.0.0-beta.42",
-    "@babel/preset-stage-1": "7.0.0-beta.42",
+    "@babel/core": "7.0.0-beta.51",
+    "@babel/preset-env": "7.0.0-beta.51",
+    "@babel/preset-react": "7.0.0-beta.51",
+    "@babel/preset-stage-1": "7.0.0-beta.51",
     "chalk": "^2.4.1",
     "change-case": "^3.0.2",
     "fs-extra": "^6.0.1",

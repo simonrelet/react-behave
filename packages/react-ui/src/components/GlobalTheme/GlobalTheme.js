@@ -1,36 +1,30 @@
 import PropTypes from 'prop-types';
-import injectStyles from '../../core/injectStyles';
+import React, { Component } from 'react';
+import styled, { injectGlobal } from 'styled-components';
 
-function styles({ palette, typography }) {
-  return {
-    '@global': {
-      '*': {
-        boxSizing: 'inherit',
-        '&::after,&::before': {
-          boxSizing: 'inherit',
-        },
-      },
-      html: {
-        boxSizing: 'border-box',
-      },
-      body: {
-        backgroundColor: palette.background.app,
-        color: palette.text.primary,
-        fontFamily: typography.fontFamily,
-        fontSize: typography.fontSize,
-        margin: 0,
-      },
-    },
-  };
-}
+const InheritedThemes = styled.div`
+  background-color: ${p => p.theme.palette.background.app};
+  color: ${p => p.theme.palette.text.primary};
+  font-family: ${p => p.theme.typography.fontFamily};
+  font-size: ${p => p.theme.typography.fontSize};
+`;
 
-function GlobalTheme({ children }) {
-  return children;
+class GlobalTheme extends Component {
+  componentDidMount() {
+    injectGlobal`
+      *, *::after, *::before { box-sizing: inherit; }
+      html { box-sizing: border-box; }
+      body { margin: 0; }
+    `;
+  }
+
+  render() {
+    return <InheritedThemes>{this.props.children}</InheritedThemes>;
+  }
 }
 
 GlobalTheme.propTypes = {
   children: PropTypes.node.isRequired,
-  classes: PropTypes.object.isRequired,
 };
 
-export default injectStyles(styles)(GlobalTheme);
+export default GlobalTheme;

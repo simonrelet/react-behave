@@ -1,32 +1,26 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import injectStyles from '../core/injectStyles';
+import styled from 'styled-components';
 
-function styles() {
-  return {
-    root: {
-      display: 'inline-block',
-      fill: 'currentColor',
-      flex: 'none',
-      height: '1.5em',
-      transition: 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      userSelect: 'none',
-    },
-  };
-}
+const SVG = styled.svg`
+  display: inline-block;
+  fill: currentColor;
+  flex: none;
+  height: 1.5em;
+  userselect: none;
+`;
 
-function SVGIcon({ children, classes, viewBox, ...otherProps }) {
+function SVGIcon({ children, viewBox, ...otherProps }) {
   return (
-    <svg viewBox={viewBox} className={classes.root} {...otherProps}>
+    <SVG viewBox={viewBox} {...otherProps}>
       {children}
-    </svg>
+    </SVG>
   );
 }
 
 SVGIcon.propTypes = {
   children: PropTypes.node.isRequired,
-  classes: PropTypes.object.isRequired,
   viewBox: PropTypes.string.isRequired,
 };
 
-export default injectStyles(styles)(SVGIcon);
+export default SVGIcon;

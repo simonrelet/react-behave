@@ -66,7 +66,7 @@ function createMainOptions(format, file) {
         exclude: 'node_modules/**',
         presets: [
           ['@babel/preset-env', { modules: false }],
-          '@babel/preset-stage-1',
+          ['@babel/preset-stage-1', { decoratorsLegacy: true }],
           '@babel/preset-react',
         ],
       }),
@@ -84,7 +84,7 @@ function createUMDOptions(isProd, file) {
       exclude: 'node_modules/**',
       presets: [
         ['@babel/preset-env', { modules: false }],
-        '@babel/preset-stage-1',
+        ['@babel/preset-stage-1', { decoratorsLegacy: true }],
         '@babel/preset-react',
       ],
     }),

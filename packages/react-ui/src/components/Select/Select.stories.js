@@ -1,8 +1,9 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, select } from '@storybook/addon-knobs';
+import { boolean, button, text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import React, { Component } from 'react';
-import Select, { severities } from './Select';
+import { color } from '../../../storybook/knobs';
+import Select from './Select';
 
 const stories = storiesOf('Select', module);
 
@@ -27,30 +28,39 @@ class WithState extends Component {
 
   state = this.props.initialState;
 
-  handleSetState = state => {
-    this.setState(state);
-  };
-
   render() {
-    return this.props.children(this.state, this.handleSetState);
+    return this.props.children(this.state, state => this.setState(state));
   }
 }
 
+const generalGroup = 'general';
+const labelGroup = 'label';
+
 stories.add('Dynamic select', () => (
   <WithState initialState={{ value: null }}>
-    {(state, setState) => (
-      <Select
-        filterable={boolean('Filterable', false)}
-        items={items}
-        value={state.value}
-        getItemLabel={item => item.label}
-        getItemValue={item => item.value}
-        severity={select('Severity', severities, severities[0])}
-        onChange={value => {
-          action('onChange')(value);
-          setState({ value });
-        }}
-      />
-    )}
+    {(state, setState) => {
+      button('Reset value', () => setState({ value: null }), generalGroup);
+      return (
+        <Select
+          dense={boolean('Dense', false, generalGroup)}
+          emptyLabel={text('Empty label', '', labelGroup) || undefined}
+          filterable={boolean('Filterable', false, generalGroup)}
+          getItemLabel={item => item.label}
+          getItemValue={item => item.value}
+          inputPlaceHolder={
+            text('Input placeholder', '', labelGroup) || undefined
+          }
+          items={items}
+          label={text('Label', '', labelGroup) || undefined}
+          nullLabel={text('Null label', '', labelGroup) || undefined}
+          onChange={value => {
+            action('onChange')(value);
+            setState({ value });
+          }}
+          color={color('Color', '', generalGroup)}
+          value={state.value}
+        />
+      );
+    }}
   </WithState>
 ));

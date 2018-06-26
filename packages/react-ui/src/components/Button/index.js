@@ -1,2 +1,2 @@
-export { default, severities } from './Button';
+export { default } from './Button';
 
