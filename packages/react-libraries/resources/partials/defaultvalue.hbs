@@ -1,5 +1,0 @@
-{{!--
-Use backquotes `` instead of <code />.
-https://github.com/jsdoc2md/dmd/blob/master/partials/shared/value/defaultvalue.hbs
---}}
-{{#unless (equal defaultvalue undefined)}}`{{#if equals}} = {{/if}}{{#if (equal type.names.[0] "string")}}{{json-stringify defaultvalue}}{{else}}{{defaultvalue}}{{/if}}`{{/unless}}

@@ -1,3 +1,8 @@
+<!--
+  THIS FILE WAS GENERATED!
+  Don't make any changes in it, update src/core/getDisplayName.js instead.
+-->
+
 # getDisplayName
 
 Get the display name of a component.

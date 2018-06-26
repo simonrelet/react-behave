@@ -1,3 +1,8 @@
+<!--
+  THIS FILE WAS GENERATED!
+  Don't make any changes in it, update src/components/ClickOutside/ClickOutside.js instead.
+-->
+
 # ClickOutside
 
 [create-ref]: https://reactjs.org/docs/react-api.html#reactcreateref

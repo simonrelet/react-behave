@@ -1,24 +1,19 @@
-<!--
-  THIS FILE WAS GENERATED!
-  Don't make any changes in it, update README-template.md instead.
--->
+# ${name}
 
-# @simonrelet/react-libraries
-
-> Configuration and scripts for React libraries.
+> ${description}
 
 ## Installation
 
 ### npm
 
 ```sh
-npm install --save-dev @simonrelet/react-libraries
+npm install --save-dev ${name}
 ```
 
 ### yarn
 
 ```sh
-yarn add @simonrelet/react-libraries -D
+yarn add ${name} -D
 ```
 
 ## Using environments variables
@@ -38,7 +33,7 @@ Example:
 const API_URL = process.env.REACT_LIB_API_URL;
 
 if (process.env.NODE_ENV === 'development' && !/^https/.test(API_URL)) {
-  console.warn(`The API_URL is not secured: null`);
+  console.warn(`The API_URL is not secured: ${API_URL}`);
 }
 
 console.log('API_URL:', API_URL);
@@ -119,7 +114,7 @@ Generate the _README.md_ and the documentation.
 #### README-template.md
 
 The _README.md_ file can be generated from the _README-template.md_ allowing you to inject values from your _package.json_.
-You can use the syntax `${path}` where `path` is any valid object path in _package.json_.
+You can use the syntax `$${path}` where `path` is any valid object path in _package.json_.
 
 Example:
 
@@ -142,32 +137,32 @@ _package.json_
 _README-template.md_
 
 ````md
-# ${name}
+# $${name}
 
-> ${description}
+> $${description}
 
 ## Installation
 
 ### npm
 
 ```sh
-npm install --save ${name}
+npm install --save $${name}
 ```
 
 ### yarn
 
 ```sh
-yarn add ${name}
+yarn add $${name}
 ```
 
 ### UMD
 
-- Production: https://unpkg.com/${name}@${version} or https://unpkg.com/${name}@${version}/${unpkg}
-- Development: https://unpkg.com/${name}@${version}/${unpkg-dev}
+- Production: https://unpkg.com/$${name}@$${version} or https://unpkg.com/$${name}@$${version}/$${unpkg}
+- Development: https://unpkg.com/$${name}@$${version}/$${unpkg-dev}
 
 ## Documentaion
 
-The documentation can be found [here](${repository.url}/tree/${version}/docs).
+The documentation can be found [here]($${repository.url}/tree/$${version}/docs).
 ````
 
 _README.md_

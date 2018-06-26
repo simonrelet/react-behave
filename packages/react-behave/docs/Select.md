@@ -1,3 +1,8 @@
+<!--
+  THIS FILE WAS GENERATED!
+  Don't make any changes in it, update src/components/Select/Select.js instead.
+-->
+
 # Select
 
 Render a select component.

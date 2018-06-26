@@ -7,12 +7,17 @@ const path = require('path');
 const jsdoc = require('jsdoc-api');
 const formatReactComponentDoc = require('../lib/formatReactComponentDoc');
 const formatJSDoc = require('../lib/formatJSDoc');
+const generateReadme = require('../lib/generateReadme');
+const logger = require('../lib/logger');
+const generateHeader = require('../lib/generateHeader');
 
-const files = glob.sync('src/**/*.js', {
+const sources = 'src/**/*.js';
+const outputFolder = 'docs';
+const files = glob.sync(sources, {
   ignore: ['**/index.js', '**/*.stories.js', '**/*.test.js'],
 });
 
-function parse(src, file, name) {
+function parse(src) {
   try {
     const info = reactDocs.parse(src);
     return formatReactComponentDoc(info);
@@ -23,26 +28,21 @@ function parse(src, file, name) {
   }
 }
 
-files.forEach(file => {
-  const name = path.basename(file, '.js');
-  const src = fs.readFileSync(file, 'utf8');
-  const content = parse(src, file, name);
+function doc() {
+  files.forEach(file => {
+    const name = path.basename(file, '.js');
+    const src = fs.readFileSync(file, 'utf8');
+    const content = parse(src);
+    const header = generateHeader(file);
 
-  if (content) {
-    const outputFile = path.join('docs', `${name}.md`);
-    fs.outputFileSync(outputFile, `${content}\n`);
+    if (content) {
+      const outputFile = path.join(outputFolder, `${name}.md`);
+      fs.outputFileSync(outputFile, `${header}${content}\n`);
+      logger.generated(file, outputFile);
+    }
+  });
 
-    console.log(`${file} -> ${outputFile}`);
-  }
-});
+  generateReadme();
+}
 
-const pkg = fs.readJSONSync(path.resolve('package.json'));
-const readme = fs
-  .readFileSync('README-template.md', 'utf8')
-  .replace(/\$\{VERSION\}/g, pkg.version)
-  .replace(/\$\{DESCRIPTION\}/g, pkg.description)
-  .replace(/\$\{NAME\}/g, pkg.name);
-
-fs.writeFileSync('README.md', readme);
-
-console.log(`README-template.md -> README.md`);
+module.exports = doc;

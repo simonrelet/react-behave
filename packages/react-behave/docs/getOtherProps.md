@@ -1,3 +1,8 @@
+<!--
+  THIS FILE WAS GENERATED!
+  Don't make any changes in it, update src/core/getOtherProps.js instead.
+-->
+
 # getOtherProps
 
 [pors]: https://github.com/tc39/proposal-object-rest-spread

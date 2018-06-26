@@ -1,3 +1,8 @@
+<!--
+  THIS FILE WAS GENERATED!
+  Don't make any changes in it, update src/components/MergeRefs/MergeRefs.js instead.
+-->
+
 # MergeRefs
 
 [callback-refs]: https://reactjs.org/docs/refs-and-the-dom.html#callback-refs

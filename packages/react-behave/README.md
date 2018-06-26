@@ -1,3 +1,8 @@
+<!--
+  THIS FILE WAS GENERATED!
+  Don't make any changes in it, update README-template.md instead.
+-->
+
 # react-behave
 
 > A library of React behavioral components.
@@ -6,8 +11,9 @@
 
 ...Of behavioral components.
 
-The components of this library will only contain behaviour and not UI specific elements.
-If you are familiar with the [Presentational/Container](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) concept, one can say this library only provides containers.
+The components of this library will be focused on functionality and only contain very basic and fully customisable UI.
+
+Here, we focus on **how components work** rather than how they look.
 
 This means:
 
@@ -32,8 +38,8 @@ yarn add react-behave
 
 ### UMD
 
-- Development: https://unpkg.com/react-behave@0.1.0/build/umd/react-behave.development.js
 - Production: https://unpkg.com/react-behave@0.1.0 or https://unpkg.com/react-behave@0.1.0/build/umd/react-behave.production.min.js
+- Development: https://unpkg.com/react-behave@0.1.0/build/umd/react-behave.development.js
 
 ## Documentaion
 

@@ -6,17 +6,20 @@
   "bugs": {
     "url": "https://github.com/simonrelet/react-libraries/issues"
   },
+  "license": "MIT",
   "files": [
     "bin",
     "config",
     "lib",
-    "resources",
     "scripts"
   ],
   "bin": {
     "react-libraries": "bin/react-libraries.js"
   },
-  "license": "MIT",
+  "scripts": {
+    "bump-version": "react-libraries bump-version",
+    "doc": "react-libraries doc"
+  },
   "dependencies": {
     "@babel/core": "7.0.0-beta.42",
     "@babel/preset-env": "7.0.0-beta.42",
@@ -24,13 +27,13 @@
     "@babel/preset-stage-1": "7.0.0-beta.42",
     "chalk": "^2.4.1",
     "change-case": "^3.0.2",
-    "dotenv": "^6.0.0",
-    "dotenv-expand": "^4.2.0",
     "fs-extra": "^6.0.1",
     "glob": "^7.1.2",
     "jsdoc-api": "^4.0.3",
     "lodash.flow": "^3.5.0",
+    "lodash.get": "^4.4.2",
     "lodash.sortby": "^4.7.0",
+    "moment": "^2.22.2",
     "react-docgen": "^2.20.1",
     "rollup": "^0.59.4",
     "rollup-plugin-babel": "^4.0.0-beta.4",
@@ -38,6 +41,7 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-size-snapshot": "^0.5.1",
-    "rollup-plugin-uglify": "^4.0.0"
+    "rollup-plugin-uglify": "^4.0.0",
+    "semver": "^5.5.0"
   }
 }

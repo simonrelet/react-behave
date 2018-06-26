@@ -1,13 +1,14 @@
-# ${NAME}
+# ${name}
 
-> ${DESCRIPTION}
+> ${description}
 
 ## ...Of what?
 
 ...Of behavioral components.
 
-The components of this library will only contain behaviour and not UI specific elements.
-If you are familiar with the [Presentational/Container](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) concept, one can say this library only provides containers.
+The components of this library will be focused on functionality and only contain very basic and fully customisable UI.
+
+Here, we focus on **how components work** rather than how they look.
 
 This means:
 
@@ -21,23 +22,23 @@ This means:
 ### npm
 
 ```sh
-npm install --save ${NAME}
+npm install --save ${name}
 ```
 
 ### yarn
 
 ```sh
-yarn add ${NAME}
+yarn add ${name}
 ```
 
 ### UMD
 
-- Development: https://unpkg.com/${NAME}@${VERSION}/build/umd/react-behave.development.js
-- Production: https://unpkg.com/${NAME}@${VERSION} or https://unpkg.com/${NAME}@${VERSION}/build/umd/react-behave.production.min.js
+- Production: https://unpkg.com/${name}@${version} or https://unpkg.com/${name}@${version}/${unpkg}
+- Development: https://unpkg.com/${name}@${version}/${unpkg-dev}
 
 ## Documentaion
 
-The documentation of each component can be found [here](https://github.com/simonrelet/react-libraries/tree/react-behave-${VERSION}/packages/react-behave/docs).
+The documentation of each component can be found [here](${repository.url}/tree/react-behave-${version}/packages/react-behave/docs).
 
 ---
 

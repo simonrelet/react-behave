@@ -1,65 +1,36 @@
 #!/usr/bin/env node
-
 'use strict';
-
-const chalk = require('chalk');
-const spawn = require('cross-spawn');
-const pkg = require('../package');
 
 process.on('unhandledRejection', err => {
   throw err;
 });
 
+const chalk = require('chalk');
+const fs = require('fs-extra');
+const path = require('path');
+const pkg = require('../package');
+
 const args = process.argv.slice(2);
 const script = args[0];
+const scripts = fs
+  .readdirSync(path.join(__dirname, '..', 'scripts'))
+  .map(s => path.basename(s, '.js'));
 
-function safeSpawn(...args) {
-  const result = spawn.sync(...args);
+const availableScripts = `The available scripts are: ${scripts
+  .map(s => chalk.cyan(s))
+  .join(', ')}.`;
 
-  if (result.signal) {
-    switch (result.signal) {
-      case 'SIGKILL':
-        console.error(
-          'The build failed because the process exited too early. ' +
-            'This probably means the system ran out of memory or someone called ' +
-            '`kill -9` on the process.'
-        );
-        break;
-
-      case 'SIGTERM':
-        console.error(
-          'The build failed because the process exited too early. ' +
-            'Someone might have called `kill` or `killall`, or the system could ' +
-            'be shutting down.'
-        );
-        break;
-
-      default:
-        break;
-    }
-
-    process.exit(1);
-  }
-
-  return result;
+if (!script) {
+  console.error('Missing script name.');
+  console.error(availableScripts);
+  process.exit(1);
 }
 
-switch (script) {
-  case 'build':
-  case 'clean':
-  case 'doc': {
-    const result = safeSpawn(
-      'node',
-      [require.resolve(`../scripts/${script}`)].concat(args.slice(1)),
-      { stdio: 'inherit' }
-    );
-
-    process.exit(result.status);
-    break;
-  }
-
-  default:
-    console.log(`Unknown script ${chalk.cyan(script)}.`);
-    console.log(`Perhaps you need to update ${chalk.cyan(pkg.name)}?`);
-    break;
+if (!scripts.includes(script)) {
+  console.error(`Unknown script ${chalk.cyan(script)}.`);
+  console.error(availableScripts);
+  console.error(`Perhaps you need to update ${chalk.cyan(pkg.name)}?`);
+  process.exit(1);
 }
+
+require(`../scripts/${script}`)(args.slice(1));

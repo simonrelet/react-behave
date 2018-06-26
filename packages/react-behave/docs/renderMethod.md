@@ -1,3 +1,8 @@
+<!--
+  THIS FILE WAS GENERATED!
+  Don't make any changes in it, update src/core/renderMethod.js instead.
+-->
+
 # renderMethod
 
 Helper function to support multiple render methods.

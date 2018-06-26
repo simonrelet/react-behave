@@ -1,3 +1,8 @@
+<!--
+  THIS FILE WAS GENERATED!
+  Don't make any changes in it, update src/components/Responsive/Responsive.js instead.
+-->
+
 # Responsive
 
 Render content depending on the screen size.

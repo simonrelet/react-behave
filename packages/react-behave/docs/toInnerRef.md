@@ -1,3 +1,8 @@
+<!--
+  THIS FILE WAS GENERATED!
+  Don't make any changes in it, update src/core/toInnerRef.js instead.
+-->
+
 # toInnerRef
 
 [fr]: https://reactjs.org/docs/react-api.html#reactforwardref

@@ -1,18 +1,11 @@
 'use strict';
 
-process.env.NODE_ENV = 'production';
-require('../config/env');
+// process.env.NODE_ENV = 'production';
+// require('../config/env');
 
 const chalk = require('chalk');
 const rollup = require('rollup');
-const config = require('../lib/rollupConfig');
-
-const args = process.argv.slice(2);
-const watch = args[0] === '--watch' || args[0] === '-w';
-
-process.on('unhandledRejection', err => {
-  throw err;
-});
+const config = require('../config/rollupConfig');
 
 function writeBundle(inputOptions) {
   return bundle => {
@@ -24,12 +17,12 @@ function writeBundle(inputOptions) {
   };
 }
 
-function build(inputOptions) {
+function buildConfig(inputOptions) {
   return rollup.rollup(inputOptions).then(writeBundle(inputOptions));
 }
 
 function buildAll() {
-  return Promise.all(config.map(build));
+  return Promise.all(config.map(buildConfig));
 }
 
 function logSuccess() {
@@ -47,7 +40,7 @@ function start() {
 
       case 'ERROR':
       case 'FATAL':
-        console.log('error:', event);
+        console.error('error:', event);
         break;
 
       default:
@@ -56,8 +49,14 @@ function start() {
   });
 }
 
-if (watch) {
-  start();
-} else {
-  buildAll().then(logSuccess);
+function build(args) {
+  const watch = args[0] === '--watch' || args[0] === '-w';
+
+  if (watch) {
+    start();
+  } else {
+    buildAll().then(logSuccess);
+  }
 }
+
+module.exports = build;
