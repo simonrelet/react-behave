@@ -6,7 +6,7 @@ import setRef from './setRef';
  * [callback-refs]: https://reactjs.org/docs/refs-and-the-dom.html#callback-refs
  * [create-ref]: https://reactjs.org/docs/react-api.html#reactcreateref
  *
- * > Merge multiple refs on a single HTML element.
+ * Merge multiple refs on a single component.
  *
  * ## Usage
  *
@@ -37,7 +37,7 @@ import setRef from './setRef';
  * }
  * ```
  *
- * This component is an alternative of wrapping `<div />`s when you need to have multiple refs on a single HTML element.
+ * This component is an alternative of wrapping `<div />`s when you need to have multiple refs on a single component.
  */
 class MergeRefs extends Component {
   static propTypes = {
@@ -51,8 +51,10 @@ class MergeRefs extends Component {
     ).isRequired,
 
     /**
-     * Render function.
-     * The parameter is either a callback ref or `null` if `refs` is empty or only contain falsy values.
+     * _Parameters_: `ref: Function`
+     *
+     * Render the component.
+     * `ref` is either a callback ref or `null` if `props.refs` is empty or only contain falsy values.
      */
     render: PropTypes.func.isRequired,
   };

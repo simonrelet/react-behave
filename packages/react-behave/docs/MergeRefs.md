@@ -3,7 +3,7 @@
 [callback-refs]: https://reactjs.org/docs/refs-and-the-dom.html#callback-refs
 [create-ref]: https://reactjs.org/docs/react-api.html#reactcreateref
 
-> Merge multiple refs on a single HTML element.
+Merge multiple refs on a single component.
 
 ## Usage
 
@@ -34,13 +34,19 @@ class App extends Component {
 }
 ```
 
-This component is an alternative of wrapping `<div />`s when you need to have multiple refs on a single HTML element.
+This component is an alternative of wrapping `<div />`s when you need to have multiple refs on a single component.
 
 ## Props
 
-_Mandatory props are marked with a `*`._
+### `refs`: `Array`<`Function`|`Object`>
 
-| Name                                   |            Type             | Default value | Description                                                                                                                                              |
-| -------------------------------------- | :-------------------------: | :-----------: | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <strong><code>refs</code>\*</strong>   | `arrayOf`<`func`\|`object`> |               | Array of refs. Each ref can either be a [callback ref][callback-refs] or an object created with [`React.createRef`][create-ref]. Falsy refs are ignored. |
-| <strong><code>render</code>\*</strong> |           `func`            |               | Render function. The parameter is either a callback ref or `null` if `refs` is empty or only contain falsy values.                                       |
+Array of refs.
+Each ref can either be a [callback ref][callback-refs] or an object created with [`React.createRef`][create-ref].
+Falsy refs are ignored.
+
+### `render`: `Function`
+
+_Parameters_: `ref: Function`
+
+Render the component.
+`ref` is either a callback ref or `null` if `props.refs` is empty or only contain falsy values.

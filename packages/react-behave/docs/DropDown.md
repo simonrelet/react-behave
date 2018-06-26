@@ -4,7 +4,7 @@
 [react-popper]: https://github.com/FezVrasta/react-popper
 [popper-props]: https://github.com/FezVrasta/react-popper#children
 
-> Render a drop down over a reference HTML element using [react-popper][react-popper].
+Render a dropdown around a component.
 
 ## Usage
 
@@ -48,27 +48,32 @@ class App extends Component {
 }
 ```
 
-## Render functions
-
-### `render(ref)`
-
-Render the reference of the drop down.
-The parameter is a [ref object][create-ref] to set on the reference HTML element.
-
-### `renderDropDown(ref, props)`
-
-Render the drop down.
-The first parameter is a [ref object][create-ref] to set on the reference HTML element.
-The second parameter is the props object containing styles for positioning that need to be applied on the reference HTML element of the drop down.
-This object is the same as the [one provided by react-popper][popper-props] without the `ref`.
-
 ## Props
 
-_Mandatory props are marked with a `*`._
+### `render`: `Function`
 
-| Name                                           |  Type  | Default value | Description                                                                                         |
-| ---------------------------------------------- | :----: | :-----------: | --------------------------------------------------------------------------------------------------- |
-| `onClickOutside`                               | `func` |               | Called for each click outside the drop down HTML element. The parameter is the `MouseEvent` object. |
-| `open`                                         | `bool` |    `false`    | Whether the drop down should be opened or not.                                                      |
-| <strong><code>render</code>\*</strong>         | `func` |               | Render function for the reference. See [render functions](#renderref).                              |
-| <strong><code>renderDropDown</code>\*</strong> | `func` |               | Render function for the drop down. See [render functions](#renderdropdownref-props).                |
+_Parameters_: `ref: Object|Function`
+
+Render the reference component of the dropdown.
+`ref` must be passed to the component in order to position correctly the dropdown.
+
+### `renderDropDown`: `Function`
+
+_Parameters_: `ref: Object|Function`, `popperProps: Object`
+
+Render the dropdown.
+`ref` must be passed to the component in order to position correctly the dropdown.
+`popperProps` is the object containing styles for positioning that need to be applied on the dropdown component.
+This object is the same as the [one provided by react-popper][popper-props] without the `ref`.
+
+### `onClickOutside`: `Function` (optional)
+
+_Parameters_: `event: MouseEvent`
+
+Called for each click outside the dropdown component.
+
+### `open`: `Boolean` (optional)
+
+_Default value_: `false`
+
+Whether the dropdown should be opened or not.

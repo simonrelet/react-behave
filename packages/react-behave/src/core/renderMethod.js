@@ -34,12 +34,12 @@ import React from 'react';
  * - `component`: Render the component with the given `props`.
  * - `render`: Call the render function with the `props` as first parameter.
  *
- * @param {Object} methods - The render methods. At least one of the methods must be provided.
- * @param {React.Node} [methods.children] - The children of the component. See the [render methods](#render-methods).
- * @param {React.Component} [methods.component] - A React component. See the [render methods](#render-methods).
- * @param {function} [methods.render] - A render function. See the [render methods](#render-methods).
- * @param {Object} [props={}] - The props to pass down. Only passed with the `component` and `render` methods.
- * @returns {React.Element}
+ * @param {Object} methods - The render methods. At least one of the methods must be provided. See the [render methods](#render-methods).
+ * @param {React.Node} [methods.children] - The children of the component.
+ * @param {React.Component} [methods.component] - A React component.
+ * @param {function} [methods.render] - A render function.
+ * @param {Object} [props={}] - The props to pass down. Only passed to the `component` and `render` methods.
+ * @returns {React.Element} The render tree.
  */
 function renderMethod(methods, props = {}) {
   const { children, component: Component, render } = methods;

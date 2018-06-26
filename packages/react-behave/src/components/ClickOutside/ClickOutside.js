@@ -5,7 +5,7 @@ import EventListener from 'react-event-listener';
 /**
  * [create-ref]: https://reactjs.org/docs/react-api.html#reactcreateref
  *
- * > Notify for each click outside a reference HTML element.
+ * Notify for each click outside a component.
  *
  * ## Usage
  *
@@ -32,14 +32,17 @@ import EventListener from 'react-event-listener';
 class ClickOutside extends Component {
   static propTypes = {
     /**
-     * Called for each click outside the reference HTML element.
-     * The parameter is the `MouseEvent` object.
+     * _Parameters_: `event: MouseEvent`
+     *
+     * Called for each click outside the component.
      */
     onClickOutside: PropTypes.func.isRequired,
 
     /**
-     * Render function.
-     * The parameter is a [ref object][create-ref] to set on the reference HTML element.
+     * _Parameters_: `ref: Object|Function`
+     *
+     * Renders the component.
+     * `ref` must be passed to the component in order to work.
      */
     render: PropTypes.func.isRequired,
   };

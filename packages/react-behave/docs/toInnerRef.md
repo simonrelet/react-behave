@@ -1,4 +1,4 @@
-# toInnerRef(Component) ⇒ `React.Component`
+# toInnerRef
 
 [fr]: https://reactjs.org/docs/react-api.html#reactforwardref
 
@@ -17,16 +17,22 @@ const MyComponent = ({ innerRef, ...props }) => (
 );
 
 // Instead of:
-export default React.forwardRef((props, ref) => (
-  <MyComponent innerRef={ref} {...props} />
-));
+// export default React.forwardRef((props, ref) => (
+//   <MyComponent innerRef={ref} {...props} />
+// ));
 
 // Simply write:
 export default toInnerRef(MyComponent);
 ```
 
-**Returns**: `React.Component` - The wrapping component.
+## Type signature
 
-| Param       | Type              | Description          |
-| ----------- | ----------------- | -------------------- |
-| `Component` | `React.Component` | The React component. |
+```js
+toInnerRef(Component): React.Component
+```
+
+**Parameters**:
+
+- `Component: React.Component`: The React component.
+
+**Return** `React.Component`: The wrapping component.

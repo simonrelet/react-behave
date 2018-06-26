@@ -1,4 +1,4 @@
-# getDisplayName(component) ⇒ `string`
+# getDisplayName
 
 Get the display name of a component.
 
@@ -11,8 +11,14 @@ import MyComponent from './MyComponent';
 const displayName = getDisplayName(MyComponent);
 ```
 
-**Returns**: `string` - The component's name.
+## Type signature
 
-| Param       | Type              | Description          |
-| ----------- | ----------------- | -------------------- |
-| `component` | `React.Component` | The React component. |
+```js
+getDisplayName(component): string
+```
+
+**Parameters**:
+
+- `component: React.Component`: The React component.
+
+**Return** `string`: The component's name.

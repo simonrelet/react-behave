@@ -6,14 +6,12 @@ import { mount } from 'enzyme';
 describe('<DropDown />', () => {
   it('passes down the ref to `render`', () => {
     const render = jest.fn();
-
     mount(<DropDown render={render} renderDropDown={jest.fn()} />);
     expect(render).toHaveBeenCalledWith(expect.anything());
   });
 
   it('passes down the ref and props to `renderDropDown`', () => {
     const renderDropDown = jest.fn(() => <p />);
-
     mount(
       <DropDown
         open={true}
@@ -21,7 +19,6 @@ describe('<DropDown />', () => {
         renderDropDown={renderDropDown}
       />,
     );
-
     expect(renderDropDown).toHaveBeenCalledWith(
       expect.anything(),
       expect.anything(),
@@ -30,7 +27,6 @@ describe('<DropDown />', () => {
 
   it("doesn't call `renderDropDown` when not opened", () => {
     const renderDropDown = jest.fn();
-
     mount(<DropDown render={jest.fn()} renderDropDown={renderDropDown} />);
     expect(renderDropDown).not.toHaveBeenCalled();
   });
@@ -44,7 +40,6 @@ describe('<DropDown />', () => {
         renderDropDown={renderDropDown}
       />,
     );
-
     expect(wrapper.find(ClickOutside)).toHaveLength(0);
   });
 
@@ -58,7 +53,6 @@ describe('<DropDown />', () => {
         renderDropDown={renderDropDown}
       />,
     );
-
     expect(wrapper.find(ClickOutside).first()).toBeDefined();
   });
 });

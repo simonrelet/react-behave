@@ -12,13 +12,8 @@ describe('<ClickOutside />', () => {
         render={ref => <p ref={ref}>Hello</p>}
       />,
     );
-
-    const event = {
-      target: document,
-    };
-
+    const event = { target: document };
     wrapper.find(EventListener).prop('onClick')(event);
-
     expect(cb).toHaveBeenCalledWith(event);
   });
 
@@ -35,13 +30,8 @@ describe('<ClickOutside />', () => {
         )}
       />,
     );
-
-    const event = {
-      target: insideRef,
-    };
-
+    const event = { target: insideRef };
     wrapper.find(EventListener).prop('onClick')(event);
-
     expect(cb).not.toHaveBeenCalled();
   });
 
@@ -50,13 +40,8 @@ describe('<ClickOutside />', () => {
     const wrapper = mount(
       <ClickOutside onClickOutside={cb} render={() => <p>Hello</p>} />,
     );
-
-    const event = {
-      target: document,
-    };
-
+    const event = { target: document };
     wrapper.find(EventListener).prop('onClick')(event);
-
     expect(cb).not.toHaveBeenCalled();
   });
 });

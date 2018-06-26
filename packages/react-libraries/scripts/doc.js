@@ -4,41 +4,33 @@ const glob = require('glob');
 const reactDocs = require('react-docgen');
 const fs = require('fs-extra');
 const path = require('path');
-const jsdoc2md = require('jsdoc-to-markdown');
+const jsdoc = require('jsdoc-api');
 const formatReactComponentDoc = require('../lib/formatReactComponentDoc');
+const formatJSDoc = require('../lib/formatJSDoc');
 
 const files = glob.sync('src/**/*.js', {
   ignore: ['**/index.js', '**/*.stories.js', '**/*.test.js'],
 });
 
-function parse(src, name) {
+function parse(src, file, name) {
   try {
     const info = reactDocs.parse(src);
-    return formatReactComponentDoc(info, name);
+    return formatReactComponentDoc(info);
   } catch (_) {
     // Try to parse regular JavaScript file.
-    return jsdoc2md.renderSync({
-      source: src,
-      // Disable caching to avoid missmatch documentation.
-      'no-cache': true,
-      // The first heading will be `# myFunction`.
-      'heading-depth': 1,
-      // Use our custom partials
-      partial: glob.sync(
-        path.resolve(__dirname, '..', 'resources', 'partials', '**/*.hbs')
-      ),
-    });
+    const info = jsdoc.explainSync({ source: src });
+    return formatJSDoc(info);
   }
 }
 
 files.forEach(file => {
   const name = path.basename(file, '.js');
   const src = fs.readFileSync(file, 'utf8');
-  const content = parse(src, name);
+  const content = parse(src, file, name);
 
   if (content) {
     const outputFile = path.join('docs', `${name}.md`);
-    fs.outputFileSync(outputFile, content);
+    fs.outputFileSync(outputFile, `${content}\n`);
 
     console.log(`${file} -> ${outputFile}`);
   }

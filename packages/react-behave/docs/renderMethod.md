@@ -1,4 +1,4 @@
-# renderMethod(methods, [props]) ⇒ `React.Element`
+# renderMethod
 
 Helper function to support multiple render methods.
 
@@ -33,10 +33,18 @@ The first render method defined is used:
 - `component`: Render the component with the given `props`.
 - `render`: Call the render function with the `props` as first parameter.
 
-| Param                 | Type              | Default | Description                                                                    |
-| --------------------- | ----------------- | ------- | ------------------------------------------------------------------------------ |
-| `methods`             | `Object`          |         | The render methods. At least one of the methods must be provided.              |
-| `[methods.children]`  | `React.Node`      |         | The children of the component. See the [render methods](#render-methods).      |
-| `[methods.component]` | `React.Component` |         | A React component. See the [render methods](#render-methods).                  |
-| `[methods.render]`    | `function`        |         | A render function. See the [render methods](#render-methods).                  |
-| `[props]`             | `Object`          | `{}`    | The props to pass down. Only passed with the `component` and `render` methods. |
+## Type signature
+
+```js
+renderMethod(methods, [props]): React.Element
+```
+
+**Parameters**:
+
+- `methods: Object`: The render methods. At least one of the methods must be provided. See the [render methods](#render-methods).
+  - `[.children]: React.Node`: The children of the component.
+  - `[.component]: React.Component`: A React component.
+  - `[.render]: function`: A render function.
+- `[props]: Object`: The props to pass down. Only passed to the `component` and `render` methods.
+
+**Return** `React.Element`: The render tree.

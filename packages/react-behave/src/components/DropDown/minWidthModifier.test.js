@@ -9,7 +9,6 @@ describe('minWidthModifier', () => {
       },
       styles: {},
     });
-
     expect(res.styles.minWidth).toBe('100px');
   });
 
@@ -21,7 +20,6 @@ describe('minWidthModifier', () => {
       },
       styles: {},
     });
-
     expect(res.styles.minWidth).toBeUndefined();
   });
 });

@@ -29,7 +29,7 @@ function renderContent(onClickOutside, popperProps, popperRef, renderDropDown) {
  * [react-popper]: https://github.com/FezVrasta/react-popper
  * [popper-props]: https://github.com/FezVrasta/react-popper#children
  *
- * > Render a drop down over a reference HTML element using [react-popper][react-popper].
+ * Render a dropdown around a component.
  *
  * ## Usage
  *
@@ -44,11 +44,11 @@ function renderContent(onClickOutside, popperProps, popperRef, renderDropDown) {
  *
  *   handleClickOutside = () => {
  *     this.setState({ open: false });
- *   }
+ *   };
  *
  *   toggleDropDown = () => {
  *     this.setState(({ open }) => ({ open: !open }));
- *   }
+ *   };
  *
  *   render() {
  *     return (
@@ -56,10 +56,7 @@ function renderContent(onClickOutside, popperProps, popperRef, renderDropDown) {
  *         onClickOutside={this.handleClickOutside}
  *         open={this.state.open}
  *         render={ref => (
- *           <button
- *             ref={ref}
- *             onClick={this.toggleDropDown}
- *           >
+ *           <button ref={ref} onClick={this.toggleDropDown}>
  *             Open drop down
  *           </button>
  *         )}
@@ -75,20 +72,6 @@ function renderContent(onClickOutside, popperProps, popperRef, renderDropDown) {
  *   }
  * }
  * ```
- *
- * ## Render functions
- *
- * ### `render(ref)`
- *
- * Render the reference of the drop down.
- * The parameter is a [ref object][create-ref] to set on the reference HTML element.
- *
- * ### `renderDropDown(ref, props)`
- *
- * Render the drop down.
- * The first parameter is a [ref object][create-ref] to set on the reference HTML element.
- * The second parameter is the props object containing styles for positioning that need to be applied on the reference HTML element of the drop down.
- * This object is the same as the [one provided by react-popper][popper-props] without the `ref`.
  */
 function DropDown({ onClickOutside, open, render, renderDropDown }) {
   return (
@@ -112,25 +95,32 @@ function DropDown({ onClickOutside, open, render, renderDropDown }) {
 
 DropDown.propTypes = {
   /**
-   * Called for each click outside the drop down HTML element.
-   * The parameter is the `MouseEvent` object.
+   * _Parameters_: `event: MouseEvent`
+   *
+   * Called for each click outside the dropdown component.
    */
   onClickOutside: PropTypes.func,
 
   /**
-   * Whether the drop down should be opened or not.
+   * Whether the dropdown should be opened or not.
    */
   open: PropTypes.bool,
 
   /**
-   * Render function for the reference.
-   * See [render functions](#renderref).
+   * _Parameters_: `ref: Object|Function`
+   *
+   * Render the reference component of the dropdown.
+   * `ref` must be passed to the component in order to position correctly the dropdown.
    */
   render: PropTypes.func.isRequired,
 
   /**
-   * Render function for the drop down.
-   * See [render functions](#renderdropdownref-props).
+   * _Parameters_: `ref: Object|Function`, `popperProps: Object`
+   *
+   * Render the dropdown.
+   * `ref` must be passed to the component in order to position correctly the dropdown.
+   * `popperProps` is the object containing styles for positioning that need to be applied on the dropdown component.
+   * This object is the same as the [one provided by react-popper][popper-props] without the `ref`.
    */
   renderDropDown: PropTypes.func.isRequired,
 };

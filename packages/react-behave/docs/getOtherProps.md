@@ -1,4 +1,4 @@
-# getOtherProps(component, props) ⇒ `Object`
+# getOtherProps
 
 [pors]: https://github.com/tc39/proposal-object-rest-spread
 
@@ -31,9 +31,15 @@ class App extends Component {
 }
 ```
 
-**Returns**: `Object` - The other props.
+## Type signature
 
-| Param       | Type              | Description                                                                |
-| ----------- | ----------------- | -------------------------------------------------------------------------- |
-| `component` | `React.Component` | The React component. A `propTypes` attribute must be set on the component. |
-| `props`     | `Object`          | The props of the component.                                                |
+```js
+getOtherProps(component, props): Object
+```
+
+**Parameters**:
+
+- `component: React.Component`: The React component. A `propTypes` attribute must be set on the component.
+- `props: Object`: The props of the component.
+
+**Return** `Object`: The other props.

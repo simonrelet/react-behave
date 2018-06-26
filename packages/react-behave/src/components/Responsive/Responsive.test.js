@@ -39,91 +39,75 @@ describe('<Responsive />', () => {
 
     it('renders its content when using `minimum`', () => {
       window.innerWidth = screenSizes.md;
-
       const wrapper = mount(
         <Responsive screenSizes={screenSizes} minimum="md">
           <p>Hello</p>
         </Responsive>,
       );
-
       expect(wrapper.find('p').first()).toBeDefined();
     });
 
     it("doesn't render its content when using `minimum`", () => {
       window.innerWidth = screenSizes.md - 1;
-
       const wrapper = mount(
         <Responsive screenSizes={screenSizes} minimum="md">
           <p>Hello</p>
         </Responsive>,
       );
-
       expect(wrapper.find('p')).toHaveLength(0);
     });
 
     it('renders its content when using `maximum`', () => {
       window.innerWidth = screenSizes.md;
-
       const wrapper = mount(
         <Responsive screenSizes={screenSizes} maximum="md">
           <p>Hello</p>
         </Responsive>,
       );
-
       expect(wrapper.find('p').first()).toBeDefined();
     });
 
     it("doesn't render its content when using `maximum`", () => {
       window.innerWidth = screenSizes.lg;
-
       const wrapper = mount(
         <Responsive screenSizes={screenSizes} maximum="md">
           <p>Hello</p>
         </Responsive>,
       );
-
       expect(wrapper.find('p')).toHaveLength(0);
     });
 
     it('renders its content when using `maximum` and `minimum`', () => {
       window.innerWidth = screenSizes.md;
-
       const wrapper = mount(
         <Responsive screenSizes={screenSizes} maximum="lg" minimum="sm">
           <p>Hello</p>
         </Responsive>,
       );
-
       expect(wrapper.first()).toBeDefined();
     });
 
     it("doesn't render its content when using `maximum` and `minimum`", () => {
       window.innerWidth = screenSizes.xl;
-
       const wrapper = mount(
         <Responsive screenSizes={screenSizes} maximum="lg" minimum="sm">
           <p>Hello</p>
         </Responsive>,
       );
-
       expect(wrapper.find('p')).toHaveLength(0);
     });
 
     it('listen to window resizes', async () => {
       expect.assertions(1);
       window.innerWidth = screenSizes.lg;
-
       const wrapper = mount(
         <Responsive screenSizes={screenSizes} minimum="md">
           <div>Hello</div>
         </Responsive>,
       );
-
       window.innerWidth = screenSizes.sm;
       window.dispatchEvent(new Event('resize'));
-
       await wait();
-
       wrapper.update();
       expect(wrapper.find('div')).toHaveLength(0);
     });
@@ -133,7 +117,6 @@ describe('<Responsive />', () => {
     it('renders its content when there is no constraints', () => {
       const render = jest.fn();
       window.innerWidth = screenSizes.md;
-
       mount(<Responsive screenSizes={screenSizes} render={render} />);
       expect(render).toHaveBeenCalledWith('md');
     });
@@ -141,51 +124,42 @@ describe('<Responsive />', () => {
     it('renders its content when using `minimum`', () => {
       const render = jest.fn();
       window.innerWidth = screenSizes.md;
-
       mount(
         <Responsive screenSizes={screenSizes} minimum="md" render={render} />,
       );
-
       expect(render).toHaveBeenCalledWith('md');
     });
 
     it("doesn't render its content when using `minimum`", () => {
       const render = jest.fn();
       window.innerWidth = screenSizes.md - 1;
-
       mount(
         <Responsive screenSizes={screenSizes} minimum="md" render={render} />,
       );
-
       expect(render).not.toHaveBeenCalled();
     });
 
     it('renders its content when using `maximum`', () => {
       const render = jest.fn();
       window.innerWidth = screenSizes.md;
-
       mount(
         <Responsive screenSizes={screenSizes} maximum="md" render={render} />,
       );
-
       expect(render).toHaveBeenCalledWith('md');
     });
 
     it("doesn't render its content when using `maximum`", () => {
       const render = jest.fn();
       window.innerWidth = screenSizes.lg;
-
       mount(
         <Responsive screenSizes={screenSizes} maximum="md" render={render} />,
       );
-
       expect(render).not.toHaveBeenCalled();
     });
 
     it('renders its content when using `maximum` and `minimum`', () => {
       const render = jest.fn();
       window.innerWidth = screenSizes.md;
-
       mount(
         <Responsive
           screenSizes={screenSizes}
@@ -194,14 +168,12 @@ describe('<Responsive />', () => {
           render={render}
         />,
       );
-
       expect(render).toHaveBeenCalledWith('md');
     });
 
     it("doesn't render its content when using `maximum` and `minimum`", () => {
       const render = jest.fn();
       window.innerWidth = screenSizes.xl;
-
       mount(
         <Responsive
           screenSizes={screenSizes}
@@ -210,7 +182,6 @@ describe('<Responsive />', () => {
           render={render}
         />,
       );
-
       expect(render).not.toHaveBeenCalled();
     });
 
@@ -218,18 +189,13 @@ describe('<Responsive />', () => {
       expect.assertions(1);
       const render = jest.fn();
       window.innerWidth = screenSizes.lg;
-
       const wrapper = mount(
         <Responsive screenSizes={screenSizes} minimum="md" render={render} />,
       );
-
       render.mockReset();
-
       window.innerWidth = screenSizes.sm;
       window.dispatchEvent(new Event('resize'));
-
       await wait();
-
       wrapper.update();
       expect(render).not.toHaveBeenCalled();
     });
