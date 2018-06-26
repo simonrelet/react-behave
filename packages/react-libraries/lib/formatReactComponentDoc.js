@@ -9,6 +9,7 @@ const types = {
   array: 'Array',
   arrayOf: 'Array',
   bool: 'Boolean',
+  enum: 'Enum',
   func: 'Function',
   node: 'Node',
   number: 'Number',
@@ -24,6 +25,12 @@ function formatType(type) {
 
       case 'union':
         return type.value.map(formatType).join('|');
+
+      case 'enum':
+        if (type.computed) {
+          return formatCode(types[type.name]);
+        }
+        return type.value.map(v => formatCode(v.value)).join('|');
 
       default:
         break;

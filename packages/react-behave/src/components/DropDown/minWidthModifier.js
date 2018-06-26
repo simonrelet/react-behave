@@ -4,7 +4,7 @@ const minWidthModifier = {
     const referenceWidth = Math.floor(data.offsets.reference.width);
     const dropDownWidth = Math.floor(data.offsets.popper.width);
 
-    if (dropDownWidth < referenceWidth) {
+    if (dropDownWidth <= referenceWidth) {
       data.styles.minWidth = `${referenceWidth}px`;
     }
 

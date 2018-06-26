@@ -3,6 +3,7 @@
 [create-ref]: https://reactjs.org/docs/react-api.html#reactcreateref
 [react-popper]: https://github.com/FezVrasta/react-popper
 [popper-props]: https://github.com/FezVrasta/react-popper#children
+[popper-placements]: https://popper.js.org/popper-documentation.html#Popper.placements
 
 Render a dropdown around a component.
 
@@ -77,3 +78,11 @@ Called for each click outside the dropdown component.
 _Default value_: `false`
 
 Whether the dropdown should be opened or not.
+
+### `placement`: `Enum` (optional)
+
+_Default value_: `'bottom-start'`
+
+Placement of the dropdown.
+
+Must be one of [PopperJS's placement][popper-placements].

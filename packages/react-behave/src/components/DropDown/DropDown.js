@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Manager, Popper, Reference } from 'react-popper';
+import { Manager, Popper, Reference, placements } from 'react-popper';
 import ClickOutside from '../ClickOutside';
 import MergeRefs from '../MergeRefs';
 import minWidthModifier from './minWidthModifier';
@@ -28,6 +28,7 @@ function renderContent(onClickOutside, popperProps, popperRef, renderDropDown) {
  * [create-ref]: https://reactjs.org/docs/react-api.html#reactcreateref
  * [react-popper]: https://github.com/FezVrasta/react-popper
  * [popper-props]: https://github.com/FezVrasta/react-popper#children
+ * [popper-placements]: https://popper.js.org/popper-documentation.html#Popper.placements
  *
  * Render a dropdown around a component.
  *
@@ -73,12 +74,12 @@ function renderContent(onClickOutside, popperProps, popperRef, renderDropDown) {
  * }
  * ```
  */
-function DropDown({ onClickOutside, open, render, renderDropDown }) {
+function DropDown({ onClickOutside, open, placement, render, renderDropDown }) {
   return (
     <Manager>
       <Reference>{({ ref }) => render(ref)}</Reference>
       {open && (
-        <Popper placement="bottom-start" modifiers={{ minWidthModifier }}>
+        <Popper placement={placement} modifiers={{ minWidthModifier }}>
           {({ ref: popperRef, ...popperProps }) =>
             renderContent(
               onClickOutside,
@@ -107,6 +108,13 @@ DropDown.propTypes = {
   open: PropTypes.bool,
 
   /**
+   * Placement of the dropdown.
+   *
+   * Must be one of [PopperJS's placement][popper-placements].
+   */
+  placement: PropTypes.oneOf(placements),
+
+  /**
    * _Parameters_: `ref: Object|Function`
    *
    * Render the reference component of the dropdown.
@@ -127,6 +135,7 @@ DropDown.propTypes = {
 
 DropDown.defaultProps = {
   open: false,
+  placement: 'bottom-start',
 };
 
 export default DropDown;
