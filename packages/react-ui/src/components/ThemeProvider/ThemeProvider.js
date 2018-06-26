@@ -6,14 +6,13 @@ import { JssProvider, ThemeProvider as Provider } from 'react-jss';
 
 const jss = createJss(jssPreset());
 
-const ThemeProvider = props => {
-  const { children, theme } = props;
+function ThemeProvider({ children, theme }) {
   return (
     <JssProvider jss={jss}>
       <Provider theme={theme}>{children}</Provider>
     </JssProvider>
   );
-};
+}
 
 ThemeProvider.propTypes = {
   children: PropTypes.node.isRequired,

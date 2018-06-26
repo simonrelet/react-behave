@@ -23,4 +23,18 @@ describe('toInnerRef', () => {
       expect.anything(),
     );
   });
+
+  it("doesn't passes the `innerRef` if `ref` is falsy", () => {
+    const Test = jest.fn(() => <p />);
+    const TestComponent = toInnerRef(Test);
+
+    const props = {
+      prop1: true,
+      prop2: true,
+    };
+
+    TestRenderer.create(<TestComponent ref={null} {...props} />);
+
+    expect(Test).toHaveBeenCalledWith(props, expect.anything());
+  });
 });

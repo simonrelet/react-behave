@@ -32,7 +32,11 @@ import getDisplayName from './getDisplayName';
  */
 function toInnerRef(Component) {
   function forwardRef(props, ref) {
-    return <Component {...props} innerRef={ref} />;
+    return ref ? (
+      <Component {...props} innerRef={ref} />
+    ) : (
+      <Component {...props} />
+    );
   }
 
   forwardRef.displayName = `ToInnerRef(${getDisplayName(Component)})`;

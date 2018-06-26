@@ -2,53 +2,74 @@
   "name": "@simonrelet/react-ui",
   "version": "0.1.0",
   "description": "A library of React UI components.",
-  "repository": "simonrelet/react-libraries",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simonrelet/react-libraries"
+  },
   "bugs": {
     "url": "https://github.com/simonrelet/react-libraries/issues"
   },
-  "main": "build/index.js",
-  "module": "build/index.es.js",
+  "keywords": [
+    "react",
+    "ui",
+    "component"
+  ],
+  "main": "build/react-ui.js",
+  "module": "build/react-ui.es.js",
+  "unpkg": "build/umd/react-ui.production.min.js",
+  "unpkg-dev": "build/umd/react-ui.development.js",
   "license": "MIT",
   "files": [
-    "build"
+    "build",
+    "docs"
   ],
   "scripts": {
     "build": "react-libraries build",
     "build-storybook": "build-storybook -c storybook -o build-storybook",
+    "bump-version": "react-libraries bump-version",
     "clean": "react-libraries clean",
-    "start": "react-libraries start",
+    "doc": "react-libraries doc",
+    "start": "react-libraries build -w",
     "storybook": "start-storybook -c storybook -p 4000",
     "test": "react-scripts test --env=jsdom"
   },
   "peerDependencies": {
-    "prop-types": "^15.5.4",
-    "react": "^0.14.9 || ^15.0.0 || ^16.0.0",
-    "react-dom": "^0.14.9 || ^15.0.0 || ^16.0.0"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "dependencies": {
-    "@simonrelet/react-utils": "^0.1.0",
     "classnames": "^2.2.5",
     "jss": "^9.8.1",
     "jss-preset-default": "^4.5.0",
+    "lodash.mergewith": "^4.6.1",
+    "prop-types": "^15.5.7",
     "react-behave": "^0.1.0",
     "react-jss": "^8.4.0"
   },
   "devDependencies": {
     "@simonrelet/react-libraries": "^0.1.0",
-    "@storybook/addon-a11y": "^3.4.5",
-    "@storybook/addon-actions": "^3.4.5",
-    "@storybook/addon-backgrounds": "^3.4.5",
-    "@storybook/addon-centered": "^3.4.5",
+    "@storybook/addon-a11y": "^4.0.0-alpha.9",
+    "@storybook/addon-actions": "^4.0.0-alpha.9",
     "@storybook/addon-console": "^1.0.0",
-    "@storybook/addon-knobs": "^3.4.5",
-    "@storybook/addon-links": "^3.4.5",
-    "@storybook/addon-options": "^3.4.5",
-    "@storybook/addons": "^3.4.5",
-    "@storybook/react": "^3.4.5",
-    "prop-types": "^15.5.0",
+    "@storybook/addon-knobs": "^4.0.0-alpha.9",
+    "@storybook/addon-links": "^4.0.0-alpha.9",
+    "@storybook/addon-options": "^4.0.0-alpha.9",
+    "@storybook/addon-viewport": "^4.0.0-alpha.9",
+    "@storybook/addons": "^4.0.0-alpha.9",
+    "@storybook/react": "^4.0.0-alpha.9",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "^1.1.4",
     "react-test-renderer": "^16.3.2"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/*.stories.js",
+      "!src/**/index.js",
+      "!src/ReactSixteenAdapter.js"
+    ]
   }
 }

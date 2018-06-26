@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import injectStyles from '../injectStyles';
+import injectStyles from '../core/injectStyles';
 
 function styles() {
   return {
     root: {
       display: 'inline-block',
       fill: 'currentColor',
-      flexShrink: 0,
+      flex: 'none',
       height: '1.5em',
       transition: 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       userSelect: 'none',

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import injectStyles from '../injectStyles';
+import injectStyles from '../../core/injectStyles';
 
 function styles({ palette, typography }) {
   return {
@@ -14,9 +14,7 @@ function styles({ palette, typography }) {
         boxSizing: 'border-box',
       },
       body: {
-        // Escape hatch for the storybook background decorator.
-        backgroundColor: ({ inheritBackground }) =>
-          inheritBackground ? null : palette.background.app,
+        backgroundColor: palette.background.app,
         color: palette.text.primary,
         fontFamily: typography.fontFamily,
         fontSize: typography.fontSize,
@@ -26,18 +24,13 @@ function styles({ palette, typography }) {
   };
 }
 
-function AppTheme({ children }) {
+function GlobalTheme({ children }) {
   return children;
 }
 
-AppTheme.propTypes = {
+GlobalTheme.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
-  inheritBackground: PropTypes.bool,
 };
 
-AppTheme.defaultProps = {
-  inheritBackground: false,
-};
-
-export default injectStyles(styles)(AppTheme);
+export default injectStyles(styles)(GlobalTheme);

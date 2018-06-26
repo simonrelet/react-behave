@@ -218,12 +218,20 @@ function isLightColor(color) {
   return getLuminance(color) > 0.5;
 }
 
+function getTextColorForBackground(backgroundColor, color, colorContrast) {
+  if (isLightColor(backgroundColor)) {
+    return color;
+  }
+  return colorContrast;
+}
+
 export default {
   convertHexToRGB,
   decomposeColor,
   recomposeColor,
   getContrastRatio,
   getLuminance,
+  getTextColorForBackground,
   emphasize,
   fade,
   darken,

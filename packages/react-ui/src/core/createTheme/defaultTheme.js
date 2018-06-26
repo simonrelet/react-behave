@@ -1,4 +1,4 @@
-import { BREAKPOINTS, BREAKPOINTS_KEYS } from '../constants';
+import { screenSizes, screenSizesNames } from '../../constants';
 import colorsUtils from './colorsUtils';
 
 function spacing(scale = 1) {
@@ -15,6 +15,9 @@ const colors = {
   grey: '#ccc',
   primary: '#2196f3',
   secondary: '#4caf50',
+  success: '#4caf50',
+  error: '#f44336',
+  warning: '#ff9800',
 };
 
 const palette = {
@@ -27,6 +30,12 @@ const palette = {
     disabled: colorsUtils.fade(colors.black, 0.38),
     hint: colorsUtils.fade(colors.black, 0.38),
   },
+  textContrast: {
+    primary: colorsUtils.fade(colors.white, 0.87),
+    secondary: colorsUtils.fade(colors.white, 0.54),
+    disabled: colorsUtils.fade(colors.white, 0.38),
+    hint: colorsUtils.fade(colors.white, 0.38),
+  },
   background: {
     app: '#fafafa',
     contrast: '#424242',
@@ -35,10 +44,10 @@ const palette = {
 };
 
 const breakpoints = {
-  up: width => `@media (min-width:${BREAKPOINTS[width]}px)`,
+  up: width => `@media (min-width:${screenSizes[width]}px)`,
   down: width => {
-    const upperWidth = BREAKPOINTS_KEYS[BREAKPOINTS_KEYS.indexOf(width) + 1];
-    return `@media (max-width:${BREAKPOINTS[upperWidth] - 0.05}px)`;
+    const upperWidth = screenSizesNames[screenSizesNames.indexOf(width) + 1];
+    return `@media (max-width:${screenSizes[upperWidth] - 0.05}px)`;
   },
 };
 
