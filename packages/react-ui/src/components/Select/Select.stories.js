@@ -36,31 +36,39 @@ class WithState extends Component {
 const generalGroup = 'general';
 const labelGroup = 'label';
 
+function SelectStory(props) {
+  return (
+    <WithState initialState={{ value: null }}>
+      {(state, setState) => {
+        button('Reset value', () => setState({ value: null }), generalGroup);
+        return props.children(state, setState);
+      }}
+    </WithState>
+  );
+}
+
 stories.add('Dynamic select', () => (
-  <WithState initialState={{ value: null }}>
-    {(state, setState) => {
-      button('Reset value', () => setState({ value: null }), generalGroup);
-      return (
-        <Select
-          dense={boolean('Dense', false, generalGroup)}
-          emptyLabel={text('Empty label', '', labelGroup) || undefined}
-          filterable={boolean('Filterable', false, generalGroup)}
-          getItemLabel={item => item.label}
-          getItemValue={item => item.value}
-          inputPlaceHolder={
-            text('Input placeholder', '', labelGroup) || undefined
-          }
-          items={items}
-          label={text('Label', '', labelGroup) || undefined}
-          nullLabel={text('Null label', '', labelGroup) || undefined}
-          onChange={value => {
-            action('onChange')(value);
-            setState({ value });
-          }}
-          color={color('Color', '', generalGroup)}
-          value={state.value}
-        />
-      );
-    }}
-  </WithState>
+  <SelectStory>
+    {(state, setState) => (
+      <Select
+        dense={boolean('Dense', false, generalGroup)}
+        emptyLabel={text('Empty label', '', labelGroup) || undefined}
+        filterable={boolean('Filterable', false, generalGroup)}
+        getItemLabel={item => item.label}
+        getItemValue={item => item.value}
+        inputPlaceHolder={
+          text('Input placeholder', '', labelGroup) || undefined
+        }
+        items={items}
+        label={text('Label', '', labelGroup) || undefined}
+        nullLabel={text('Null label', '', labelGroup) || undefined}
+        onChange={value => {
+          action('onChange')(value);
+          setState({ value });
+        }}
+        color={color('Color', '', generalGroup)}
+        value={state.value}
+      />
+    )}
+  </SelectStory>
 ));
