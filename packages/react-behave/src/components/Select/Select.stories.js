@@ -32,12 +32,12 @@ class WithState extends Component {
   }
 }
 
-function SelectStory(props) {
+function SelectStory({ children, initialValue = null }) {
   return (
-    <WithState initialState={{ value: null }}>
+    <WithState initialState={{ value: initialValue }}>
       {(state, setState) => {
-        button('Reset value', () => setState({ value: null }));
-        return props.children(state, setState);
+        button('Reset value', () => setState({ value: initialValue }));
+        return children(state, setState);
       }}
     </WithState>
   );
@@ -83,10 +83,7 @@ const defaultItemStyle = {
   padding: '0.5rem 1rem',
 };
 
-function getItemStyle(item, value, highlighted) {
-  const isValue = value && item.key === value.key;
-  const isHighlighted = highlighted && item.key === highlighted.key;
-
+function getItemStyle(isValue, isHighlighted) {
   return {
     ...defaultItemStyle,
     cursor: 'pointer',
@@ -122,11 +119,43 @@ const inputStyle = {
   border: 'none',
 };
 
+function StyledSelect(props) {
+  return (
+    <Select
+      manualProps
+      renderButton={({ value, open, multiple, getItemLabel }, props) => (
+        <button {...props} style={getButtonStyle(open)}>
+          {multiple
+            ? value.length
+              ? value.map(getItemLabel).join(', ')
+              : 'Choose options'
+            : value
+              ? getItemLabel(value)
+              : 'Choose an option'}
+        </button>
+      )}
+      renderDropDown={({ style, ...props }) => (
+        <div {...props} style={{ ...style, ...dropDownStyle }} />
+      )}
+      renderEmpty={() => <li style={defaultItemStyle}>No options.</li>}
+      renderInput={props => (
+        <input {...props} style={inputStyle} placeholder="Filter" />
+      )}
+      renderItem={({ item, isValue, isHighlighted, getItemLabel }, props) => (
+        <li {...props} style={getItemStyle(isValue, isHighlighted)}>
+          {getItemLabel(item)}
+        </li>
+      )}
+      renderItems={props => <ul {...props} style={itemsStyle} />}
+      {...props}
+    />
+  );
+}
+
 stories.add('Custom renders', () => (
   <SelectStory>
     {(state, setState) => (
-      <Select
-        manualProps
+      <StyledSelect
         filterable={boolean('Filterable', false)}
         getItemLabel={item => item.label}
         getItemValue={item => item.key}
@@ -135,24 +164,6 @@ stories.add('Custom renders', () => (
           setState({ value });
         }}
         items={items}
-        renderButton={(value, open, props) => (
-          <button {...props} style={getButtonStyle(open)}>
-            {value ? value.label : 'Choose an option'}
-          </button>
-        )}
-        renderDropDown={({ style, ...props }) => (
-          <div {...props} style={{ ...style, ...dropDownStyle }} />
-        )}
-        renderEmpty={() => <li style={defaultItemStyle}>No options.</li>}
-        renderInput={props => (
-          <input {...props} style={inputStyle} placeholder="Filter" />
-        )}
-        renderItem={(item, value, highlighted, props) => (
-          <li {...props} style={getItemStyle(item, value, highlighted)}>
-            {item.label}
-          </li>
-        )}
-        renderItems={props => <ul {...props} style={itemsStyle} />}
         value={state.value}
       />
     )}
@@ -185,4 +196,23 @@ stories.add('Dropdown positions', () => (
       )}
     </SelectStory>
   </div>
+));
+
+stories.add('Multiple selection', () => (
+  <SelectStory initialValue={[]}>
+    {(state, setState) => (
+      <StyledSelect
+        multiple
+        filterable={boolean('Filterable', false)}
+        getItemLabel={item => item.label}
+        getItemValue={item => item.key}
+        onChange={value => {
+          action('onChange')(value);
+          setState({ value });
+        }}
+        items={items}
+        value={state.value}
+      />
+    )}
+  </SelectStory>
 ));

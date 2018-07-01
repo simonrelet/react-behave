@@ -5,6 +5,12 @@
 
 # Select
 
+[props-multiple]: #multiple-boolean-optional
+[props-value]: #value-anyarray-optional
+[props-getitemvalue]: #getitemvalue-function
+[props-getitemlabel]: #getitemlabel-function
+[props-manualprops]: #manualprops-boolean-optional
+
 Render a select component.
 
 ## Usage
@@ -153,43 +159,63 @@ If you need to merge refs, have a look at [`MergeRefs`](MergeRefs.md).
 _Default value_:
 
 ```jsx
-function(item, filter) {
-  const label = this.getItemLabel(item);
+function(item, filter, { getItemLabel }) {
+  const label = getItemLabel(item);
   return label.toLowerCase().includes(filter.toLowerCase());
 }
 ```
 
-_Parameters_: `item: Any`, `filter: String`
+_Parameters_: `item: Any`, `filter: String`, `context: Object`
 
 Invoked for each item to test whether it matches the filter.
+
+The `context` object contains:
+
+- `getItemLabel: Function`: See [`props.getItemLabel`][props-getitemlabel].
+- `getItemValue: Function`: See [`props.getItemValue`][props-getitemvalue].
+
+### `multiple`: `Boolean` (optional)
+
+_Default value_: `false`
+
+Whether or not to allow multiple values.
+If `true` then [`props.value`][props-value] is required and must be an `Array`.
 
 ### `renderButton`: `Function` (optional)
 
 _Default value_:
 
 ```jsx
-function(value, open, props = {}) {
+function({ getItemLabel, value }, props = {}) {
   return (
     <button {...props}>
-      {value ? this.getItemLabel(value) : 'Choose an option'}
+      {value ? getItemLabel(value) : 'Choose an option'}
     </button>
   );
 }
 ```
 
-_Parameters_: `value: Any`, `open: Boolean`, `[props]: Object`
+_Parameters_: `context: Object`, `[props]: Object`
 
 Invoked to generate the render tree for the button.
 
-`props` is defined only when [`props.manualProps`](#manualprops-boolean-optional) is `true`.
+The `context` object contains:
+
+- `getItemLabel: Function`: See [`props.getItemLabel`][props-getitemlabel].
+- `getItemValue: Function`: See [`props.getItemValue`][props-getitemvalue].
+- `multiple: Boolean`: See [`props.multiple`][props-multiple].
+- `open: Boolean`: Whether the dropdown is openned or not.
+- `value: Any|Array`: See [`props.value`][props-value].
+
+`props` is defined only when [`props.manualProps`][props-manualprops] is `true`.
 This object contains:
 
-- `ref`
+- 'aria-expanded'
+- 'aria-haspopup'
 - `onClick`
 - `onKeyDown`
 - `onKeyPress`
-- 'aria-expanded'
-- 'aria-haspopup'
+- `ref`
 
 ### `renderDropDown`: `Function` (optional)
 
@@ -205,7 +231,7 @@ _Parameters_: `[props]: Object`
 
 Invoked to generate the render tree for the dropdown.
 
-`props` is defined only when [`props.manualProps`](#manualprops-boolean-optional) is `true`.
+`props` is defined only when [`props.manualProps`][props-manualprops] is `true`.
 This object contains:
 
 - `children`
@@ -241,7 +267,7 @@ _Parameters_: `[props]: Object`
 Invoked to generate the render tree for an input.
 Only called when `props.filterable` is `true`.
 
-`props` is defined only when [`props.manualProps`](#manualprops-boolean-optional) is `true`.
+`props` is defined only when [`props.manualProps`][props-manualprops] is `true`.
 This object contains:
 
 - `key`
@@ -255,17 +281,24 @@ This object contains:
 _Default value_:
 
 ```jsx
-function(item, value, highlightedItem, props = {}) {
-  return <li {...props}>{this.getItemLabel(item)}</li>;
+function({ getItemLabel, item }, props = {}) {
+  return <li {...props}>{getItemLabel(item)}</li>;
 }
 ```
 
-_Parameters_: `item: Any`, `value: Any`, `highlightedItem: Any`, `[props]: Object`
+_Parameters_: `context: Object`, `[props]: Object`
 
 Invoked for each item to generate the render tree for each item.
-`value` and `highlightedItem` can be used to style the item.
 
-`props` is defined only when [`props.manualProps`](#manualprops-boolean-optional) is `true`.
+The `context` object contains:
+
+- `getItemLabel: Function`: See [`props.getItemLabel`][props-getitemlabel].
+- `getItemValue: Function`: See [`props.getItemValue`][props-getitemvalue].
+- `isHighlighted: Boolean`: Whether the item is being highlighted or not.
+- `isValue: Boolean`: Whether the item is a value or not.
+- `item: Any`: The item to render.
+
+`props` is defined only when [`props.manualProps`][props-manualprops] is `true`.
 This object contains:
 
 - `key`
@@ -288,7 +321,7 @@ _Parameters_: `[props]: Object`
 
 Invoked to generate the render tree for the items list.
 
-`props` is defined only when [`props.manualProps`](#manualprops-boolean-optional) is `true`.
+`props` is defined only when [`props.manualProps`][props-manualprops] is `true`.
 This object contains:
 
 - `children`
@@ -298,6 +331,7 @@ This object contains:
 - `role`
 - `tabIndex`
 
-### `value`: `Any` (optional)
+### `value`: `Any`|`Array` (optional)
 
-The current value.
+The current value(s).
+If [`props.multiple`][props-multiple] is `true`, then `props.value` must be an `Array`.

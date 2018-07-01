@@ -15,6 +15,17 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Breaking changes
+
+- `Select`'s render functions `props.renderButton` and `props.renderItem` now take a context as first parameter.
+
+### Enhancements
+
+- `Select` support multiple values.
+- `props.matchItem` in `Select` component now takes a context as last parameter.
+
 ## 0.2.0 (June 26, 2018)
 
 ### Breaking changes

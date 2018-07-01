@@ -9,12 +9,16 @@ import MergeRefs from '../MergeRefs';
 function getDerivedStateFromInputValue(props, inputValue) {
   // If the input is empty show all items, and highlight the current value.
   let visibleItems = props.items;
-  let highlightedItem = props.value;
+  let highlightedItem = Array.isArray(props.value)
+    ? props.value[0]
+    : props.value;
 
   if (inputValue) {
     visibleItems = props.items.filter(item =>
-      // Needs to be called with `props.` to get the correct context.
-      props.matchItem(item, inputValue),
+      props.matchItem(item, inputValue, {
+        getItemLabel: props.getItemLabel,
+        getItemValue: props.getItemValue,
+      }),
     );
 
     highlightedItem = visibleItems.length ? visibleItems[0] : null;
@@ -28,6 +32,12 @@ function getDerivedStateFromInputValue(props, inputValue) {
 }
 
 /**
+ * [props-multiple]: #multiple-boolean-optional
+ * [props-value]: #value-anyarray-optional
+ * [props-getitemvalue]: #getitemvalue-function
+ * [props-getitemlabel]: #getitemlabel-function
+ * [props-manualprops]: #manualprops-boolean-optional
+ *
  * Render a select component.
  *
  * ## Usage
@@ -170,11 +180,22 @@ class Select extends Component {
     manualProps: PropTypes.bool,
 
     /**
-     * _Parameters_: `item: Any`, `filter: String`
+     * _Parameters_: `item: Any`, `filter: String`, `context: Object`
      *
      * Invoked for each item to test whether it matches the filter.
+     *
+     * The `context` object contains:
+     *
+     * - `getItemLabel: Function`: See [`props.getItemLabel`][props-getitemlabel].
+     * - `getItemValue: Function`: See [`props.getItemValue`][props-getitemvalue].
      */
     matchItem: PropTypes.func,
+
+    /**
+     * Whether or not to allow multiple values.
+     * If `true` then [`props.value`][props-value] is required and must be an `Array`.
+     */
+    multiple: PropTypes.bool,
 
     /**
      * _Parameters_: `value: Any`
@@ -184,19 +205,27 @@ class Select extends Component {
     onChange: PropTypes.func.isRequired,
 
     /**
-     * _Parameters_: `value: Any`, `open: Boolean`, `[props]: Object`
+     * _Parameters_: `context: Object`, `[props]: Object`
      *
      * Invoked to generate the render tree for the button.
      *
-     * `props` is defined only when [`props.manualProps`](#manualprops-boolean-optional) is `true`.
+     * The `context` object contains:
+     *
+     * - `getItemLabel: Function`: See [`props.getItemLabel`][props-getitemlabel].
+     * - `getItemValue: Function`: See [`props.getItemValue`][props-getitemvalue].
+     * - `multiple: Boolean`: See [`props.multiple`][props-multiple].
+     * - `open: Boolean`: Whether the dropdown is openned or not.
+     * - `value: Any|Array`: See [`props.value`][props-value].
+     *
+     * `props` is defined only when [`props.manualProps`][props-manualprops] is `true`.
      * This object contains:
      *
-     * - `ref`
+     * - 'aria-expanded'
+     * - 'aria-haspopup'
      * - `onClick`
      * - `onKeyDown`
      * - `onKeyPress`
-     * - 'aria-expanded'
-     * - 'aria-haspopup'
+     * - `ref`
      */
     renderButton: PropTypes.func,
 
@@ -205,7 +234,7 @@ class Select extends Component {
      *
      * Invoked to generate the render tree for the dropdown.
      *
-     * `props` is defined only when [`props.manualProps`](#manualprops-boolean-optional) is `true`.
+     * `props` is defined only when [`props.manualProps`][props-manualprops] is `true`.
      * This object contains:
      *
      * - `children`
@@ -227,7 +256,7 @@ class Select extends Component {
      * Invoked to generate the render tree for an input.
      * Only called when `props.filterable` is `true`.
      *
-     * `props` is defined only when [`props.manualProps`](#manualprops-boolean-optional) is `true`.
+     * `props` is defined only when [`props.manualProps`][props-manualprops] is `true`.
      * This object contains:
      *
      * - `key`
@@ -239,12 +268,19 @@ class Select extends Component {
     renderInput: PropTypes.func,
 
     /**
-     * _Parameters_: `item: Any`, `value: Any`, `highlightedItem: Any`, `[props]: Object`
+     * _Parameters_: `context: Object`, `[props]: Object`
      *
      * Invoked for each item to generate the render tree for each item.
-     * `value` and `highlightedItem` can be used to style the item.
      *
-     * `props` is defined only when [`props.manualProps`](#manualprops-boolean-optional) is `true`.
+     * The `context` object contains:
+     *
+     * - `getItemLabel: Function`: See [`props.getItemLabel`][props-getitemlabel].
+     * - `getItemValue: Function`: See [`props.getItemValue`][props-getitemvalue].
+     * - `isHighlighted: Boolean`: Whether the item is being highlighted or not.
+     * - `isValue: Boolean`: Whether the item is a value or not.
+     * - `item: Any`: The item to render.
+     *
+     * `props` is defined only when [`props.manualProps`][props-manualprops] is `true`.
      * This object contains:
      *
      * - `key`
@@ -260,7 +296,7 @@ class Select extends Component {
      *
      * Invoked to generate the render tree for the items list.
      *
-     * `props` is defined only when [`props.manualProps`](#manualprops-boolean-optional) is `true`.
+     * `props` is defined only when [`props.manualProps`][props-manualprops] is `true`.
      * This object contains:
      *
      * - `children`
@@ -273,40 +309,46 @@ class Select extends Component {
     renderItems: PropTypes.func,
 
     /**
-     * The current value.
+     * The current value(s).
+     * If [`props.multiple`][props-multiple] is `true`, then `props.value` must be an `Array`.
      */
-    value: PropTypes.any,
+    value: PropTypes.oneOfType([PropTypes.any, PropTypes.array]),
   };
 
   static defaultProps = {
     filterable: false,
     manualProps: false,
+    multiple: false,
 
-    // Need to be called with `this.props` as context.
-    // Ex: `this.props.matchItem()`, `this.props.renderInput()`
-    matchItem(item, filter) {
-      const label = this.getItemLabel(item);
+    matchItem(item, filter, { getItemLabel }) {
+      const label = getItemLabel(item);
       return label.toLowerCase().includes(filter.toLowerCase());
     },
-    renderButton(value, open, props = {}) {
+
+    renderButton({ getItemLabel, value }, props = {}) {
       return (
         <button {...props}>
-          {value ? this.getItemLabel(value) : 'Choose an option'}
+          {value ? getItemLabel(value) : 'Choose an option'}
         </button>
       );
     },
+
     renderDropDown(props = {}) {
       return <div {...props} />;
     },
+
     renderEmpty() {
       return <li>No options.</li>;
     },
+
     renderInput(props = {}) {
       return <input {...props} />;
     },
-    renderItem(item, value, highlightedItem, props = {}) {
-      return <li {...props}>{this.getItemLabel(item)}</li>;
+
+    renderItem({ getItemLabel, item }, props = {}) {
+      return <li {...props}>{getItemLabel(item)}</li>;
     },
+
     renderItems(props = {}) {
       return <ul {...props} />;
     },
@@ -482,16 +524,30 @@ class Select extends Component {
 
   notifyChange(item) {
     if (item) {
-      // Alway close the drop down and give the focus back to the button.
-      this.closeDropDown(true);
+      const itemValue = this.props.getItemValue(item);
 
-      // ...But only notify if the value actually changed.
-      if (
-        !this.props.value ||
-        this.props.getItemValue(item) !==
-          this.props.getItemValue(this.props.value)
-      ) {
-        this.props.onChange(item);
+      if (this.props.multiple) {
+        let value = this.props.value.filter(
+          i => this.props.getItemValue(i) !== itemValue,
+        );
+
+        // The item was not in the values.
+        if (value.length === this.props.value.length) {
+          value = value.concat(item);
+        }
+
+        this.props.onChange(value);
+      } else {
+        // Alway close the drop down and give the focus back to the button.
+        this.closeDropDown(true);
+
+        // ...But only notify if the value actually changed.
+        if (
+          !this.props.value ||
+          itemValue !== this.props.getItemValue(this.props.value)
+        ) {
+          this.props.onChange(item);
+        }
       }
     }
   }
@@ -540,6 +596,14 @@ class Select extends Component {
   }
 
   renderButton(ref) {
+    const context = {
+      value: this.props.value,
+      open: this.state.open,
+      multiple: this.props.multiple,
+      getItemValue: this.props.getItemValue,
+      getItemLabel: this.props.getItemLabel,
+    };
+
     const props = {
       ref,
       onClick: this.handleButtonClick,
@@ -550,13 +614,10 @@ class Select extends Component {
     };
 
     if (this.props.manualProps) {
-      return this.props.renderButton(this.props.value, this.state.open, props);
+      return this.props.renderButton(context, props);
     }
 
-    return React.cloneElement(
-      this.props.renderButton(this.props.value, this.state.open),
-      props,
-    );
+    return React.cloneElement(this.props.renderButton(context), props);
   }
 
   renderItems() {
@@ -566,6 +627,25 @@ class Select extends Component {
 
     const children = this.state.visibleItems.map(item => {
       const itemValue = this.props.getItemValue(item);
+
+      let isValue = false;
+      if (this.props.multiple) {
+        isValue = this.props.value.some(
+          i => this.props.getItemValue(i) === itemValue,
+        );
+      } else if (this.props.value) {
+        isValue = itemValue === this.props.getItemValue(this.props.value);
+      }
+
+      const context = {
+        item,
+        isValue,
+        isHighlighted:
+          this.state.highlightedItem &&
+          this.props.getItemValue(this.state.highlightedItem) === itemValue,
+        getItemValue: this.props.getItemValue,
+        getItemLabel: this.props.getItemLabel,
+      };
 
       const itemProps = {
         ref:
@@ -577,20 +657,10 @@ class Select extends Component {
       };
 
       if (this.props.manualProps) {
-        return this.props.renderItem(
-          item,
-          this.props.value,
-          this.state.highlightedItem,
-          itemProps,
-        );
+        return this.props.renderItem(context, itemProps);
       }
 
-      const renderedItem = this.props.renderItem(
-        item,
-        this.props.value,
-        this.state.highlightedItem,
-      );
-
+      const renderedItem = this.props.renderItem(context);
       return React.cloneElement(renderedItem, itemProps);
     });
 
