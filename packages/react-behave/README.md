@@ -38,7 +38,7 @@ yarn add react-behave
 
 ## Documentaion
 
-The documentation of each component can be found [here](https://github.com/simonrelet/react-libraries/tree/react-behave-0.2.0/packages/react-behave/docs).
+The documentation of each component can be found [here](https://github.com/simonrelet/react-libraries/tree/react-behave-0.3.0/packages/react-behave/docs).
 
 ---
 
