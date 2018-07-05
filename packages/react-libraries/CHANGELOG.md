@@ -15,6 +15,12 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Enhancements
+
+- Build SASS using [node-sass](https://github.com/sass/node-sass).
+
 ## 0.1.0 (June 26, 2018)
 
 ### Enhancements

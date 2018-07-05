@@ -66,10 +66,14 @@ console.log('API_URL:', API_URL);
 _Usage_:
 
 ```sh
-react-libraries build [--watch]
+react-libraries build [-w|--watch]
 ```
 
-Build the library in CommonJS, ES2015 modules and UMD bundles.
+Build the library JavaScript in CommonJS, ES2015 modules and UMD bundles, and the SASS in CSS.
+
+This script accepts the `--watch` (or `-w`) option in which case it will watch for changes and rebuild the bundles.
+
+#### JavaScript
 
 The file _src/index.js_ is required for this command to work, and the output files are defined in _package.json_:
 
@@ -83,7 +87,11 @@ For example, the package name `@company/my-lib` gives `MyLib`.
 
 If an entry is not defined, the corresponding bundle will be skipped.
 
-This script accepts the `--watch` (or `-w`) option in which case it will watch for changes and rebuild the bundles.
+#### SASS
+
+The file _src/index.scss_ can be transform to CSS if an output file is defined in the _package.json_ by the entry `pkg.style` (ex: `"style": "build/my-lib.css"`).
+
+If the entry is not defined, the styles bundle will be skipped.
 
 ### `bump-version`
 
