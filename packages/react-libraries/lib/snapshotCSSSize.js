@@ -22,11 +22,11 @@ function outputSizes(gzippedSize, outputFile) {
 }
 
 function writeSnapshot(gzippedSize, outputFile) {
-  const sizes = fs.readJSONSync(snapshotFile) || {};
+  const sizes = fs.readJSONSync(snapshotFile, { throws: false }) || {};
   sizes[outputFile] = {
     minified: gzippedSize,
   };
-  fs.writeJSONSync(snapshotFile, sizes, { spaces: 2 });
+  fs.outputJSONSync(snapshotFile, sizes, { spaces: 2 });
   return Promise.resolve();
 }
 

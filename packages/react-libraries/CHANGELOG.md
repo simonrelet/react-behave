@@ -15,6 +15,12 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Bug fixes
+
+- `build` script doesn't crash any more when _.size-snapshot.json_ is missing.
+
 ## 0.2.0 (July 5, 2018)
 
 ### Enhancements
