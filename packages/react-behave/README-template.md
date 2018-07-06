@@ -2,6 +2,9 @@
 
 > ${description}
 
+⚠️ **Warning:** The current master can represent unreleased features of the library.
+[See lastest release](${repository.url}/tree/react-behave-${version}/packages/react-behave).
+
 ## ...Of what?
 
 ...Of behavioral components.
