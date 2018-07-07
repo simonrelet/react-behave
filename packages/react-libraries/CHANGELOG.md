@@ -15,6 +15,12 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.4.0 (July 7, 2018)
+
+### Documentation
+
+- Fix URL to latest release in _README.md_.
+
 ## 0.3.0 (July 7, 2018)
 
 ### Bug fixes

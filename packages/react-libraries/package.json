@@ -1,8 +1,11 @@
 {
   "name": "@simonrelet/react-libraries",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Configuration and scripts for React libraries.",
-  "repository": "simonrelet/react-libraries",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simonrelet/react-libraries"
+  },
   "bugs": {
     "url": "https://github.com/simonrelet/react-libraries/issues"
   },
