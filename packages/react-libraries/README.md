@@ -7,6 +7,9 @@
 
 > Configuration and scripts for React libraries.
 
+⚠️ **Warning:** The current master can represent unreleased features.
+[See lastest release](null/tree/react-libraries-0.3.0/packages/react-libraries).
+
 ## Installation
 
 ### npm
