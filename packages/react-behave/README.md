@@ -7,6 +7,9 @@
 
 > A library of React behavioral components.
 
+⚠️ **Warning:** The current master can represent unreleased features of the library.
+[See lastest release](https://github.com/simonrelet/react-libraries/tree/react-behave-0.3.0/packages/react-behave).
+
 ## ...Of what?
 
 ...Of behavioral components.
