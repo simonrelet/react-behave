@@ -15,6 +15,12 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Breaking changes
+
+- `props.render` has been renamed to `props.children` for components `ClickOutside`, `Dropdown` and `MergeRefs`.
+
 ## 0.3.0 (July 5, 2018)
 
 ### Breaking changes

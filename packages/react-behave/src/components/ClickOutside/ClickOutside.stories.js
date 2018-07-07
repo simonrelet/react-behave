@@ -11,12 +11,11 @@ const style = {
 };
 
 stories.add('Render function', () => (
-  <ClickOutside
-    onClickOutside={action('onClickOutside')}
-    render={ref => (
+  <ClickOutside onClickOutside={action('onClickOutside')}>
+    {ref => (
       <p ref={ref} style={style}>
         Don't click on me.
       </p>
     )}
-  />
+  </ClickOutside>
 ));

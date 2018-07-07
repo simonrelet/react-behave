@@ -20,10 +20,9 @@ import EventListener from 'react-event-listener';
  *
  *   render() {
  *     return (
- *       <ClickOutside
- *         onClickOutside={this.handleClickOutside}
- *         render={ref => <p ref={ref}>Don't click on me.</p>}
- *       />
+ *       <ClickOutside onClickOutside={this.handleClickOutside}>
+ *         {ref => <p ref={ref}>Don't click on me.</p>}
+ *       </ClickOutside>
  *     );
  *   }
  * }
@@ -32,19 +31,19 @@ import EventListener from 'react-event-listener';
 class ClickOutside extends Component {
   static propTypes = {
     /**
-     * _Parameters_: `event: MouseEvent`
-     *
-     * Called for each click outside the component.
-     */
-    onClickOutside: PropTypes.func.isRequired,
-
-    /**
      * _Parameters_: `ref: Object|Function`
      *
      * Renders the component.
      * `ref` must be passed to the component in order to work.
      */
-    render: PropTypes.func.isRequired,
+    children: PropTypes.func.isRequired,
+
+    /**
+     * _Parameters_: `event: MouseEvent`
+     *
+     * Called for each click outside the component.
+     */
+    onClickOutside: PropTypes.func.isRequired,
   };
 
   elementRef = React.createRef();
@@ -59,7 +58,7 @@ class ClickOutside extends Component {
   render() {
     return (
       <EventListener target="document" onClick={this.handleClickOutside}>
-        {this.props.render(this.elementRef)}
+        {this.props.children(this.elementRef)}
       </EventListener>
     );
   }

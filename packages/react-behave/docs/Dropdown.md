@@ -36,11 +36,6 @@ class App extends Component {
       <Dropdown
         onClickOutside={this.handleClickOutside}
         open={this.state.open}
-        render={ref => (
-          <button ref={ref} onClick={this.toggleDropDown}>
-            Open drop down
-          </button>
-        )}
         renderDropDown={(ref, { style }) => (
           <ul ref={ref} style={style}>
             <li>Item 1</li>
@@ -48,7 +43,13 @@ class App extends Component {
             <li>Item 3</li>
           </ul>
         )}
-      />
+      >
+        {ref => (
+          <button ref={ref} onClick={this.toggleDropDown}>
+            Open drop down
+          </button>
+        )}
+      </Dropdown>
     );
   }
 }
@@ -56,7 +57,7 @@ class App extends Component {
 
 ## Props
 
-### `render`: `Function`
+### `children`: `Function`
 
 _Parameters_: `ref: Object|Function`
 

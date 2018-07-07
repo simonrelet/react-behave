@@ -7,10 +7,9 @@ describe('<ClickOutside />', () => {
   it('notifies on a click outside', () => {
     const cb = jest.fn();
     const wrapper = mount(
-      <ClickOutside
-        onClickOutside={cb}
-        render={ref => <p ref={ref}>Hello</p>}
-      />,
+      <ClickOutside onClickOutside={cb}>
+        {ref => <p ref={ref}>Hello</p>}
+      </ClickOutside>,
     );
     const event = { target: document };
     wrapper.find(EventListener).prop('onClick')(event);
@@ -21,14 +20,13 @@ describe('<ClickOutside />', () => {
     let insideRef;
     const cb = jest.fn();
     const wrapper = mount(
-      <ClickOutside
-        onClickOutside={cb}
-        render={ref => (
+      <ClickOutside onClickOutside={cb}>
+        {ref => (
           <p ref={ref}>
             <span ref={inside => (insideRef = inside)}>inside</span> Hello
           </p>
         )}
-      />,
+      </ClickOutside>,
     );
     const event = { target: insideRef };
     wrapper.find(EventListener).prop('onClick')(event);
@@ -38,7 +36,7 @@ describe('<ClickOutside />', () => {
   it("doesn't notify if there is no ref", () => {
     const cb = jest.fn();
     const wrapper = mount(
-      <ClickOutside onClickOutside={cb} render={() => <p>Hello</p>} />,
+      <ClickOutside onClickOutside={cb}>{() => <p>Hello</p>}</ClickOutside>,
     );
     const event = { target: document };
     wrapper.find(EventListener).prop('onClick')(event);

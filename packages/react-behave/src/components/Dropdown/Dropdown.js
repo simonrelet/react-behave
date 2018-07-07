@@ -12,15 +12,13 @@ function renderContent(onClickOutside, popperProps, popperRef, renderDropDown) {
   }
 
   return (
-    <ClickOutside
-      onClickOutside={onClickOutside}
-      render={clickOutsideRef => (
-        <MergeRefs
-          refs={[clickOutsideRef, popperRef]}
-          render={ref => renderDropDown(ref, popperProps)}
-        />
+    <ClickOutside onClickOutside={onClickOutside}>
+      {clickOutsideRef => (
+        <MergeRefs refs={[clickOutsideRef, popperRef]}>
+          {ref => renderDropDown(ref, popperProps)}
+        </MergeRefs>
       )}
-    />
+    </ClickOutside>
   );
 }
 
@@ -56,11 +54,6 @@ function renderContent(onClickOutside, popperProps, popperRef, renderDropDown) {
  *       <Dropdown
  *         onClickOutside={this.handleClickOutside}
  *         open={this.state.open}
- *         render={ref => (
- *           <button ref={ref} onClick={this.toggleDropDown}>
- *             Open drop down
- *           </button>
- *         )}
  *         renderDropDown={(ref, { style }) => (
  *           <ul ref={ref} style={style}>
  *             <li>Item 1</li>
@@ -68,16 +61,28 @@ function renderContent(onClickOutside, popperProps, popperRef, renderDropDown) {
  *             <li>Item 3</li>
  *           </ul>
  *         )}
- *       />
+ *       >
+ *         {ref => (
+ *           <button ref={ref} onClick={this.toggleDropDown}>
+ *             Open drop down
+ *           </button>
+ *         )}
+ *       </Dropdown>
  *     );
  *   }
  * }
  * ```
  */
-function Dropdown({ onClickOutside, open, placement, render, renderDropDown }) {
+function Dropdown({
+  children,
+  onClickOutside,
+  open,
+  placement,
+  renderDropDown,
+}) {
   return (
     <Manager>
-      <Reference>{({ ref }) => render(ref)}</Reference>
+      <Reference>{({ ref }) => children(ref)}</Reference>
       {open && (
         <Popper placement={placement} modifiers={{ minWidthModifier }}>
           {({ ref: popperRef, ...popperProps }) =>
@@ -96,6 +101,14 @@ function Dropdown({ onClickOutside, open, placement, render, renderDropDown }) {
 
 Dropdown.propTypes = {
   /**
+   * _Parameters_: `ref: Object|Function`
+   *
+   * Render the reference component of the dropdown.
+   * `ref` must be passed to the component in order to position correctly the dropdown.
+   */
+  children: PropTypes.func.isRequired,
+
+  /**
    * _Parameters_: `event: MouseEvent`
    *
    * Called for each click outside the dropdown component.
@@ -113,14 +126,6 @@ Dropdown.propTypes = {
    * Must be one of [PopperJS's placement][popper-placements].
    */
   placement: PropTypes.oneOf(placements),
-
-  /**
-   * _Parameters_: `ref: Object|Function`
-   *
-   * Render the reference component of the dropdown.
-   * `ref` must be passed to the component in order to position correctly the dropdown.
-   */
-  render: PropTypes.func.isRequired,
 
   /**
    * _Parameters_: `ref: Object|Function`, `popperProps: Object`

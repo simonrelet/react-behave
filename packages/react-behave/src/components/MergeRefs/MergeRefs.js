@@ -12,7 +12,7 @@ import setRef from './setRef';
  *
  * ```jsx
  * import React, { Component } from 'react';
- * import { ComponentNeedRef } from 'some-lib';
+ * import { ComponentNeedsRef } from 'some-lib';
  * import { MergeRefs } from 'react-behave';
  *
  * class App extends Component {
@@ -24,14 +24,13 @@ import setRef from './setRef';
  *
  *   render() {
  *     return (
- *       <ComponentNeedRef
- *         render={requiredRef => (
- *           <MergeRefs
- *             refs={[requiredRef, this.buttonRef]}
- *             render={ref => <button ref={ref}>Click me</button>}
- *           />
+ *       <ComponentNeedsRef>
+ *         {requiredRef => (
+ *           <MergeRefs refs={[requiredRef, this.buttonRef]}>
+ *             {ref => <button ref={ref}>Click me</button>}
+ *           </MergeRefs>
  *         )}
- *       />
+ *       </ComponentNeedsRef>
  *     );
  *   }
  * }
@@ -42,6 +41,14 @@ import setRef from './setRef';
 class MergeRefs extends Component {
   static propTypes = {
     /**
+     * _Parameters_: `ref: Function`
+     *
+     * Render the component.
+     * `ref` is either a callback ref or `null` if `props.refs` is empty or only contain falsy values.
+     */
+    children: PropTypes.func.isRequired,
+
+    /**
      * Array of refs.
      * Each ref can either be a [callback ref][callback-refs] or an object created with [`React.createRef`][create-ref].
      * Falsy refs are ignored.
@@ -49,14 +56,6 @@ class MergeRefs extends Component {
     refs: PropTypes.arrayOf(
       PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     ).isRequired,
-
-    /**
-     * _Parameters_: `ref: Function`
-     *
-     * Render the component.
-     * `ref` is either a callback ref or `null` if `props.refs` is empty or only contain falsy values.
-     */
-    render: PropTypes.func.isRequired,
   };
 
   state = {
@@ -77,7 +76,7 @@ class MergeRefs extends Component {
 
   render() {
     // Don't pass the ref function if there is no refs.
-    return this.props.render(
+    return this.props.children(
       this.state.refs.length > 0 ? this.mergeRefs : null,
     );
   }

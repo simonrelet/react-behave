@@ -717,19 +717,19 @@ class Select extends Component {
       <Dropdown
         onClickOutside={this.handleClickOutside}
         open={this.state.open}
-        render={ref => (
-          <MergeRefs
-            refs={[ref, this._buttonRef, this.props.innerRef]}
-            render={ref => this.renderButton(ref)}
-          />
-        )}
         renderDropDown={(ref, { style, placement, scheduleUpdate }) =>
           this.renderDropDown(
             { 'data-placement': placement, ref, style },
             scheduleUpdate,
           )
         }
-      />
+      >
+        {ref => (
+          <MergeRefs refs={[ref, this._buttonRef, this.props.innerRef]}>
+            {ref => this.renderButton(ref)}
+          </MergeRefs>
+        )}
+      </Dropdown>
     );
   }
 }

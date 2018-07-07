@@ -22,10 +22,9 @@ class App extends Component {
 
   render() {
     return (
-      <ClickOutside
-        onClickOutside={this.handleClickOutside}
-        render={ref => <p ref={ref}>Don't click on me.</p>}
-      />
+      <ClickOutside onClickOutside={this.handleClickOutside}>
+        {ref => <p ref={ref}>Don't click on me.</p>}
+      </ClickOutside>
     );
   }
 }
@@ -33,15 +32,15 @@ class App extends Component {
 
 ## Props
 
-### `onClickOutside`: `Function`
-
-_Parameters_: `event: MouseEvent`
-
-Called for each click outside the component.
-
-### `render`: `Function`
+### `children`: `Function`
 
 _Parameters_: `ref: Object|Function`
 
 Renders the component.
 `ref` must be passed to the component in order to work.
+
+### `onClickOutside`: `Function`
+
+_Parameters_: `event: MouseEvent`
+
+Called for each click outside the component.

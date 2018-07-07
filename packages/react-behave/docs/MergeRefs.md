@@ -14,7 +14,7 @@ Merge multiple refs on a single component.
 
 ```jsx
 import React, { Component } from 'react';
-import { ComponentNeedRef } from 'some-lib';
+import { ComponentNeedsRef } from 'some-lib';
 import { MergeRefs } from 'react-behave';
 
 class App extends Component {
@@ -26,14 +26,13 @@ class App extends Component {
 
   render() {
     return (
-      <ComponentNeedRef
-        render={requiredRef => (
-          <MergeRefs
-            refs={[requiredRef, this.buttonRef]}
-            render={ref => <button ref={ref}>Click me</button>}
-          />
+      <ComponentNeedsRef>
+        {requiredRef => (
+          <MergeRefs refs={[requiredRef, this.buttonRef]}>
+            {ref => <button ref={ref}>Click me</button>}
+          </MergeRefs>
         )}
-      />
+      </ComponentNeedsRef>
     );
   }
 }
@@ -43,15 +42,15 @@ This component is an alternative of wrapping `<div />`s when you need to have mu
 
 ## Props
 
-### `refs`: `Array`<`Function`|`Object`>
-
-Array of refs.
-Each ref can either be a [callback ref][callback-refs] or an object created with [`React.createRef`][create-ref].
-Falsy refs are ignored.
-
-### `render`: `Function`
+### `children`: `Function`
 
 _Parameters_: `ref: Function`
 
 Render the component.
 `ref` is either a callback ref or `null` if `props.refs` is empty or only contain falsy values.
+
+### `refs`: `Array`<`Function`|`Object`>
+
+Array of refs.
+Each ref can either be a [callback ref][callback-refs] or an object created with [`React.createRef`][create-ref].
+Falsy refs are ignored.

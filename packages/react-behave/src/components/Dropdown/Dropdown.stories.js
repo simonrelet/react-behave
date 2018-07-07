@@ -10,7 +10,6 @@ stories.add('Render functions', () => (
   <Dropdown
     onClickOutside={action('onClickOutside')}
     open={boolean('Open', true)}
-    render={ref => <button ref={ref}>Click me</button>}
     renderDropDown={(ref, { style }) => (
       <ul ref={ref} style={style}>
         <li>Item 1</li>
@@ -18,13 +17,14 @@ stories.add('Render functions', () => (
         <li>Item 3</li>
       </ul>
     )}
-  />
+  >
+    {ref => <button ref={ref}>Click me</button>}
+  </Dropdown>
 ));
 
 stories.add('Without onClickOutside', () => (
   <Dropdown
     open={boolean('Open', true)}
-    render={ref => <button ref={ref}>Click me</button>}
     renderDropDown={(ref, { style }) => (
       <ul ref={ref} style={style}>
         <li>Item 1</li>
@@ -32,5 +32,7 @@ stories.add('Without onClickOutside', () => (
         <li>Item 3</li>
       </ul>
     )}
-  />
+  >
+    {ref => <button ref={ref}>Click me</button>}
+  </Dropdown>
 ));
