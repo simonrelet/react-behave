@@ -5,12 +5,11 @@ const get = require('lodash.get');
 const logger = require('./logger');
 const generateHeader = require('./generateHeader');
 
-const src = 'README-template.md';
 const dst = 'README.md';
-const header = generateHeader(src);
 
-function generateReadme() {
+function generateReadme(src = 'README-template.md') {
   if (fs.existsSync(src)) {
+    const header = generateHeader(src);
     const pkg = fs.readJSONSync('package.json');
 
     const readme = fs

@@ -30,7 +30,10 @@ function updateChangelog(version) {
 }
 
 function bumpVersion(args) {
-  const version = args[0];
+  const readmeInput =
+    args[0] === '--readme' || args[0] === '-r' ? args[1] : undefined;
+
+  const version = args[args.length - 1];
 
   if (!version) {
     console.error('Missing version number.');
@@ -56,7 +59,7 @@ function bumpVersion(args) {
 
   updatePackage(version);
   updateChangelog(version);
-  generateReadme();
+  generateReadme(readmeInput);
 }
 
 module.exports = bumpVersion;

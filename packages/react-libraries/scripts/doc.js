@@ -28,7 +28,10 @@ function parse(src) {
   }
 }
 
-function doc() {
+function doc(args) {
+  const readmeInput =
+    args[0] === '--readme' || args[0] === '-r' ? args[1] : undefined;
+
   files.forEach(file => {
     const name = path.basename(file, '.js');
     const src = fs.readFileSync(file, 'utf8');
@@ -42,7 +45,7 @@ function doc() {
     }
   });
 
-  generateReadme();
+  generateReadme(readmeInput);
 }
 
 module.exports = doc;

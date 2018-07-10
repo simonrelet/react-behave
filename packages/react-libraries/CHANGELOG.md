@@ -15,6 +15,12 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Enhancements
+
+- Allow to change default README template path with the `-r` option for the `doc` and `bump-version` scripts.
+
 ## 0.4.0 (July 7, 2018)
 
 ### Documentation

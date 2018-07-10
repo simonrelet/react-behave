@@ -106,16 +106,22 @@ If the entry is not defined, the styles bundle will be skipped.
 _Usage_:
 
 ```sh
-react-libraries bump-version <new-verison>
+react-libraries bump-version [-r|--readme <readme-template-path>] <new-verison>
 ```
 
 Update the following files with the new version:
 
 - _package.json_: The `version` field is updated.
 - _CHANGELOG.md_ (if it exists): The "Unreleased" section is renamed to "\<new-version> (date)".
-- _README.md_ (if _README-template.md_ exists): See the [`doc` script](#doc).
+- _README.md_ (if the template file exists): See the [`doc` script](#doc).
 
 ### `clean`
+
+_Usage_:
+
+```sh
+react-libraries clean
+```
 
 Remove the folowing generated folders:
 
@@ -125,11 +131,18 @@ Remove the folowing generated folders:
 
 ### `doc`
 
-Generate the _README.md_ and the documentation.
+_Usage_:
 
-#### README-template.md
+```sh
+react-libraries doc [-r|--readme <readme-template-path>]
+```
 
-The _README.md_ file can be generated from the _README-template.md_ allowing you to inject values from your _package.json_.
+Generate the documentation and the _README.md_ file (if it exists).
+By default, the README template path is _README-template.md_.
+
+#### README template
+
+The _README.md_ file can be generated from a template file allowing you to inject values from your _package.json_.
 You can use the syntax `${path}` where `path` is any valid object path in _package.json_.
 
 Example:
