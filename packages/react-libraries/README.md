@@ -8,7 +8,7 @@
 > Configuration and scripts for React libraries.
 
 ⚠️ **Warning:** The current master can represent unreleased features.
-[See lastest release](https://github.com/simonrelet/react-libraries/tree/react-libraries-0.4.0/packages/react-libraries).
+[See lastest release](https://github.com/simonrelet/react-libraries/tree/react-libraries-0.5.0/packages/react-libraries).
 
 ## Installation
 
