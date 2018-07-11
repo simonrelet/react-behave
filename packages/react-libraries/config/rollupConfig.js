@@ -41,16 +41,22 @@ const globals = {
 };
 
 function getEnvReplacement(isProd) {
-  const replacements = Object.assign(readEnv(), {
-    'process.env.NODE_ENV': JSON.stringify(
-      isProd ? 'production' : 'development'
-    ),
-  });
+  const env = readEnv();
 
-  return replacements;
+  if (isProd != null) {
+    return Object.assign(env, {
+      'process.env.NODE_ENV': JSON.stringify(
+        isProd ? 'production' : 'development'
+      ),
+    });
+  }
+
+  return env;
 }
 
 function createMainOptions(format, file) {
+  const replacements = getEnvReplacement();
+
   return {
     input,
     output: {
@@ -70,9 +76,9 @@ function createMainOptions(format, file) {
           '@babel/preset-react',
         ],
       }),
-      replace(getEnvReplacement(true)),
+      Object.keys(replacements).length ? replace(replacements) : null,
       sizeSnapshot(),
-    ],
+    ].filter(Boolean),
   };
 }
 

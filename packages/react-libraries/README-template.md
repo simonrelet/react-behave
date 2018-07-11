@@ -22,7 +22,9 @@ yarn add ${name} -D
 ## Using environments variables
 
 Some whitelisted environments variables can be used in the code of the library.
-They will be replaced and statically evaluated at compile time.
+They will be replaced and statically evaluated at compile time, execpt for `process.env.NODE_END` in the CommonJS and ES modules bundles.
+This allows the applications using the library to handle it.
+
 Be sure to use the leading `process.env.` or it will not work.
 
 Available variables:
@@ -35,8 +37,9 @@ Example:
 ```js
 const API_URL = process.env.REACT_LIB_API_URL;
 
+// Only display warning in development.
 if (process.env.NODE_ENV === 'development' && !/^https/.test(API_URL)) {
-  console.warn(`The API_URL is not secured: ${API_URL}`);
+  console.warn(`The API_URL is not secured: $${API_URL}`);
 }
 
 console.log('API_URL:', API_URL);
@@ -81,7 +84,7 @@ This script accepts the `--watch` (or `-w`) option in which case it will watch f
 The file _src/index.js_ is required for this command to work, and the output files are defined in _package.json_:
 
 - CommonJS: Defined by the entry `pkg.main` (ex: `"main": "build/my-lib.js"`).
-- ES2015 modules: Defined by the entry `pkg.module` (ex: `"module": "build/my-lib.es.js"`).
+- ES modules: Defined by the entry `pkg.module` (ex: `"module": "build/my-lib.es.js"`).
 - UMD production: Defined by the entry `pkg.unpkg` (ex: `"unpkg": "build/umd/my-lib.production.min.js"`).
 - UMD development: Defined by the entry `pkg.unpkg-dev` (ex: `"unpkg-dev": "build/umd/my-lib.development.js"`).
 
