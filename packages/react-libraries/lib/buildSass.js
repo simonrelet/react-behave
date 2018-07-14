@@ -49,7 +49,13 @@ function build() {
     .then(buildCSS)
     .then(snapshotCSSSize(outputFile))
     .then(css => fs.outputFile(outputFile, css))
-    .then(logSuccess);
+    .then(logSuccess)
+    .catch(e => {
+      if (e) {
+        console.error(e);
+        return Promise.reject();
+      }
+    });
 }
 
 function start() {

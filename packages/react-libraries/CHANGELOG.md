@@ -15,6 +15,12 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Bug fixes
+
+- JavaScript build now display the error message.
+
 ## 0.6.0 (July 11, 2018)
 
 ### Breaking changes
