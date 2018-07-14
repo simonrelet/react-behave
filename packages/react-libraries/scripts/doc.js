@@ -9,7 +9,8 @@ const formatReactComponentDoc = require('../lib/formatReactComponentDoc');
 const formatJSDoc = require('../lib/formatJSDoc');
 const generateReadme = require('../lib/generateReadme');
 const logger = require('../lib/logger');
-const generateHeader = require('../lib/generateHeader');
+const headers = require('../lib/headers');
+const canGenerateFile = require('../lib/canGenerateFile');
 
 const sources = 'src/**/*.js';
 const outputFolder = 'docs';
@@ -33,15 +34,18 @@ function doc(args) {
     args[0] === '--readme' || args[0] === '-r' ? args[1] : undefined;
 
   files.forEach(file => {
-    const name = path.basename(file, '.js');
     const src = fs.readFileSync(file, 'utf8');
     const content = parse(src);
-    const header = generateHeader(file);
 
     if (content) {
+      const name = path.basename(file, '.js');
       const outputFile = path.join(outputFolder, `${name}.md`);
-      fs.outputFileSync(outputFile, `${header}${content}\n`);
-      logger.generated(file, outputFile);
+
+      if (canGenerateFile(outputFile)) {
+        const header = headers.generateHeader(file);
+        fs.outputFileSync(outputFile, `${header}${content}\n`);
+        logger.generated(file, outputFile);
+      }
     }
   });
 

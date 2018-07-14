@@ -17,6 +17,10 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 ## Unreleased
 
+### Enhancements
+
+- Don't override files that were not generated in `doc` and `bump-version` scripts.
+
 ### Bug fixes
 
 - JavaScript build now display the error message.
