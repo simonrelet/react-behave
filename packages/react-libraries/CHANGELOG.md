@@ -15,6 +15,18 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Enhancements
+
+- Skip the doc generation for undocumented components.
+
+## 0.8.0 (July 16, 2018)
+
+### Bug fixes
+
+- The `doc` scripts doesn't fail when there are no props.
+
 ## 0.7.0 (July 16, 2018)
 
 ### Enhancements

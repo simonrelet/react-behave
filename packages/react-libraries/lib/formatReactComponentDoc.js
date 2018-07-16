@@ -97,17 +97,17 @@ function formatProps(props) {
 }
 
 function formatReactComponentDoc(info) {
-  const doc = [`# ${info.displayName}`];
-
   if (info.description) {
-    doc.push(info.description);
+    const doc = [`# ${info.displayName}`, info.description];
+
+    if (info.props) {
+      doc.push('## Props', formatProps(info.props));
+    }
+
+    return doc.join('\n\n');
   }
 
-  if (info.props) {
-    doc.push('## Props', formatProps(info.props));
-  }
-
-  return doc.join('\n\n');
+  return '';
 }
 
 module.exports = formatReactComponentDoc;
