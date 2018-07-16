@@ -21,10 +21,12 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 - `props.render` has been renamed to `props.children` for components `ClickOutside`, `Dropdown` and `MergeRefs`.
 - Remove `renderMethod`.
+- the prop `Responsive.render` has been merged in `Responsive.children`.
 
 ### Enhancements
 
 - Create `ResizeObserver` component.
+- `Responsive` support local responsivity.
 
 ## 0.3.0 (July 5, 2018)
 
