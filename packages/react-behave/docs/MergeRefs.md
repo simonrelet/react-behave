@@ -1,6 +1,7 @@
 <!--
   THIS FILE WAS GENERATED!
   Don't make any changes in it, update src/components/MergeRefs/MergeRefs.js instead.
+  If you still need to make changes in this file, remove this header so it won't be overridden.
 -->
 
 # MergeRefs
