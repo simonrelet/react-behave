@@ -79,9 +79,10 @@ function format(props) {
     const type = formatType(prop.type);
     const name = `${formatCode(prop.name)}: ${type}`;
     const required = prop.required ? '' : ' (optional)';
-    const defaultValue = prop.defaultValue ? `${prop.defaultValue}\n\n` : '';
+    const defaultValue = prop.defaultValue ? `\n\n${prop.defaultValue}` : '';
+    const description = prop.description ? `\n\n${prop.description}` : '';
 
-    return `### ${name}${required}\n\n${defaultValue}${prop.description}`;
+    return `### ${name}${required}${defaultValue}${description}`;
   });
 }
 
@@ -96,14 +97,17 @@ function formatProps(props) {
 }
 
 function formatReactComponentDoc(info) {
-  return [
-    `# ${info.displayName}`,
-    info.description,
-    '## Props',
-    formatProps(info.props),
-  ]
-    .filter(Boolean)
-    .join('\n\n');
+  const doc = [`# ${info.displayName}`];
+
+  if (info.description) {
+    doc.push(info.description);
+  }
+
+  if (info.props) {
+    doc.push('## Props', formatProps(info.props));
+  }
+
+  return doc.join('\n\n');
 }
 
 module.exports = formatReactComponentDoc;
