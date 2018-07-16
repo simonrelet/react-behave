@@ -25,13 +25,13 @@
   ],
   "scripts": {
     "build": "react-libraries build",
-    "build-storybook": "build-storybook -c storybook -o build-storybook",
+    "build-storybook": "build-storybook -o build-storybook",
     "bump-version": "react-libraries bump-version",
     "clean": "react-libraries clean",
     "doc": "react-libraries doc",
     "prebump-version": "npm-run-all clean build doc",
     "start": "react-libraries build -w",
-    "storybook": "start-storybook -c storybook -p 4000",
+    "storybook": "start-storybook -p 4000",
     "test": "react-scripts test --env=jsdom"
   },
   "peerDependencies": {

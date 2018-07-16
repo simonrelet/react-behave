@@ -1,4 +1,5 @@
 import { action } from '@storybook/addon-actions';
+import centered from '@storybook/addon-centered';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import ClickOutside from './ClickOutside';
@@ -10,7 +11,7 @@ const style = {
   padding: '0.5rem 1rem',
 };
 
-stories.add('Render function', () => (
+stories.addDecorator(centered).add('Render function', () => (
   <ClickOutside onClickOutside={action('onClickOutside')}>
     {ref => (
       <p ref={ref} style={style}>

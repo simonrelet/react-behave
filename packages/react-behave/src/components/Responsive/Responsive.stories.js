@@ -3,13 +3,7 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import Responsive from './Responsive';
 
-const defaultScreenSizes = {
-  xs: 0,
-  sm: 600,
-  md: 960,
-  lg: 1280,
-  xl: 1920,
-};
+const defaultScreenSizes = Responsive.defaultProps.screenSizes;
 
 const stories = storiesOf('Responsive', module);
 
@@ -22,8 +16,8 @@ stories.add('Render function', () => {
 
   return (
     <Responsive
-      down={select('Down', screenSizesOptions, '')}
-      up={select('Up', screenSizesOptions, '')}
+      maximum={select('Maximum', screenSizesOptions, '')}
+      minimum={select('Minimum', screenSizesOptions, '')}
       screenSizes={screenSizes}
       render={width => (
         <div>
@@ -36,7 +30,7 @@ stories.add('Render function', () => {
 });
 
 stories.add('Render children', () => (
-  <Responsive down="md" up="sm" screenSizes={defaultScreenSizes}>
+  <Responsive maximum="md" minimum="sm">
     <p>I'm only visible on 'sm' and 'md' screens</p>
   </Responsive>
 ));

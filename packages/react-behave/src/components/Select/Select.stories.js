@@ -1,7 +1,8 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, button } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import React, { Component } from 'react';
+import React from 'react';
+import { WithState } from '../../../.storybook/components';
 import Select from './Select';
 
 const stories = storiesOf('Select', module);
@@ -19,18 +20,6 @@ const items = [
   { key: 'strawberry', label: 'Strawberry' },
   { key: 'watermelon', label: 'Watermelon' },
 ];
-
-class WithState extends Component {
-  static defaultProps = {
-    initialState: {},
-  };
-
-  state = this.props.initialState;
-
-  render() {
-    return this.props.children(this.state, state => this.setState(state));
-  }
-}
 
 function SelectStory({ children, initialValue = null }) {
   return (

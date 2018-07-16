@@ -1,5 +1,4 @@
 import { checkA11y } from '@storybook/addon-a11y';
-import centered from '@storybook/addon-centered';
 import { withConsole } from '@storybook/addon-console';
 import { withKnobs } from '@storybook/addon-knobs';
 import { setOptions } from '@storybook/addon-options';
@@ -15,7 +14,6 @@ function loadStories() {
 addDecorator((story, context) => withConsole()(story)(context));
 addDecorator(withKnobs);
 addDecorator(checkA11y);
-addDecorator(centered);
 
 setOptions({
   name: pkg.name,
