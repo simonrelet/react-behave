@@ -15,7 +15,7 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## 0.7.0 (July 16, 2018)
 
 ### Enhancements
 
