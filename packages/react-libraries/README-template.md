@@ -232,3 +232,6 @@ Are excluded the indexes files (_index.js_), test files (_\*.test.js_) and story
 
 - [react-docgen](https://github.com/reactjs/react-docgen) for React components.
 - [jsdoc-api](https://github.com/jsdoc2md/jsdoc-api) for all other JavaScript files.
+
+It is recommended to only make changes in the sources and not the generated files.
+If you still need to make changes in a generated file, remove the header so it won't be overridden the next time the script is ran.
