@@ -76,6 +76,13 @@ function prepareDefaultValue(props) {
 
 function format(props) {
   return props.map(prop => {
+    if (!prop.type) {
+      throw new Error(
+        `The prop '${prop.name}' doesn't appear to have a type.` +
+          ' This can happen when a prop is present in defaultProps bu not in propTypes.'
+      );
+    }
+
     const type = formatType(prop.type);
     const name = `${formatCode(prop.name)}: ${type}`;
     const required = prop.required ? '' : ' (optional)';

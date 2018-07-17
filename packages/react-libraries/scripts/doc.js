@@ -18,14 +18,23 @@ const files = glob.sync(sources, {
   ignore: ['**/index.js', '**/*.stories.js', '**/*.test.js'],
 });
 
-function parse(src) {
+function safeFormat(file, cb) {
+  try {
+    return cb();
+  } catch (e) {
+    console.error(`${file}: Could not create documentation:`, e);
+    return null;
+  }
+}
+
+function parse(src, file) {
   try {
     const info = reactDocs.parse(src);
-    return formatReactComponentDoc(info);
+    return safeFormat(file, () => formatReactComponentDoc(info));
   } catch (_) {
     // Try to parse regular JavaScript file.
     const info = jsdoc.explainSync({ source: src });
-    return formatJSDoc(info);
+    return safeFormat(file, () => formatJSDoc(info));
   }
 }
 
@@ -35,7 +44,7 @@ function doc(args) {
 
   files.forEach(file => {
     const src = fs.readFileSync(file, 'utf8');
-    const content = parse(src);
+    const content = parse(src, file);
 
     if (content) {
       const name = path.basename(file, '.js');
