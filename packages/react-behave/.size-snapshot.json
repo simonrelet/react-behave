@@ -1,11 +1,11 @@
 {
   "build/react-behave.js": {
-    "bundled": 49583,
+    "bundled": 49579,
     "minified": 18974,
     "gzipped": 4789
   },
   "build/react-behave.es.js": {
-    "bundled": 48698,
+    "bundled": 48694,
     "minified": 18179,
     "gzipped": 4684,
     "treeshaked": {
