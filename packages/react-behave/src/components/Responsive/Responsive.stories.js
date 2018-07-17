@@ -1,7 +1,8 @@
 import { object, select } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import React from 'react';
-import { WithRef } from '../../../.storybook/components';
+import React, { Component } from 'react';
+import watchResize from '../../core/watchResize';
+import getScreenSize from '../../core/getScreenSize';
 import Responsive from './Responsive';
 
 const defaultScreenSizes = Responsive.defaultProps.screenSizes;
@@ -37,18 +38,49 @@ stories.add('Render children', () => (
   </Responsive>
 ));
 
-stories.add('Local responsiveness', () => (
-  <WithRef>
-    {(ref, element) => (
-      <div ref={ref}>
-        <Responsive target={element}>
-          {(size, width) => (
-            <p>
-              The size is '{size}', width is {width}px
-            </p>
-          )}
-        </Responsive>
+class LocalResponsive extends Component {
+  ref = React.createRef();
+  stopWatching = null;
+
+  componentDidMount() {
+    this.stopWatching = watchResize(this.ref.current, () => this.forceUpdate());
+  }
+
+  componentWillUnmount() {
+    this.stopWatching();
+  }
+
+  getSize() {
+    if (this.ref.current) {
+      const { height, width } = this.ref.current.getBoundingClientRect();
+      return {
+        width: Math.floor(width),
+        height: Math.floor(height),
+      };
+    }
+
+    return {
+      width: 0,
+      height: 0,
+    };
+  }
+
+  getScreenSize(width) {
+    return getScreenSize(Responsive.defaultProps.screenSizes, width);
+  }
+
+  render() {
+    const { width, height } = this.getSize();
+    return (
+      <div ref={this.ref}>
+        <ul>
+          <li>Width: {width}px</li>
+          <li>Height: {height}px</li>
+          <li>Screen size: {this.getScreenSize(width)}</li>
+        </ul>
       </div>
-    )}
-  </WithRef>
-));
+    );
+  }
+}
+
+stories.add('Local responsiveness', () => <LocalResponsive />);

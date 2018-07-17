@@ -79,6 +79,12 @@ Must be one of the keys of [`props.screenSizes`][props-screensizes].
 Minimum screen width.
 Must be one of the keys of [`props.screenSizes`][props-screensizes].
 
+### `resizeInterval`: `Number` (optional)
+
+_Default value_: `166`
+
+The minimum interval between two resizes.
+
 ### `screenSizes`: `Object` (optional)
 
 _Default value_:
@@ -111,38 +117,3 @@ Define the following screen sizes:
 - `'sm'`: [0, 960[
 - `'md'`: [960, 1280[
 - `'lg'`: [1280, ∞[
-
-### `target`: `Object` (optional)
-
-The target element used to compute the screen size.
-
-By default, `window.innerWidth` is used, but it is possible to change the target for local responsivity.
-
-Example:
-
-```jsx
-import React, { Component } from 'react';
-import { Responsive } from 'react-behave';
-
-const screenSizes = {
-  // [...]
-};
-
-class LocallyResponsive extends Component {
-  ref = React.createRef();
-
-  render() {
-    return (
-      <section ref={this.ref}>
-        <Responsive target={this.ref} screenSizes={screenSizes}>
-          {(size, width) => (
-            <p>
-              The size is '{size}', the width is {width}px
-            </p>
-          )}
-        </Responsive>
-      </section>
-    );
-  }
-}
-```

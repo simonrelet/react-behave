@@ -15,9 +15,15 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Breaking changes
+
+- Replace `ResizeObserver` component by `watchResize` function.
+
 ## 0.4.0-alpha.2 (July 16, 2018)
 
-## Bug fixes
+### Bug fixes
 
 - Export `ResizeObserver` component.
 

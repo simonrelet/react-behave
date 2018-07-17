@@ -4,11 +4,7 @@ import memoize from 'memoize-one';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import EventListener from 'react-event-listener';
-import ResizeObserver from '../ResizeObserver/ResizeObserver';
-
-// Corresponds to 10 frames at 60 Hz
-// Delay to next tick for tests.
-const RESIZE_INTERVAL = process.env.NODE_ENV === 'test' ? 0 : 166;
+import getScreenSize from '../../core/getScreenSize';
 
 function smallerOrEqualTo(screenSizes, refScreenSize, screenSize) {
   return screenSizes[screenSize] <= screenSizes[refScreenSize];
@@ -16,12 +12,6 @@ function smallerOrEqualTo(screenSizes, refScreenSize, screenSize) {
 
 function biggerOrEqualTo(screenSizes, refScreenSize, screenSize) {
   return screenSizes[screenSize] >= screenSizes[refScreenSize];
-}
-
-function getScreenSize(screenSizes, width) {
-  return Object.keys(screenSizes)
-    .reverse()
-    .find(screenSizeName => width >= screenSizes[screenSizeName]);
 }
 
 /**
@@ -90,42 +80,6 @@ class Responsive extends Component {
     children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
 
     /**
-     * The target element used to compute the screen size.
-     *
-     * By default, `window.innerWidth` is used, but it is possible to change the target for local responsivity.
-     *
-     * Example:
-     *
-     * ```jsx
-     * import React, { Component } from 'react';
-     * import { Responsive } from 'react-behave';
-     *
-     * const screenSizes = {
-     *   // [...]
-     * };
-     *
-     * class LocallyResponsive extends Component {
-     *   ref = React.createRef();
-     *
-     *   render() {
-     *     return (
-     *       <section ref={this.ref}>
-     *         <Responsive target={this.ref} screenSizes={screenSizes}>
-     *           {(size, width) => (
-     *             <p>
-     *               The size is '{size}', the width is {width}px
-     *             </p>
-     *           )}
-     *         </Responsive>
-     *       </section>
-     *     );
-     *   }
-     * }
-     * ```
-     */
-    target: PropTypes.object,
-
-    /**
      * Maximum screen width.
      * Must be one of the keys of [`props.screenSizes`][props-screensizes].
      */
@@ -136,6 +90,11 @@ class Responsive extends Component {
      * Must be one of the keys of [`props.screenSizes`][props-screensizes].
      */
     minimum: PropTypes.string,
+
+    /**
+     * The minimum interval between two resizes.
+     */
+    resizeInterval: PropTypes.number,
 
     /**
      * The screen sizes to use.
@@ -161,6 +120,8 @@ class Responsive extends Component {
   };
 
   static defaultProps = {
+    // Corresponds to 10 frames at 60 Hz
+    resizeInterval: 166,
     screenSizes: {
       xs: 0,
       sm: 600,
@@ -176,7 +137,7 @@ class Responsive extends Component {
     this.handleResize.cancel();
   }
 
-  handleResize = debounce(() => this.forceUpdate(), RESIZE_INTERVAL);
+  handleResize = debounce(() => this.forceUpdate(), this.props.resizeInterval);
 
   renderChildren(width) {
     const screenSize = this.getScreenSize(this.props.screenSizes, width);
@@ -210,15 +171,6 @@ class Responsive extends Component {
   }
 
   render() {
-    // Only use `window` if `props.target` is not specified in the props.
-    if (this.props.target !== undefined) {
-      return (
-        <ResizeObserver target={this.props.target}>
-          {({ width }) => this.renderChildren(width)}
-        </ResizeObserver>
-      );
-    }
-
     return (
       <EventListener target="window" onResize={this.handleResize}>
         {this.renderChildren(window.innerWidth)}
