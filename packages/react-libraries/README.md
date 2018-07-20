@@ -71,6 +71,21 @@ var API_URL = 'http://hello.com/';
 console.log('API_URL:', API_URL);
 ```
 
+## Importing SVGs as React components
+
+The build uses a [specific loader](https://github.com/boopathi/react-svg-loader) allowing to transform SVG files into React components.
+This means that the SVG React components will be included in the final bundle.
+
+Example:
+
+```jsx
+import PersonIcon from './person.svg';
+
+function App() {
+  return <PersonIcon className="icon" />;
+}
+```
+
 ## Scripts
 
 ### `build`

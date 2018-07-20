@@ -7,6 +7,7 @@ const fs = require('fs-extra');
 const replace = require('rollup-plugin-replace');
 const { sizeSnapshot } = require('rollup-plugin-size-snapshot');
 const { uglify } = require('rollup-plugin-uglify');
+const reactSvg = require('rollup-plugin-react-svg');
 const changeCase = require('change-case');
 const readEnv = require('../lib/readEnv');
 
@@ -68,6 +69,7 @@ function createMainOptions(format, file) {
     plugins: [
       nodeResolve(),
       commonjs({ include: /node_modules/ }),
+      reactSvg(),
       babel({
         exclude: 'node_modules/**',
         presets: [
@@ -86,6 +88,7 @@ function createUMDOptions(isProd, file) {
   const plugins = [
     nodeResolve(),
     commonjs({ include: /node_modules/ }),
+    reactSvg(),
     babel({
       exclude: 'node_modules/**',
       presets: [
