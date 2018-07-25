@@ -15,6 +15,12 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Enhancements
+
+- The `doc` script formats `PropTypes.shape` type to `Object`.
+
 ## 0.11.0 (July 20, 2018)
 
 ## Enhancements
@@ -25,7 +31,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 ### Enhancements
 
-- The `doc` scripts warns about props defined in `defaultProps` but not in `propTypes`.
+- The `doc` script warns about props defined in `defaultProps` but not in `propTypes`.
 
 ## 0.9.0 (July 16, 2018)
 
@@ -37,7 +43,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 ### Bug fixes
 
-- The `doc` scripts doesn't fail when there are no props.
+- The `doc` script doesn't fail when there are no props.
 
 ## 0.7.0 (July 16, 2018)
 
