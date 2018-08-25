@@ -14,15 +14,15 @@ Merge multiple refs on a single component.
 ## Usage
 
 ```jsx
-import React, { Component } from 'react';
-import { ComponentNeedsRef } from 'some-lib';
-import { MergeRefs } from 'react-behave';
+import React, { Component } from 'react'
+import { ComponentNeedsRef } from 'some-lib'
+import { MergeRefs } from 'react-behave'
 
 class App extends Component {
-  buttonRef = React.createRef();
+  buttonRef = React.createRef()
 
   componentDidMount() {
-    this.buttonRef.focus();
+    this.buttonRef.focus()
   }
 
   render() {
@@ -34,7 +34,7 @@ class App extends Component {
           </MergeRefs>
         )}
       </ComponentNeedsRef>
-    );
+    )
   }
 }
 ```

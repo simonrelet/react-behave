@@ -1,24 +1,24 @@
-import { mount } from 'enzyme';
-import React from 'react';
-import EventListener from 'react-event-listener';
-import ClickOutside from './ClickOutside';
+import { mount } from 'enzyme'
+import React from 'react'
+import EventListener from 'react-event-listener'
+import ClickOutside from './ClickOutside'
 
 describe('<ClickOutside />', () => {
   it('notifies on a click outside', () => {
-    const cb = jest.fn();
+    const cb = jest.fn()
     const wrapper = mount(
       <ClickOutside onClickOutside={cb}>
         {ref => <p ref={ref}>Hello</p>}
       </ClickOutside>,
-    );
-    const event = { target: document };
-    wrapper.find(EventListener).prop('onClick')(event);
-    expect(cb).toHaveBeenCalledWith(event);
-  });
+    )
+    const event = { target: document }
+    wrapper.find(EventListener).prop('onClick')(event)
+    expect(cb).toHaveBeenCalledWith(event)
+  })
 
   it("doesn't notify on a click inside", () => {
-    let insideRef;
-    const cb = jest.fn();
+    let insideRef
+    const cb = jest.fn()
     const wrapper = mount(
       <ClickOutside onClickOutside={cb}>
         {ref => (
@@ -27,19 +27,19 @@ describe('<ClickOutside />', () => {
           </p>
         )}
       </ClickOutside>,
-    );
-    const event = { target: insideRef };
-    wrapper.find(EventListener).prop('onClick')(event);
-    expect(cb).not.toHaveBeenCalled();
-  });
+    )
+    const event = { target: insideRef }
+    wrapper.find(EventListener).prop('onClick')(event)
+    expect(cb).not.toHaveBeenCalled()
+  })
 
   it("doesn't notify if there is no ref", () => {
-    const cb = jest.fn();
+    const cb = jest.fn()
     const wrapper = mount(
       <ClickOutside onClickOutside={cb}>{() => <p>Hello</p>}</ClickOutside>,
-    );
-    const event = { target: document };
-    wrapper.find(EventListener).prop('onClick')(event);
-    expect(cb).not.toHaveBeenCalled();
-  });
-});
+    )
+    const event = { target: document }
+    wrapper.find(EventListener).prop('onClick')(event)
+    expect(cb).not.toHaveBeenCalled()
+  })
+})

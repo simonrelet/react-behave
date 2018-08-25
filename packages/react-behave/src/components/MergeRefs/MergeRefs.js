@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import { Component } from 'react';
-import setRef from './setRef';
+import PropTypes from 'prop-types'
+import { Component } from 'react'
+import setRef from './setRef'
 
 /**
  * [callback-refs]: https://reactjs.org/docs/refs-and-the-dom.html#callback-refs
@@ -56,30 +56,30 @@ class MergeRefs extends Component {
     refs: PropTypes.arrayOf(
       PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     ).isRequired,
-  };
+  }
 
   state = {
     refs: [],
-  };
+  }
 
   static getDerivedStateFromProps(props, state) {
     return {
       refs: props.refs.filter(Boolean),
-    };
+    }
   }
 
   mergeRefs = ref => {
     this.state.refs.forEach(handler => {
-      setRef(ref, handler);
-    });
-  };
+      setRef(ref, handler)
+    })
+  }
 
   render() {
     // Don't pass the ref function if there is no refs.
     return this.props.children(
       this.state.refs.length > 0 ? this.mergeRefs : null,
-    );
+    )
   }
 }
 
-export default MergeRefs;
+export default MergeRefs

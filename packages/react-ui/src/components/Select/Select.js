@@ -1,25 +1,25 @@
-import { readableColor } from 'polished';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { Select as SelectBehaviour } from 'react-behave';
-import styled from 'styled-components';
-import { BaselineCheckIcon, DropDownIcon, SearchIcon } from '../../icons';
-import Button from '../Button';
+import { readableColor } from 'polished'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { Select as SelectBehaviour } from 'react-behave'
+import styled from 'styled-components'
+import { BaselineCheckIcon, DropDownIcon, SearchIcon } from '../../icons'
+import Button from '../Button'
 
 const StyledBaselineCheckIcon = styled(BaselineCheckIcon)`
   margin-right: ${p => p.theme.relativeSpacing()};
   opacity: ${p => (p.visible ? 1 : 0)};
-`;
+`
 
 const StyledDropDownIcon = styled(DropDownIcon)`
   transform: rotate(${p => (p.open ? -180 : 0)}deg);
   transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-`;
+`
 
 const StyledSearchIcon = styled(SearchIcon)`
   color: ${p => p.theme.palette.text.hint};
   margin-right: ${p => p.theme.relativeSpacing()};
-`;
+`
 
 const StyledInput = styled.input`
   background-color: inherit;
@@ -34,7 +34,7 @@ const StyledInput = styled.input`
   &::placeholder {
     color: ${p => p.theme.palette.text.hint};
   }
-`;
+`
 
 const StyledHeader = styled.div`
   align-items: center;
@@ -42,21 +42,21 @@ const StyledHeader = styled.div`
   display: flex;
   flex: none;
   padding: ${p => p.theme.relativeSpacing()};
-`;
+`
 
 const StyledEmptyItem = styled.li`
   color: ${p => p.theme.palette.text.secondary};
   font-size: 0.875em;
   padding: ${p => p.theme.relativeSpacing(2)};
   text-align: center;
-`;
+`
 
 const itemAttrs = {
   color: p => {
     if (p.isHighlighted) {
-      return readableColor(p.theme.palette.primary);
+      return readableColor(p.theme.palette.primary)
     }
-    return p.isValue ? p.theme.palette.primary : 'inherit';
+    return p.isValue ? p.theme.palette.primary : 'inherit'
   },
 
   backgroundcolor: p =>
@@ -68,7 +68,7 @@ const itemAttrs = {
     p.theme.relativeSpacing(),
     p.theme.relativeSpacing(),
   ],
-};
+}
 
 const StyledItem = styled.li.attrs(itemAttrs)`
   align-items: center;
@@ -79,7 +79,7 @@ const StyledItem = styled.li.attrs(itemAttrs)`
   flex: none;
   padding: ${p => p.padding.join(' ')};
   background-color: ${p => p.backgroundcolor};
-`;
+`
 
 const StyledItems = styled.ul`
   align-items: stretch;
@@ -90,11 +90,11 @@ const StyledItems = styled.ul`
   margin: 0;
   overflow: auto;
   padding: 0;
-`;
+`
 
 const StyledLabel = styled.span`
   opacity: 0.54;
-`;
+`
 
 const StyledDropDown = styled.div`
   background-color: ${p => p.theme.palette.paper};
@@ -107,7 +107,7 @@ const StyledDropDown = styled.div`
   max-height: 274px;
   overflow: hidden;
   z-index: ${p => p.theme.zIndex.modal};
-`;
+`
 
 function Select({
   color,
@@ -133,7 +133,7 @@ function Select({
             {label && <StyledLabel>{`${label} `}</StyledLabel>}
             {value ? this.getItemLabel(value) : nullLabel}
           </Button>
-        );
+        )
       }}
       renderDropDown={({ ref, ...props }) => (
         <StyledDropDown {...props} innerRef={ref} dense={dense} />
@@ -150,10 +150,10 @@ function Select({
         </StyledHeader>
       )}
       renderItem={function(item, value, highlightedItem, { ref, ...props }) {
-        const itemValue = this.getItemValue(item);
-        const isValue = !!value && itemValue === this.getItemValue(value);
+        const itemValue = this.getItemValue(item)
+        const isValue = !!value && itemValue === this.getItemValue(value)
         const isHighlighted =
-          !!highlightedItem && itemValue === this.getItemValue(highlightedItem);
+          !!highlightedItem && itemValue === this.getItemValue(highlightedItem)
 
         return (
           <StyledItem
@@ -165,14 +165,14 @@ function Select({
             <StyledBaselineCheckIcon visible={isValue} />
             {this.getItemLabel(item)}
           </StyledItem>
-        );
+        )
       }}
       renderItems={({ ref, ...props }) => (
         <StyledItems {...props} innerRef={ref} />
       )}
       {...props}
     />
-  );
+  )
 }
 
 Select.propTypes = {
@@ -182,13 +182,13 @@ Select.propTypes = {
   inputPlaceHolder: PropTypes.string,
   label: PropTypes.string,
   nullLabel: PropTypes.string,
-};
+}
 
 Select.defaultProps = {
   dense: false,
   emptyLabel: 'No option.',
   inputPlaceHolder: 'Filter',
   nullLabel: 'Choose an option',
-};
+}
 
-export default Select;
+export default Select

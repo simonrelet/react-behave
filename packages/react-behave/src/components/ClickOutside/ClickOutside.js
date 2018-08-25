@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import EventListener from 'react-event-listener';
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import EventListener from 'react-event-listener'
 
 /**
  * [create-ref]: https://reactjs.org/docs/react-api.html#reactcreateref
@@ -44,24 +44,24 @@ class ClickOutside extends Component {
      * Called for each click outside the component.
      */
     onClickOutside: PropTypes.func.isRequired,
-  };
+  }
 
-  elementRef = React.createRef();
+  elementRef = React.createRef()
 
   handleClickOutside = e => {
-    const elementRef = this.elementRef.current;
+    const elementRef = this.elementRef.current
     if (elementRef && !elementRef.contains(e.target)) {
-      this.props.onClickOutside(e);
+      this.props.onClickOutside(e)
     }
-  };
+  }
 
   render() {
     return (
       <EventListener target="document" onClick={this.handleClickOutside}>
         {this.props.children(this.elementRef)}
       </EventListener>
-    );
+    )
   }
 }
 
-export default ClickOutside;
+export default ClickOutside

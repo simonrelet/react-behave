@@ -1,18 +1,18 @@
-import defaultTheme from './defaultTheme';
-import mergeWith from 'lodash.mergewith';
+import defaultTheme from './defaultTheme'
+import mergeWith from 'lodash.mergewith'
 
 function merger(baseObject, replacementObject) {
   if (Array.isArray(baseObject)) {
     // Arrays are replaced, not concatenated.
-    return replacementObject;
+    return replacementObject
   }
 
   // Let `mergeWith` handle the other cases.
-  return undefined;
+  return undefined
 }
 
 function createTheme(theme = {}) {
-  return mergeWith({}, defaultTheme, theme, merger);
+  return mergeWith({}, defaultTheme, theme, merger)
 }
 
-export default createTheme;
+export default createTheme

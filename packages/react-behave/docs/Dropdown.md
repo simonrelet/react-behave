@@ -16,21 +16,21 @@ Render a dropdown around a component.
 ## Usage
 
 ```jsx
-import React, { Component } from 'react';
-import { Dropdown } from 'react-behave';
+import React, { Component } from 'react'
+import { Dropdown } from 'react-behave'
 
 class App extends Component {
   state = {
     open: false,
-  };
+  }
 
   handleClickOutside = () => {
-    this.setState({ open: false });
-  };
+    this.setState({ open: false })
+  }
 
   toggleDropDown = () => {
-    this.setState(({ open }) => ({ open: !open }));
-  };
+    this.setState(({ open }) => ({ open: !open }))
+  }
 
   render() {
     return (
@@ -51,7 +51,7 @@ class App extends Component {
           </button>
         )}
       </Dropdown>
-    );
+    )
   }
 }
 ```

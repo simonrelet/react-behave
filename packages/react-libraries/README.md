@@ -41,34 +41,34 @@ Available variables:
 Example:
 
 ```js
-const API_URL = process.env.REACT_LIB_API_URL;
+const API_URL = process.env.REACT_LIB_API_URL
 
 // Only display warning in development.
 if (process.env.NODE_ENV === 'development' && !/^https/.test(API_URL)) {
-  console.warn(`The API_URL is not secured: ${API_URL}`);
+  console.warn(`The API_URL is not secured: ${API_URL}`)
 }
 
-console.log('API_URL:', API_URL);
+console.log('API_URL:', API_URL)
 ```
 
 ```js
 // NODE_ENV=development
 // REACT_LIB_API_URL=http://hello.com
-var API_URL = 'http://hello.com/';
+var API_URL = 'http://hello.com/'
 
 if (!/^https/.test(API_URL)) {
-  console.warn('The API_URL is not secured: '.concat(API_URL));
+  console.warn('The API_URL is not secured: '.concat(API_URL))
 }
 
-console.log('API_URL:', API_URL);
+console.log('API_URL:', API_URL)
 ```
 
 ```js
 // NODE_ENV=production
 // REACT_LIB_API_URL=http://hello.com
-var API_URL = 'http://hello.com/';
+var API_URL = 'http://hello.com/'
 
-console.log('API_URL:', API_URL);
+console.log('API_URL:', API_URL)
 ```
 
 ## Importing SVGs as React components
@@ -79,10 +79,10 @@ This means that the SVG React components will be included in the final bundle.
 Example:
 
 ```jsx
-import PersonIcon from './person.svg';
+import PersonIcon from './person.svg'
 
 function App() {
-  return <PersonIcon className="icon" />;
+  return <PersonIcon className="icon" />
 }
 ```
 

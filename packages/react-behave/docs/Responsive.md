@@ -15,8 +15,8 @@ Render content depending on the screen size.
 ## Usage
 
 ```jsx
-import React, { Component } from 'react';
-import { Responsive } from 'react-behave';
+import React, { Component } from 'react'
+import { Responsive } from 'react-behave'
 
 const screenSizes = {
   xs: 0,
@@ -24,7 +24,7 @@ const screenSizes = {
   md: 960,
   lg: 1280,
   xl: 1920,
-};
+}
 
 class App extends Component {
   render() {
@@ -32,7 +32,7 @@ class App extends Component {
       <Responsive minimum="md" screenSizes={screenSizes}>
         <p>Only visible on medium and bigger screens</p>
       </Responsive>
-    );
+    )
   }
 }
 ```
@@ -50,19 +50,19 @@ The children will only be rendered if the current width is satisfied by [`props.
 Example:
 
 ```jsx
-import React from 'react';
-import { Responsive } from 'react-behave';
+import React from 'react'
+import { Responsive } from 'react-behave'
 
 const screenSizes = {
   // [...]
-};
+}
 
 function LargeScreen() {
   return (
     <Responsive minimum="lg" screenSizes={screenSizes}>
       {screenSize => <p>The screen size is '{screenSize}'</p>}
     </Responsive>
-  );
+  )
 }
 ```
 
@@ -109,7 +109,7 @@ const screenSizes = {
   sm: 0,
   md: 960,
   lg: 1280,
-};
+}
 ```
 
 Define the following screen sizes:

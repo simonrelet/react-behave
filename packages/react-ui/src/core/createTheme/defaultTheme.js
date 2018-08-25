@@ -1,12 +1,12 @@
-import { screenSizes, screenSizesNames } from '../../constants';
-import { transparentize } from 'polished';
+import { screenSizes, screenSizesNames } from '../../constants'
+import { transparentize } from 'polished'
 
 function spacing(scale = 1) {
-  return `${0.5 * scale}rem`;
+  return `${0.5 * scale}rem`
 }
 
 function relativeSpacing(scale = 1) {
-  return `${0.5 * scale}em`;
+  return `${0.5 * scale}em`
 }
 
 const colors = {
@@ -18,7 +18,7 @@ const colors = {
   success: '#28a745',
   warning: '#ffc107',
   white: '#fff',
-};
+}
 
 const palette = {
   ...colors,
@@ -41,19 +41,19 @@ const palette = {
     contrast: '#424242',
     paper: colors.white,
   },
-};
+}
 
 const breakpoints = {
   up: width => `@media (min-width:${screenSizes[width]}px)`,
   down: width => {
-    const upperWidth = screenSizesNames[screenSizesNames.indexOf(width) + 1];
-    return `@media (max-width:${screenSizes[upperWidth] - 0.05}px)`;
+    const upperWidth = screenSizesNames[screenSizesNames.indexOf(width) + 1]
+    return `@media (max-width:${screenSizes[upperWidth] - 0.05}px)`
   },
-};
+}
 
 function createShadow(opacity, px) {
-  const color = transparentize(opacity, colors.black);
-  return `${px[0]}px ${px[1]}px ${px[2]}px ${px[3]}px ${color}`;
+  const color = transparentize(opacity, colors.black)
+  return `${px[0]}px ${px[1]}px ${px[2]}px ${px[3]}px ${color}`
 }
 
 function createShadows(umbra, prenumbra, ambient) {
@@ -61,7 +61,7 @@ function createShadows(umbra, prenumbra, ambient) {
     createShadow(0.8, umbra),
     createShadow(0.86, prenumbra),
     createShadow(0.88, ambient),
-  ].join(',');
+  ].join(',')
 }
 
 const shadows = [
@@ -90,7 +90,7 @@ const shadows = [
   createShadows([0, 10, 14, -6], [0, 22, 35, 3], [0, 8, 42, 7]),
   createShadows([0, 11, 14, -7], [0, 23, 36, 3], [0, 9, 44, 8]),
   createShadows([0, 11, 15, -7], [0, 24, 38, 3], [0, 9, 46, 8]),
-];
+]
 
 const zIndex = {
   mobileStepper: 1000,
@@ -99,12 +99,12 @@ const zIndex = {
   modal: 1300,
   snackbar: 1400,
   tooltip: 1500,
-};
+}
 
 const typography = {
   fontFamily: 'Helvetica Neue, Helvetica, Arial',
   fontSize: '16px',
-};
+}
 
 export default {
   breakpoints,
@@ -115,4 +115,4 @@ export default {
   typography,
   zIndex,
   borderRadius: '4px',
-};
+}

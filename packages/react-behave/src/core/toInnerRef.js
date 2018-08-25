@@ -1,5 +1,5 @@
-import React from 'react';
-import getDisplayName from './getDisplayName';
+import React from 'react'
+import getDisplayName from './getDisplayName'
 
 /**
  * [fr]: https://reactjs.org/docs/react-api.html#reactforwardref
@@ -36,12 +36,12 @@ function toInnerRef(Component) {
       <Component {...props} innerRef={ref} />
     ) : (
       <Component {...props} />
-    );
+    )
   }
 
-  forwardRef.displayName = `ToInnerRef(${getDisplayName(Component)})`;
+  forwardRef.displayName = `ToInnerRef(${getDisplayName(Component)})`
 
-  return React.forwardRef(forwardRef);
+  return React.forwardRef(forwardRef)
 }
 
-export default toInnerRef;
+export default toInnerRef

@@ -1,17 +1,17 @@
-import scrollIntoView from 'dom-scroll-into-view';
-import isEqual from 'lodash.isequal';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import toInnerRef from '../../core/toInnerRef';
-import Dropdown from '../Dropdown';
-import MergeRefs from '../MergeRefs';
+import scrollIntoView from 'dom-scroll-into-view'
+import isEqual from 'lodash.isequal'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import toInnerRef from '../../core/toInnerRef'
+import Dropdown from '../Dropdown'
+import MergeRefs from '../MergeRefs'
 
 function getDerivedStateFromInputValue(props, inputValue) {
   // If the input is empty show all items, and highlight the current value.
-  let visibleItems = props.items;
+  let visibleItems = props.items
   let highlightedItem = Array.isArray(props.value)
     ? props.value[0]
-    : props.value;
+    : props.value
 
   if (inputValue) {
     visibleItems = props.items.filter(item =>
@@ -19,16 +19,16 @@ function getDerivedStateFromInputValue(props, inputValue) {
         getItemLabel: props.getItemLabel,
         getItemValue: props.getItemValue,
       }),
-    );
+    )
 
-    highlightedItem = visibleItems.length ? visibleItems[0] : null;
+    highlightedItem = visibleItems.length ? visibleItems[0] : null
   }
 
   return {
     highlightedItem,
     inputValue,
     visibleItems,
-  };
+  }
 }
 
 /**
@@ -313,7 +313,7 @@ class Select extends Component {
      * If [`props.multiple`][props-multiple] is `true`, then `props.value` must be an `Array`.
      */
     value: PropTypes.oneOfType([PropTypes.any, PropTypes.array]),
-  };
+  }
 
   static defaultProps = {
     filterable: false,
@@ -321,8 +321,8 @@ class Select extends Component {
     multiple: false,
 
     matchItem(item, filter, { getItemLabel }) {
-      const label = getItemLabel(item);
-      return label.toLowerCase().includes(filter.toLowerCase());
+      const label = getItemLabel(item)
+      return label.toLowerCase().includes(filter.toLowerCase())
     },
 
     renderButton({ getItemLabel, value }, props = {}) {
@@ -330,47 +330,47 @@ class Select extends Component {
         <button {...props}>
           {value ? getItemLabel(value) : 'Choose an option'}
         </button>
-      );
+      )
     },
 
     renderDropDown(props = {}) {
-      return <div {...props} />;
+      return <div {...props} />
     },
 
     renderEmpty() {
-      return <li>No options.</li>;
+      return <li>No options.</li>
     },
 
     renderInput(props = {}) {
-      return <input {...props} />;
+      return <input {...props} />
     },
 
     renderItem({ getItemLabel, item }, props = {}) {
-      return <li {...props}>{getItemLabel(item)}</li>;
+      return <li {...props}>{getItemLabel(item)}</li>
     },
 
     renderItems(props = {}) {
-      return <ul {...props} />;
+      return <ul {...props} />
     },
-  };
+  }
 
-  _buttonRef = React.createRef();
-  _itemsRef = React.createRef();
-  _inputRef = React.createRef();
-  _highlightedItemRef = React.createRef();
+  _buttonRef = React.createRef()
+  _itemsRef = React.createRef()
+  _inputRef = React.createRef()
+  _highlightedItemRef = React.createRef()
 
   // Flag used to trigger the scroll in `componentDidUpdate`.
   // Don't use state to avoid useless updates when the flag is turned off in `componentDidUpdate`.
-  _ensureScroll = false;
+  _ensureScroll = false
 
   // Flag used to give the focus back to the button when the drop down is closed.
   // Don't use state to avoid useless updates when the flag is turned off in `componentDidUpdate`.
-  _focusBackButton = false;
+  _focusBackButton = false
 
   // Flag used to call `_scheduleUpdateCb` when the list of item has changed after a filter.
   // Don't use state to avoid useless updates when the flag is turned off in `componentDidUpdate`.
-  _scheduleUpdate = false;
-  _scheduleUpdateCb = null;
+  _scheduleUpdate = false
+  _scheduleUpdateCb = null
 
   state = {
     highlightedItem: null,
@@ -378,7 +378,7 @@ class Select extends Component {
     open: false,
     propsItems: [],
     visibleItems: [],
-  };
+  }
 
   static getDerivedStateFromProps(props, state) {
     // If the items change we close the drop down.
@@ -390,10 +390,10 @@ class Select extends Component {
         open: false,
         propsItems: props.items,
         visibleItems: props.items,
-      };
+      }
     }
 
-    return null;
+    return null
   }
 
   componentDidUpdate(_, prevState) {
@@ -404,46 +404,46 @@ class Select extends Component {
           ? // Pass the focus to the input.
             this._inputRef.current
           : // Pass the focus to the items list.
-            this._itemsRef.current;
+            this._itemsRef.current
 
         // TODO:  `setTimeout` is required somehow.
-        setTimeout(() => ref.focus(), 0);
+        setTimeout(() => ref.focus(), 0)
 
         // Ensure that the highlighted item (the current value as we just opened the drop down) is visible.
-        this.ensureScrollPosition();
+        this.ensureScrollPosition()
       } else {
         // When the drop down closes, give the focus back to the button if needed.
         if (this._focusBackButton) {
-          this._buttonRef.current.focus();
-          this._focusBackButton = false;
+          this._buttonRef.current.focus()
+          this._focusBackButton = false
         }
       }
 
-      return;
+      return
     }
 
     // Still open and should scroll
     if (this.state.open && this._ensureScroll) {
-      this.ensureScrollPosition();
-      this._ensureScroll = false;
+      this.ensureScrollPosition()
+      this._ensureScroll = false
     }
 
     if (this.state.open && this._scheduleUpdate) {
-      this._scheduleUpdateCb();
-      this._scheduleUpdate = false;
+      this._scheduleUpdateCb()
+      this._scheduleUpdate = false
     }
   }
 
   handleClickOutside = () => {
-    this.closeDropDown();
-  };
+    this.closeDropDown()
+  }
 
   handleButtonKeyDown = e => {
     if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && !this.state.open) {
-      this.openDropDown();
-      e.preventDefault();
+      this.openDropDown()
+      e.preventDefault()
     }
-  };
+  }
 
   handleButtonKeyPress = e => {
     // When a user presses a key, we want to open the the drop down and set the input with the value of the key pressed.
@@ -451,110 +451,110 @@ class Select extends Component {
     // Every other key triggers this behaviour.
     // Only in filterable mode.
     if (this.props.filterable && e.key !== 'Enter' && e.key !== ' ') {
-      e.preventDefault();
-      this.openDropDown(e.key);
+      e.preventDefault()
+      this.openDropDown(e.key)
     }
-  };
+  }
 
   handleButtonClick = e => {
     if (this.state.open) {
-      this.closeDropDown();
+      this.closeDropDown()
     } else {
-      this.openDropDown();
+      this.openDropDown()
     }
-  };
+  }
 
   handleItemsOrInputKeyDown = e => {
     switch (e.key) {
       case 'Escape':
-        this.closeDropDown(true);
-        e.preventDefault();
-        break;
+        this.closeDropDown(true)
+        e.preventDefault()
+        break
 
       case 'Tab':
-        this.closeDropDown();
-        break;
+        this.closeDropDown()
+        break
 
       case 'ArrowDown':
       case 'ArrowUp':
-        this.shiftSelection(e.key === 'ArrowDown' ? 1 : -1);
-        e.preventDefault();
-        break;
+        this.shiftSelection(e.key === 'ArrowDown' ? 1 : -1)
+        e.preventDefault()
+        break
 
       case 'Enter':
-        this.notifyChange(this.state.highlightedItem);
-        e.preventDefault();
-        break;
+        this.notifyChange(this.state.highlightedItem)
+        e.preventDefault()
+        break
 
       default:
-        break;
+        break
     }
-  };
+  }
 
   handleClickItem = item => {
-    this.notifyChange(item);
-  };
+    this.notifyChange(item)
+  }
 
   handleMouseEnterItem = item => {
-    this.setState({ highlightedItem: item });
-  };
+    this.setState({ highlightedItem: item })
+  }
 
   handleMouseLeaveItem = () => {
     if (this.state.highlightedItem) {
-      this.setState({ highlightedItem: null });
+      this.setState({ highlightedItem: null })
     }
-  };
+  }
 
   handleInputChange = e => {
-    this._ensureScroll = true;
-    this._scheduleUpdate = true;
-    this.setState(getDerivedStateFromInputValue(this.props, e.target.value));
-  };
+    this._ensureScroll = true
+    this._scheduleUpdate = true
+    this.setState(getDerivedStateFromInputValue(this.props, e.target.value))
+  }
 
   ensureScrollPosition() {
-    const { current } = this._highlightedItemRef;
+    const { current } = this._highlightedItemRef
 
     // Can be undefined if there are no visible items.
     if (current) {
       scrollIntoView(current, this._itemsRef.current, {
         onlyScrollIfNeeded: true,
-      });
+      })
     }
   }
 
   notifyChange(item) {
     if (item) {
-      const itemValue = this.props.getItemValue(item);
+      const itemValue = this.props.getItemValue(item)
 
       if (this.props.multiple) {
         let value = this.props.value.filter(
           i => this.props.getItemValue(i) !== itemValue,
-        );
+        )
 
         // The item was not in the values.
         if (value.length === this.props.value.length) {
-          value = value.concat(item);
+          value = value.concat(item)
         }
 
-        this.props.onChange(value);
+        this.props.onChange(value)
       } else {
         // Alway close the drop down and give the focus back to the button.
-        this.closeDropDown(true);
+        this.closeDropDown(true)
 
         // ...But only notify if the value actually changed.
         if (
           !this.props.value ||
           itemValue !== this.props.getItemValue(this.props.value)
         ) {
-          this.props.onChange(item);
+          this.props.onChange(item)
         }
       }
     }
   }
 
   closeDropDown(focusBackButton = false) {
-    this._focusBackButton = focusBackButton;
-    this.setState({ open: false });
+    this._focusBackButton = focusBackButton
+    this.setState({ open: false })
   }
 
   // `inputValue` is defined when the focus is on the button and the user presses a key.
@@ -562,37 +562,37 @@ class Select extends Component {
     this.setState({
       open: true,
       ...getDerivedStateFromInputValue(this.props, inputValue),
-    });
+    })
   }
 
   shiftSelection(offset) {
     this.setState(({ highlightedItem, visibleItems }) => {
       if (visibleItems.length) {
-        this._ensureScroll = true;
+        this._ensureScroll = true
 
         if (!highlightedItem) {
-          return { highlightedItem: visibleItems[0] };
+          return { highlightedItem: visibleItems[0] }
         }
 
-        const highlightedItemValue = this.props.getItemValue(highlightedItem);
+        const highlightedItemValue = this.props.getItemValue(highlightedItem)
         const highlightedItemIndex = visibleItems.findIndex(
           item => this.props.getItemValue(item) === highlightedItemValue,
-        );
+        )
 
         let newHighlightedItemIndex =
-          (highlightedItemIndex + offset) % visibleItems.length;
+          (highlightedItemIndex + offset) % visibleItems.length
 
         if (newHighlightedItemIndex < 0) {
-          newHighlightedItemIndex = visibleItems.length - 1;
+          newHighlightedItemIndex = visibleItems.length - 1
         }
 
         return {
           highlightedItem: visibleItems[newHighlightedItemIndex],
-        };
+        }
       }
 
-      return null;
-    });
+      return null
+    })
   }
 
   renderButton(ref) {
@@ -602,7 +602,7 @@ class Select extends Component {
       multiple: this.props.multiple,
       getItemValue: this.props.getItemValue,
       getItemLabel: this.props.getItemLabel,
-    };
+    }
 
     const props = {
       ref,
@@ -611,30 +611,30 @@ class Select extends Component {
       onKeyPress: this.handleButtonKeyPress,
       'aria-haspopup': true,
       'aria-expanded': this.state.open,
-    };
-
-    if (this.props.manualProps) {
-      return this.props.renderButton(context, props);
     }
 
-    return React.cloneElement(this.props.renderButton(context), props);
+    if (this.props.manualProps) {
+      return this.props.renderButton(context, props)
+    }
+
+    return React.cloneElement(this.props.renderButton(context), props)
   }
 
   renderItems() {
     const highlightedItemValue = this.state.highlightedItem
       ? this.props.getItemValue(this.state.highlightedItem)
-      : '';
+      : ''
 
     const children = this.state.visibleItems.map(item => {
-      const itemValue = this.props.getItemValue(item);
+      const itemValue = this.props.getItemValue(item)
 
-      let isValue = false;
+      let isValue = false
       if (this.props.multiple) {
         isValue = this.props.value.some(
           i => this.props.getItemValue(i) === itemValue,
-        );
+        )
       } else if (this.props.value) {
-        isValue = itemValue === this.props.getItemValue(this.props.value);
+        isValue = itemValue === this.props.getItemValue(this.props.value)
       }
 
       const context = {
@@ -645,7 +645,7 @@ class Select extends Component {
           this.props.getItemValue(this.state.highlightedItem) === itemValue,
         getItemValue: this.props.getItemValue,
         getItemLabel: this.props.getItemLabel,
-      };
+      }
 
       const itemProps = {
         ref:
@@ -654,15 +654,15 @@ class Select extends Component {
         onClick: () => this.handleClickItem(item),
         onMouseEnter: () => this.handleMouseEnterItem(item),
         onMouseLeave: this.handleMouseLeaveItem,
-      };
-
-      if (this.props.manualProps) {
-        return this.props.renderItem(context, itemProps);
       }
 
-      const renderedItem = this.props.renderItem(context);
-      return React.cloneElement(renderedItem, itemProps);
-    });
+      if (this.props.manualProps) {
+        return this.props.renderItem(context, itemProps)
+      }
+
+      const renderedItem = this.props.renderItem(context)
+      return React.cloneElement(renderedItem, itemProps)
+    })
 
     const props = {
       ref: this._itemsRef,
@@ -670,24 +670,24 @@ class Select extends Component {
       tabIndex: 0,
       onKeyDown: this.handleItemsOrInputKeyDown,
       role: 'menu',
-    };
+    }
 
-    const empty = children.length === 0 ? this.props.renderEmpty() : null;
+    const empty = children.length === 0 ? this.props.renderEmpty() : null
 
     if (this.props.manualProps) {
-      return this.props.renderItems({ ...props, children: empty || children });
+      return this.props.renderItems({ ...props, children: empty || children })
     }
 
     if (empty) {
-      children.push(empty);
+      children.push(empty)
     }
 
-    return React.cloneElement(this.props.renderItems(), props, ...children);
+    return React.cloneElement(this.props.renderItems(), props, ...children)
   }
 
   renderDropDown(props, scheduleUpdateCb) {
-    this._scheduleUpdateCb = scheduleUpdateCb;
-    const children = [this.renderItems()];
+    this._scheduleUpdateCb = scheduleUpdateCb
+    const children = [this.renderItems()]
 
     if (this.props.filterable) {
       const inputProps = {
@@ -696,20 +696,20 @@ class Select extends Component {
         onKeyDown: this.handleItemsOrInputKeyDown,
         onChange: this.handleInputChange,
         value: this.state.inputValue,
-      };
+      }
 
       const input = this.props.manualProps
         ? this.props.renderInput(inputProps)
-        : React.cloneElement(this.props.renderInput(), inputProps);
+        : React.cloneElement(this.props.renderInput(), inputProps)
 
-      children.unshift(input);
+      children.unshift(input)
     }
 
     if (this.props.manualProps) {
-      return this.props.renderDropDown({ ...props, children });
+      return this.props.renderDropDown({ ...props, children })
     }
 
-    return React.cloneElement(this.props.renderDropDown(), props, ...children);
+    return React.cloneElement(this.props.renderDropDown(), props, ...children)
   }
 
   render() {
@@ -730,8 +730,8 @@ class Select extends Component {
           </MergeRefs>
         )}
       </Dropdown>
-    );
+    )
   }
 }
 
-export default toInnerRef(Select);
+export default toInnerRef(Select)

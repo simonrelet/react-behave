@@ -1,4 +1,4 @@
-import omit from 'lodash.omit';
+import omit from 'lodash.omit'
 
 /**
  * [pors]: https://github.com/tc39/proposal-object-rest-spread
@@ -38,9 +38,9 @@ import omit from 'lodash.omit';
  */
 function getOtherProps(component, props) {
   if (component.propTypes) {
-    return omit(props, Object.keys(component.propTypes));
+    return omit(props, Object.keys(component.propTypes))
   }
-  return props;
+  return props
 }
 
-export default getOtherProps;
+export default getOtherProps

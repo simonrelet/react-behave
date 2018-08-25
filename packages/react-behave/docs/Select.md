@@ -17,24 +17,24 @@ Render a select component.
 ## Usage
 
 ```jsx
-import React, { Component } from 'react';
-import { Select } from 'react-behave';
+import React, { Component } from 'react'
+import { Select } from 'react-behave'
 
 const items = [
   { value: 'apple', label: 'Apple' },
   { value: 'blueberry', label: 'Blueberry' },
   { value: 'grapefruit', label: 'Grapefruit' },
   // ...
-];
+]
 
 class App extends Component {
   state = {
     value: items[0],
-  };
+  }
 
   handleChange = value => {
-    this.setState({ value });
-  };
+    this.setState({ value })
+  }
 
   render() {
     return (
@@ -45,7 +45,7 @@ class App extends Component {
         getItemLabel={item => item.label}
         getItemValue={item => item.value}
       />
-    );
+    )
   }
 }
 ```

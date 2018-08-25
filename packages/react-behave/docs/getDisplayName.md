@@ -11,10 +11,10 @@ Get the display name of a component.
 ## Usage
 
 ```js
-import { getDisplayName } from 'react-behave';
-import MyComponent from './MyComponent';
+import { getDisplayName } from 'react-behave'
+import MyComponent from './MyComponent'
 
-const displayName = getDisplayName(MyComponent);
+const displayName = getDisplayName(MyComponent)
 ```
 
 ## Type signature

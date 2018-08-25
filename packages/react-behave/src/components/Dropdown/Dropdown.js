@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import { Manager, Popper, Reference, placements } from 'react-popper';
-import ClickOutside from '../ClickOutside';
-import MergeRefs from '../MergeRefs';
-import minWidthModifier from './minWidthModifier';
+import PropTypes from 'prop-types'
+import React from 'react'
+import { Manager, Popper, Reference, placements } from 'react-popper'
+import ClickOutside from '../ClickOutside'
+import MergeRefs from '../MergeRefs'
+import minWidthModifier from './minWidthModifier'
 
 function renderContent(onClickOutside, popperProps, popperRef, renderDropDown) {
   if (!onClickOutside) {
     // Don't add the `ClickOutside` component if nobody is listening.
-    return renderDropDown(popperRef, popperProps);
+    return renderDropDown(popperRef, popperProps)
   }
 
   return (
@@ -19,7 +19,7 @@ function renderContent(onClickOutside, popperProps, popperRef, renderDropDown) {
         </MergeRefs>
       )}
     </ClickOutside>
-  );
+  )
 }
 
 /**
@@ -96,7 +96,7 @@ function Dropdown({
         </Popper>
       )}
     </Manager>
-  );
+  )
 }
 
 Dropdown.propTypes = {
@@ -136,11 +136,11 @@ Dropdown.propTypes = {
    * This object is the same as the [one provided by react-popper][popper-props] without the `ref`.
    */
   renderDropDown: PropTypes.func.isRequired,
-};
+}
 
 Dropdown.defaultProps = {
   open: false,
   placement: 'bottom-start',
-};
+}
 
-export default Dropdown;
+export default Dropdown

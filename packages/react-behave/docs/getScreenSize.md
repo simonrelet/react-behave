@@ -13,7 +13,7 @@ Get the screen size of a given width.
 ## Usage
 
 ```js
-import { getScreenSize } from 'react-behave';
+import { getScreenSize } from 'react-behave'
 
 const screenSizes = {
   xs: 0,
@@ -21,9 +21,9 @@ const screenSizes = {
   md: 960,
   lg: 1280,
   xl: 1920,
-};
+}
 
-const screenSize = getScreenSize(screenSizes, 800);
+const screenSize = getScreenSize(screenSizes, 800)
 ```
 
 ## Type signature

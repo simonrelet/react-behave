@@ -4,6 +4,6 @@ export const screenSizes = {
   md: 960,
   lg: 1280,
   xl: 1920,
-};
+}
 
-export const screenSizesNames = Object.keys(screenSizes);
+export const screenSizesNames = Object.keys(screenSizes)

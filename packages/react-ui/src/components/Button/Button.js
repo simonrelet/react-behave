@@ -4,16 +4,16 @@ import {
   lighten,
   readableColor,
   transparentize,
-} from 'polished';
-import PropTypes from 'prop-types';
-import React from 'react';
-import styled from 'styled-components';
+} from 'polished'
+import PropTypes from 'prop-types'
+import React from 'react'
+import styled from 'styled-components'
 
 function emphasize(color) {
-  return getLuminance(color) > 0.5 ? darken(0.15, color) : lighten(0.15, color);
+  return getLuminance(color) > 0.5 ? darken(0.15, color) : lighten(0.15, color)
 }
 
-const defaultColor = 'white';
+const defaultColor = 'white'
 
 const attrs = {
   color: p => p.theme.palette[p.color || defaultColor],
@@ -24,7 +24,7 @@ const attrs = {
     p.theme.relativeSpacing(),
     p.theme.relativeSpacing(p.withIconLeft ? 1 : 2),
   ],
-};
+}
 
 const StyledButton = styled.button.attrs(attrs)`
   align-items: center;
@@ -53,12 +53,12 @@ const StyledButton = styled.button.attrs(attrs)`
     background-color: ${p => emphasize(p.color)};
     color: ${p => readableColor(emphasize(p.color))};
   }
-`;
+`
 
 const StyledContent = styled.span`
   margin-left: ${p => (p.withIconLeft ? p.theme.relativeSpacing() : '0')}
   margin-right: ${p => (p.withIconRight ? p.theme.relativeSpacing() : '0')}
-`;
+`
 
 function Button({
   children,
@@ -69,8 +69,8 @@ function Button({
   renderIconRight,
   ...otherProps
 }) {
-  const iconLeft = renderIconLeft();
-  const iconRight = renderIconRight();
+  const iconLeft = renderIconLeft()
+  const iconRight = renderIconRight()
 
   return (
     <StyledButton
@@ -87,7 +87,7 @@ function Button({
       </StyledContent>
       {iconRight}
     </StyledButton>
-  );
+  )
 }
 
 Button.propTypes = {
@@ -97,13 +97,13 @@ Button.propTypes = {
   innerRef: PropTypes.any,
   renderIconLeft: PropTypes.func,
   renderIconRight: PropTypes.func,
-};
+}
 
 Button.defaultProps = {
   color: defaultColor,
   dense: false,
   renderIconLeft: () => null,
   renderIconRight: () => null,
-};
+}
 
-export default Button;
+export default Button

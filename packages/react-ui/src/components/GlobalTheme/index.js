@@ -1,1 +1,1 @@
-export { default } from './GlobalTheme';
+export { default } from './GlobalTheme'

@@ -13,12 +13,12 @@ Notify for each click outside a component.
 ## Usage
 
 ```jsx
-import React, { Component } from 'react';
-import { ClickOutside } from 'react-behave';
+import React, { Component } from 'react'
+import { ClickOutside } from 'react-behave'
 
 class App extends Component {
   handleClickOutside(event) {
-    console.log('click', event);
+    console.log('click', event)
   }
 
   render() {
@@ -26,7 +26,7 @@ class App extends Component {
       <ClickOutside onClickOutside={this.handleClickOutside}>
         {ref => <p ref={ref}>Don't click on me.</p>}
       </ClickOutside>
-    );
+    )
   }
 }
 ```

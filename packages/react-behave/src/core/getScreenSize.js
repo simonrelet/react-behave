@@ -26,7 +26,7 @@
 function getScreenSize(screenSizes, width) {
   return Object.keys(screenSizes)
     .reverse()
-    .find(screenSizeName => width >= screenSizes[screenSizeName]);
+    .find(screenSizeName => width >= screenSizes[screenSizeName])
 }
 
-export default getScreenSize;
+export default getScreenSize

@@ -1,17 +1,17 @@
-import debounce from 'lodash.debounce';
-import isEqual from 'lodash.isequal';
-import memoize from 'memoize-one';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import EventListener from 'react-event-listener';
-import getScreenSize from '../../core/getScreenSize';
+import debounce from 'lodash.debounce'
+import isEqual from 'lodash.isequal'
+import memoize from 'memoize-one'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import EventListener from 'react-event-listener'
+import getScreenSize from '../../core/getScreenSize'
 
 function smallerOrEqualTo(screenSizes, refScreenSize, screenSize) {
-  return screenSizes[screenSize] <= screenSizes[refScreenSize];
+  return screenSizes[screenSize] <= screenSizes[refScreenSize]
 }
 
 function biggerOrEqualTo(screenSizes, refScreenSize, screenSize) {
-  return screenSizes[screenSize] >= screenSizes[refScreenSize];
+  return screenSizes[screenSize] >= screenSizes[refScreenSize]
 }
 
 /**
@@ -117,7 +117,7 @@ class Responsive extends Component {
      * - `'lg'`: [1280, ∞[
      */
     screenSizes: PropTypes.object,
-  };
+  }
 
   static defaultProps = {
     // Corresponds to 10 frames at 60 Hz
@@ -129,26 +129,26 @@ class Responsive extends Component {
       lg: 1280,
       xl: 1920,
     },
-  };
-
-  getScreenSize = memoize(getScreenSize, isEqual);
-
-  componentWillUnmount() {
-    this.handleResize.cancel();
   }
 
-  handleResize = debounce(() => this.forceUpdate(), this.props.resizeInterval);
+  getScreenSize = memoize(getScreenSize, isEqual)
+
+  componentWillUnmount() {
+    this.handleResize.cancel()
+  }
+
+  handleResize = debounce(() => this.forceUpdate(), this.props.resizeInterval)
 
   renderChildren(width) {
-    const screenSize = this.getScreenSize(this.props.screenSizes, width);
-    let visible = true;
+    const screenSize = this.getScreenSize(this.props.screenSizes, width)
+    let visible = true
 
     if (this.props.minimum) {
       visible = biggerOrEqualTo(
         this.props.screenSizes,
         this.props.minimum,
         screenSize,
-      );
+      )
     }
 
     if (visible && this.props.maximum) {
@@ -156,18 +156,18 @@ class Responsive extends Component {
         this.props.screenSizes,
         this.props.maximum,
         screenSize,
-      );
+      )
     }
 
     if (visible) {
       if (typeof this.props.children === 'function') {
-        return this.props.children(screenSize, width);
+        return this.props.children(screenSize, width)
       }
 
-      return this.props.children;
+      return this.props.children
     }
 
-    return null;
+    return null
   }
 
   render() {
@@ -175,8 +175,8 @@ class Responsive extends Component {
       <EventListener target="window" onResize={this.handleResize}>
         {this.renderChildren(window.innerWidth)}
       </EventListener>
-    );
+    )
   }
 }
 
-export default Responsive;
+export default Responsive

@@ -1,23 +1,23 @@
-import { action } from '@storybook/addon-actions';
-import { boolean, select, text } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
-import changeCase from 'change-case';
-import React from 'react';
-import styled from 'styled-components';
-import { allColors, color } from '../../../storybook/knobs';
-import { allIcons } from '../../icons';
-import Button from './Button';
+import { action } from '@storybook/addon-actions'
+import { boolean, select, text } from '@storybook/addon-knobs'
+import { storiesOf } from '@storybook/react'
+import changeCase from 'change-case'
+import React from 'react'
+import styled from 'styled-components'
+import { allColors, color } from '../../../storybook/knobs'
+import { allIcons } from '../../icons'
+import Button from './Button'
 
-const stories = storiesOf('Button', module);
+const stories = storiesOf('Button', module)
 
-const iconsOptions = ['None', ...allIcons.map(icon => icon.name)];
+const iconsOptions = ['None', ...allIcons.map(icon => icon.name)]
 
 function renderIcon(side) {
   return () => {
-    const iconName = select(`${side} icon`, iconsOptions, 'None');
-    const Icon = allIcons.find(icon => icon.name === iconName);
-    return Icon ? <Icon.component /> : null;
-  };
+    const iconName = select(`${side} icon`, iconsOptions, 'None')
+    const Icon = allIcons.find(icon => icon.name === iconName)
+    return Icon ? <Icon.component /> : null
+  }
 }
 
 const Row = styled.div`
@@ -26,7 +26,7 @@ const Row = styled.div`
   & > *:not(:first-child) {
     margin-left: ${p => p.theme.spacing()};
   }
-`;
+`
 
 stories.add('Button colors', () => (
   <Row>
@@ -36,7 +36,7 @@ stories.add('Button colors', () => (
       </Button>
     ))}
   </Row>
-));
+))
 
 stories.add('Dynamic button', () => (
   <Button
@@ -48,4 +48,4 @@ stories.add('Dynamic button', () => (
   >
     {text('Label', 'Click me')}
   </Button>
-));
+))

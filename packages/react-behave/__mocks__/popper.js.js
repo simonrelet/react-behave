@@ -1,12 +1,12 @@
-import PopperJs from 'popper.js';
+import PopperJs from 'popper.js'
 
 export default class Popper {
-  static placements = PopperJs.placements;
+  static placements = PopperJs.placements
 
   constructor() {
     return {
       destroy: () => {},
       scheduleUpdate: () => {},
-    };
+    }
   }
 }

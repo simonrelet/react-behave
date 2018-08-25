@@ -1,4 +1,4 @@
-import getOtherProps from './getOtherProps';
+import getOtherProps from './getOtherProps'
 
 describe('getOtherProps', () => {
   it('gets other props', () => {
@@ -8,32 +8,32 @@ describe('getOtherProps', () => {
         prop2: true,
         prop3: true,
       },
-    };
+    }
 
     const otherProps = {
       otherProp1: true,
       otherProp2: true,
-    };
+    }
 
     const props = {
       ...otherProps,
       prop2: true,
-    };
+    }
 
-    expect(getOtherProps(component, props)).toEqual(otherProps);
-  });
+    expect(getOtherProps(component, props)).toEqual(otherProps)
+  })
 
   it('get the props if there is no `propTypes`', () => {
-    const component = {};
+    const component = {}
 
     const props = {
       otherProp1: true,
       otherProp2: true,
       prop2: true,
-    };
+    }
 
-    expect(getOtherProps(component, props)).toEqual(props);
-  });
+    expect(getOtherProps(component, props)).toEqual(props)
+  })
 
   it('get an empty object if there is no props', () => {
     const component = {
@@ -42,10 +42,10 @@ describe('getOtherProps', () => {
         prop2: true,
         prop3: true,
       },
-    };
+    }
 
-    const props = {};
+    const props = {}
 
-    expect(getOtherProps(component, props)).toEqual(props);
-  });
-});
+    expect(getOtherProps(component, props)).toEqual(props)
+  })
+})

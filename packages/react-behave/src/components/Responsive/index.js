@@ -1,1 +1,1 @@
-export { default } from './Responsive';
+export { default } from './Responsive'

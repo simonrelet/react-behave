@@ -1,19 +1,19 @@
-import debounce from 'lodash.debounce';
-import ResizeObserver from 'resize-observer-polyfill';
+import debounce from 'lodash.debounce'
+import ResizeObserver from 'resize-observer-polyfill'
 
 function handleResize(target, cb) {
   return entries => {
     if (entries.length) {
-      const { width, height } = target.getBoundingClientRect();
-      cb({ width, height });
+      const { width, height } = target.getBoundingClientRect()
+      cb({ width, height })
     }
-  };
+  }
 }
 
 const defaultOptions = {
   // Corresponds to 10 frames at 60 Hz
   resizeInterval: 166,
-};
+}
 
 /**
  * Watch for resizes on a target element.
@@ -51,16 +51,16 @@ const defaultOptions = {
  * @returns {Function} A callback to stop watching.
  */
 function watchResize(target, cb, options = {}) {
-  const opts = { ...defaultOptions, ...options };
+  const opts = { ...defaultOptions, ...options }
   const resizeObserver = new ResizeObserver(
     debounce(handleResize(target, cb), opts.resizeInterval),
-  );
+  )
 
-  resizeObserver.observe(target);
+  resizeObserver.observe(target)
 
   return () => {
-    resizeObserver.unobserve(target);
-  };
+    resizeObserver.unobserve(target)
+  }
 }
 
-export default watchResize;
+export default watchResize

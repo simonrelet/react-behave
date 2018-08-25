@@ -1,11 +1,11 @@
-import { action } from '@storybook/addon-actions';
-import { boolean, button } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
-import React from 'react';
-import { WithState } from '../../../.storybook/components';
-import Select from './Select';
+import { action } from '@storybook/addon-actions'
+import { boolean, button } from '@storybook/addon-knobs'
+import { storiesOf } from '@storybook/react'
+import React from 'react'
+import { WithState } from '../../../.storybook/components'
+import Select from './Select'
 
-const stories = storiesOf('Select', module);
+const stories = storiesOf('Select', module)
 
 const items = [
   { key: 'apple', label: 'Apple' },
@@ -19,17 +19,17 @@ const items = [
   { key: 'raspberry-papple', label: 'Raspberry papple melon' },
   { key: 'strawberry', label: 'Strawberry' },
   { key: 'watermelon', label: 'Watermelon' },
-];
+]
 
 function SelectStory({ children, initialValue = null }) {
   return (
     <WithState initialState={{ value: initialValue }}>
       {(state, setState) => {
-        button('Reset value', () => setState({ value: initialValue }));
-        return children(state, setState);
+        button('Reset value', () => setState({ value: initialValue }))
+        return children(state, setState)
       }}
     </WithState>
-  );
+  )
 }
 
 stories.add('Default renderers', () => (
@@ -40,15 +40,15 @@ stories.add('Default renderers', () => (
         getItemLabel={item => item.label}
         getItemValue={item => item.key}
         onChange={value => {
-          action('onChange')(value);
-          setState({ value });
+          action('onChange')(value)
+          setState({ value })
         }}
         items={items}
         value={state.value}
       />
     )}
   </SelectStory>
-));
+))
 
 function getButtonStyle(open) {
   const defaultStyle = {
@@ -59,18 +59,18 @@ function getButtonStyle(open) {
     border: '1px solid',
     borderRadius: '3px',
     cursor: 'pointer',
-  };
+  }
 
   return {
     ...defaultStyle,
     borderColor: open ? '#2196f3' : '#ccc',
     color: open ? '#2196f3' : 'inherit',
-  };
+  }
 }
 
 const defaultItemStyle = {
   padding: '0.5rem 1rem',
-};
+}
 
 function getItemStyle(isValue, isHighlighted) {
   return {
@@ -79,7 +79,7 @@ function getItemStyle(isValue, isHighlighted) {
     fontWeight: isValue ? 600 : 500,
     backgroundColor: isHighlighted ? '#2196f3' : 'transparent',
     color: isHighlighted ? '#fff' : 'inherit',
-  };
+  }
 }
 
 const dropDownStyle = {
@@ -90,7 +90,7 @@ const dropDownStyle = {
   margin: 0,
   display: 'flex',
   flexDirection: 'column',
-};
+}
 
 const itemsStyle = {
   listStyle: 'none',
@@ -98,7 +98,7 @@ const itemsStyle = {
   padding: 0,
   margin: 0,
   flex: 1,
-};
+}
 
 const inputStyle = {
   flex: 'none',
@@ -106,7 +106,7 @@ const inputStyle = {
   fontFamily: 'inherit',
   fontSize: 'inherit',
   border: 'none',
-};
+}
 
 function StyledSelect(props) {
   return (
@@ -138,7 +138,7 @@ function StyledSelect(props) {
       renderItems={props => <ul {...props} style={itemsStyle} />}
       {...props}
     />
-  );
+  )
 }
 
 stories.add('Custom renders', () => (
@@ -149,15 +149,15 @@ stories.add('Custom renders', () => (
         getItemLabel={item => item.label}
         getItemValue={item => item.key}
         onChange={value => {
-          action('onChange')(value);
-          setState({ value });
+          action('onChange')(value)
+          setState({ value })
         }}
         items={items}
         value={state.value}
       />
     )}
   </SelectStory>
-));
+))
 
 stories.add('Dropdown positions', () => (
   <div
@@ -176,8 +176,8 @@ stories.add('Dropdown positions', () => (
           getItemLabel={item => item.label}
           getItemValue={item => item.key}
           onChange={value => {
-            action('onChange')(value);
-            setState({ value });
+            action('onChange')(value)
+            setState({ value })
           }}
           items={items}
           value={state.value}
@@ -185,7 +185,7 @@ stories.add('Dropdown positions', () => (
       )}
     </SelectStory>
   </div>
-));
+))
 
 stories.add('Multiple selection', () => (
   <SelectStory initialValue={[]}>
@@ -196,12 +196,12 @@ stories.add('Multiple selection', () => (
         getItemLabel={item => item.label}
         getItemValue={item => item.key}
         onChange={value => {
-          action('onChange')(value);
-          setState({ value });
+          action('onChange')(value)
+          setState({ value })
         }}
         items={items}
         value={state.value}
       />
     )}
   </SelectStory>
-));
+))

@@ -1,10 +1,10 @@
-import { action } from '@storybook/addon-actions';
-import { boolean } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
-import React from 'react';
-import Dropdown from './Dropdown';
+import { action } from '@storybook/addon-actions'
+import { boolean } from '@storybook/addon-knobs'
+import { storiesOf } from '@storybook/react'
+import React from 'react'
+import Dropdown from './Dropdown'
 
-const stories = storiesOf('Dropdown', module);
+const stories = storiesOf('Dropdown', module)
 
 stories.add('Render functions', () => (
   <Dropdown
@@ -20,7 +20,7 @@ stories.add('Render functions', () => (
   >
     {ref => <button ref={ref}>Click me</button>}
   </Dropdown>
-));
+))
 
 stories.add('Without onClickOutside', () => (
   <Dropdown
@@ -35,4 +35,4 @@ stories.add('Without onClickOutside', () => (
   >
     {ref => <button ref={ref}>Click me</button>}
   </Dropdown>
-));
+))

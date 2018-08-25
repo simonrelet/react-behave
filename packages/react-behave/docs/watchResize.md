@@ -11,25 +11,25 @@ Watch for resizes on a target element.
 ## Usage
 
 ```jsx
-import React, { Component } from 'react';
-import { watchResize } from 'react-behave';
+import React, { Component } from 'react'
+import { watchResize } from 'react-behave'
 
 class App extends Component {
-  ref = React.createRef();
-  stopWatching = null;
+  ref = React.createRef()
+  stopWatching = null
 
   componentDidMount() {
     this.stopWatching = watchResize(this.ref.current, ({ width, height }) => {
-      console.log(width, height);
-    });
+      console.log(width, height)
+    })
   }
 
   componentWillUnmount() {
-    this.stopWatching();
+    this.stopWatching()
   }
 
   render() {
-    return <div ref={this.ref} />;
+    return <div ref={this.ref} />
   }
 }
 ```

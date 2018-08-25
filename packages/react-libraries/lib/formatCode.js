@@ -1,11 +1,11 @@
-'use strict';
+'use strict'
 
 function formatCode(value, lang) {
   if (lang) {
-    return `\`\`\`${lang}\n${value}\n\`\`\``;
+    return `\`\`\`${lang}\n${value}\n\`\`\``
   }
 
-  return `\`${value}\``;
+  return `\`${value}\``
 }
 
-module.exports = formatCode;
+module.exports = formatCode

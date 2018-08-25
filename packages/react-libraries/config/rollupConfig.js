@@ -1,30 +1,30 @@
-'use strict';
+'use strict'
 
-const babel = require('rollup-plugin-babel');
-const commonjs = require('rollup-plugin-commonjs');
-const nodeResolve = require('rollup-plugin-node-resolve');
-const fs = require('fs-extra');
-const replace = require('rollup-plugin-replace');
-const { sizeSnapshot } = require('rollup-plugin-size-snapshot');
-const { uglify } = require('rollup-plugin-uglify');
-const reactSvg = require('rollup-plugin-react-svg');
-const changeCase = require('change-case');
-const readEnv = require('../lib/readEnv');
+const babel = require('rollup-plugin-babel')
+const commonjs = require('rollup-plugin-commonjs')
+const nodeResolve = require('rollup-plugin-node-resolve')
+const fs = require('fs-extra')
+const replace = require('rollup-plugin-replace')
+const { sizeSnapshot } = require('rollup-plugin-size-snapshot')
+const { uglify } = require('rollup-plugin-uglify')
+const reactSvg = require('rollup-plugin-react-svg')
+const changeCase = require('change-case')
+const readEnv = require('../lib/readEnv')
 
-const pkg = fs.readJSONSync('package.json');
+const pkg = fs.readJSONSync('package.json')
 
-const peerDependencies = Object.keys(pkg.peerDependencies || {});
+const peerDependencies = Object.keys(pkg.peerDependencies || {})
 const allDependencies = peerDependencies.concat(
   Object.keys(pkg.dependencies || {})
-);
+)
 
-const input = 'src/index.js';
-const cjsOutput = pkg.main;
-const esOutput = pkg.module;
-const umdDevOutput = pkg['unpkg-dev'];
-const umdProdOutput = pkg.unpkg;
+const input = 'src/index.js'
+const cjsOutput = pkg.main
+const esOutput = pkg.module
+const umdDevOutput = pkg['unpkg-dev']
+const umdProdOutput = pkg.unpkg
 // Remove namespace from the exported name
-const exportedName = changeCase.pascalCase(pkg.name.replace(/^@.*\//, ''));
+const exportedName = changeCase.pascalCase(pkg.name.replace(/^@.*\//, ''))
 
 // For an array of module names, return an array of import matcher function.
 //
@@ -32,31 +32,31 @@ const exportedName = changeCase.pascalCase(pkg.name.replace(/^@.*\//, ''));
 // - `import 'my-module'`
 // - `import 'my-module/inner-path'`
 function createModulesMatcher(modulesNames) {
-  const patterns = modulesNames.map(name => new RegExp(`^${name}(\\/.+)*$`));
-  return id => patterns.some(pattern => pattern.test(id));
+  const patterns = modulesNames.map(name => new RegExp(`^${name}(\\/.+)*$`))
+  return id => patterns.some(pattern => pattern.test(id))
 }
 
 const globals = {
   react: 'React',
   'react-dom': 'ReactDOM',
-};
+}
 
 function getEnvReplacement(isProd) {
-  const env = readEnv();
+  const env = readEnv()
 
   if (isProd != null) {
     return Object.assign(env, {
       'process.env.NODE_ENV': JSON.stringify(
         isProd ? 'production' : 'development'
       ),
-    });
+    })
   }
 
-  return env;
+  return env
 }
 
 function createMainOptions(format, file) {
-  const replacements = getEnvReplacement();
+  const replacements = getEnvReplacement()
 
   return {
     input,
@@ -81,7 +81,7 @@ function createMainOptions(format, file) {
       Object.keys(replacements).length ? replace(replacements) : null,
       sizeSnapshot(),
     ].filter(Boolean),
-  };
+  }
 }
 
 function createUMDOptions(isProd, file) {
@@ -99,10 +99,10 @@ function createUMDOptions(isProd, file) {
     }),
     replace(getEnvReplacement(isProd)),
     sizeSnapshot(),
-  ];
+  ]
 
   if (isProd) {
-    plugins.push(uglify());
+    plugins.push(uglify())
   }
 
   return {
@@ -115,7 +115,7 @@ function createUMDOptions(isProd, file) {
     },
     external: createModulesMatcher(peerDependencies),
     plugins,
-  };
+  }
 }
 
 module.exports = [
@@ -123,4 +123,4 @@ module.exports = [
   umdDevOutput ? createUMDOptions(false, umdDevOutput) : null,
   cjsOutput ? createMainOptions('cjs', cjsOutput) : null,
   esOutput ? createMainOptions('es', esOutput) : null,
-].filter(Boolean);
+].filter(Boolean)

@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
-const sortBy = require('lodash.sortby');
-const flow = require('lodash.flow');
-const formatCode = require('./formatCode');
+const sortBy = require('lodash.sortby')
+const flow = require('lodash.flow')
+const formatCode = require('./formatCode')
 
 const types = {
   any: 'Any',
@@ -16,7 +16,7 @@ const types = {
   object: 'Object',
   shape: 'Object',
   string: 'String',
-};
+}
 
 function formatType(type) {
   // `type.value` is defined for prop-types with parameters.
@@ -25,37 +25,37 @@ function formatType(type) {
       case 'arrayOf':
         return type.computed
           ? formatCode(types[type.name])
-          : `${formatCode(types[type.name])}<${formatType(type.value)}>`;
+          : `${formatCode(types[type.name])}<${formatType(type.value)}>`
 
       case 'union':
         return type.computed
           ? formatCode(types[type.name])
-          : type.value.map(formatType).join('|');
+          : type.value.map(formatType).join('|')
 
       case 'enum':
         return type.computed
           ? formatCode(types[type.name])
-          : type.value.map(v => formatCode(v.value)).join('|');
+          : type.value.map(v => formatCode(v.value)).join('|')
 
       case 'shape':
-        return formatCode(types[type.name]);
+        return formatCode(types[type.name])
 
       default:
-        break;
+        break
     }
   }
 
-  return formatCode(types[type.name]);
+  return formatCode(types[type.name])
 }
 
 function toPropsArray(props) {
-  return Object.keys(props).map(name => Object.assign({ name }, props[name]));
+  return Object.keys(props).map(name => Object.assign({ name }, props[name]))
 }
 
 function prune(props) {
   return props.filter(
     prop => !prop.description || !prop.description.includes('@ignore')
-  );
+  )
 }
 
 function checkProps(props) {
@@ -64,47 +64,47 @@ function checkProps(props) {
       throw new Error(
         `The prop '${prop.name}' doesn't appear to have a type.` +
           ' This can happen when a prop is present in defaultProps bu not in propTypes.'
-      );
+      )
     }
 
-    return prop;
-  });
+    return prop
+  })
 }
 
 function sort(props) {
-  return sortBy(props, [p => !p.required, 'name']);
+  return sortBy(props, [p => !p.required, 'name'])
 }
 
 function prepareDefaultValue(props) {
   return props.map(prop => {
-    let { defaultValue } = prop;
+    let { defaultValue } = prop
 
     if (defaultValue) {
       if (defaultValue.value.includes('\n')) {
-        defaultValue = `\n\n${formatCode(defaultValue.value, 'jsx')}`;
+        defaultValue = `\n\n${formatCode(defaultValue.value, 'jsx')}`
       } else {
-        defaultValue = ` ${formatCode(defaultValue.value)}`;
+        defaultValue = ` ${formatCode(defaultValue.value)}`
       }
 
-      defaultValue = `_Default value_:${defaultValue}`;
+      defaultValue = `_Default value_:${defaultValue}`
     } else {
-      defaultValue = '';
+      defaultValue = ''
     }
 
-    return Object.assign({}, prop, { defaultValue });
-  });
+    return Object.assign({}, prop, { defaultValue })
+  })
 }
 
 function format(props) {
   return props.map(prop => {
-    const type = formatType(prop.type);
-    const name = `${formatCode(prop.name)}: ${type}`;
-    const required = prop.required ? '' : ' (optional)';
-    const defaultValue = prop.defaultValue ? `\n\n${prop.defaultValue}` : '';
-    const description = prop.description ? `\n\n${prop.description}` : '';
+    const type = formatType(prop.type)
+    const name = `${formatCode(prop.name)}: ${type}`
+    const required = prop.required ? '' : ' (optional)'
+    const defaultValue = prop.defaultValue ? `\n\n${prop.defaultValue}` : ''
+    const description = prop.description ? `\n\n${prop.description}` : ''
 
-    return `### ${name}${required}${defaultValue}${description}`;
-  });
+    return `### ${name}${required}${defaultValue}${description}`
+  })
 }
 
 function formatProps(props) {
@@ -115,21 +115,21 @@ function formatProps(props) {
     sort,
     prepareDefaultValue,
     format
-  )(props).join('\n\n');
+  )(props).join('\n\n')
 }
 
 function formatReactComponentDoc(info) {
   if (info.description) {
-    const doc = [`# ${info.displayName}`, info.description];
+    const doc = [`# ${info.displayName}`, info.description]
 
     if (info.props) {
-      doc.push('## Props', formatProps(info.props));
+      doc.push('## Props', formatProps(info.props))
     }
 
-    return doc.join('\n\n');
+    return doc.join('\n\n')
   }
 
-  return '';
+  return ''
 }
 
-module.exports = formatReactComponentDoc;
+module.exports = formatReactComponentDoc

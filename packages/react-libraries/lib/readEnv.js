@@ -1,6 +1,6 @@
-'use strict';
+'use strict'
 
-const pattern = /^REACT_LIB_/;
+const pattern = /^REACT_LIB_/
 
 function readEnv() {
   return Object.keys(process.env)
@@ -8,7 +8,7 @@ function readEnv() {
     .map(name => ({
       [`process.env.${name}`]: JSON.stringify(process.env[name]),
     }))
-    .reduce((acc, o) => Object.assign(acc, o), {});
+    .reduce((acc, o) => Object.assign(acc, o), {})
 }
 
-module.exports = readEnv;
+module.exports = readEnv

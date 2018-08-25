@@ -13,11 +13,11 @@ Observe resizes on a target element.
 ## Usage
 
 ```jsx
-import React, { Component } from 'react';
-import { ResizeObserver } from 'react-behave';
+import React, { Component } from 'react'
+import { ResizeObserver } from 'react-behave'
 
 class App extends Component {
-  ref = React.createRef();
+  ref = React.createRef()
 
   render() {
     return (
@@ -30,7 +30,7 @@ class App extends Component {
           )}
         </ResizeObserver>
       </section>
-    );
+    )
   }
 }
 ```
