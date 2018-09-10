@@ -202,7 +202,7 @@ yarn add $${name}
 - Production: https://unpkg.com/$${name}@$${version} or https://unpkg.com/$${name}@$${version}/$${unpkg}
 - Development: https://unpkg.com/$${name}@$${version}/$${unpkg-dev}
 
-## Documentaion
+## Documentation
 
 The documentation can be found [here]($${repository.url}/tree/$${version}/docs).
 ````
@@ -233,7 +233,7 @@ yarn add my-lib
 - Production: https://unpkg.com/my-lib@1.0.0 or https://unpkg.com/my-lib@1.0.0/build/umd/my-lib.production.min.js
 - Development: https://unpkg.com/my-lib@1.0.0/build/umd/my-lib.development.js
 
-## Documentaion
+## Documentation
 
 The documentation can be found [here](https://github.com/me/my-lib/tree/1.0.0/docs).
 ````

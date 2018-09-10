@@ -34,7 +34,7 @@ npm install --save ${name}
 yarn add ${name}
 ```
 
-## Documentaion
+## Documentation
 
 The documentation of each component can be found [here](${repository.url}/tree/react-behave-${version}/packages/react-behave/docs).
 

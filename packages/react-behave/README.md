@@ -40,7 +40,7 @@ npm install --save react-behave
 yarn add react-behave
 ```
 
-## Documentaion
+## Documentation
 
 The documentation of each component can be found [here](https://github.com/simonrelet/react-libraries/tree/react-behave-0.4.0/packages/react-behave/docs).
 

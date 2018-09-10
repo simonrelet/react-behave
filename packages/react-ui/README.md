@@ -29,6 +29,6 @@ yarn add @simonrelet/react-ui
 - Production: https://unpkg.com/@simonrelet/react-ui@0.1.0 or https://unpkg.com/@simonrelet/react-ui@0.1.0/null
 - Development: https://unpkg.com/@simonrelet/react-ui@0.1.0/null
 
-## Documentaion
+## Documentation
 
 The documentation of each component can be found [here](https://github.com/simonrelet/react-libraries/tree/react-ui-0.1.0/packages/react-ui/docs).
