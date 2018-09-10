@@ -24,8 +24,8 @@ function biggerOrEqualTo(screenSizes, refScreenSize, screenSize) {
  * ## Usage
  *
  * ```jsx
- * import React, { Component } from 'react';
- * import { Responsive } from 'react-behave';
+ * import React, { Component } from 'react'
+ * import { Responsive } from 'react-behave'
  *
  * const screenSizes = {
  *   xs: 0,
@@ -33,7 +33,7 @@ function biggerOrEqualTo(screenSizes, refScreenSize, screenSize) {
  *   md: 960,
  *   lg: 1280,
  *   xl: 1920,
- * };
+ * }
  *
  * class App extends Component {
  *   render() {
@@ -41,7 +41,7 @@ function biggerOrEqualTo(screenSizes, refScreenSize, screenSize) {
  *       <Responsive minimum="md" screenSizes={screenSizes}>
  *         <p>Only visible on medium and bigger screens</p>
  *       </Responsive>
- *     );
+ *     )
  *   }
  * }
  * ```
@@ -58,19 +58,19 @@ class Responsive extends Component {
      * Example:
      *
      * ```jsx
-     * import React from 'react';
-     * import { Responsive } from 'react-behave';
+     * import React from 'react'
+     * import { Responsive } from 'react-behave'
      *
      * const screenSizes = {
      *   // [...]
-     * };
+     * }
      *
      * function LargeScreen() {
      *   return (
      *     <Responsive minimum="lg" screenSizes={screenSizes}>
      *       {screenSize => <p>The screen size is '{screenSize}'</p>}
      *     </Responsive>
-     *   );
+     *   )
      * }
      * ```
      *
@@ -107,7 +107,7 @@ class Responsive extends Component {
      *   sm: 0,
      *   md: 960,
      *   lg: 1280,
-     * };
+     * }
      * ```
      *
      * Define the following screen sizes:

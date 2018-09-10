@@ -15,6 +15,21 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Breaking changes
+
+- `props.renderDropDown` has been renamed to `props.renderDropdown` for components `Dropdown` and `Select`.
+
+### Enhancements
+
+- Added `Dropdown.props.modifiers`.
+
+### Documentation
+
+- Remove all semicolons from examples.
+- Fixed typo in README.
+
 ## 0.4.0 (July 17, 2018)
 
 ### Breaking changes

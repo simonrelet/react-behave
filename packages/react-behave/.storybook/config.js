@@ -4,6 +4,7 @@ import { withKnobs } from '@storybook/addon-knobs'
 import { setOptions } from '@storybook/addon-options'
 import { addDecorator, configure } from '@storybook/react'
 import pkg from '../package.json'
+import './styles.css'
 
 const req = require.context('../src', true, /.stories.js$/)
 

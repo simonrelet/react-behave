@@ -6,7 +6,7 @@
  * ## Usage
  *
  * ```js
- * import { getScreenSize } from 'react-behave';
+ * import { getScreenSize } from 'react-behave'
  *
  * const screenSizes = {
  *   xs: 0,
@@ -14,9 +14,9 @@
  *   md: 960,
  *   lg: 1280,
  *   xl: 1920,
- * };
+ * }
  *
- * const screenSize = getScreenSize(screenSizes, 800);
+ * const screenSize = getScreenSize(screenSizes, 800)
  * ```
  *
  * @param {Object} screenSizes - The screen sizes. See [`Responsive.screenSizes`][props-screensizes].

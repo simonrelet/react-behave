@@ -95,37 +95,37 @@ See each render function for the content of this object.
 For example:
 
 ```jsx
-import React, { Component } from 'react';
-import { Select } from 'react-behave';
+import React, { Component } from 'react'
+import { Select } from 'react-behave'
 
 const items = [
   { value: 'apple', label: 'Apple' },
   // ...
-];
+]
 
 const dropDownStyles = {
   backgroundColor: '#fff',
   padding: '1rem',
-};
+}
 
 class App extends Component {
   state = {
     value: items[0],
-  };
+  }
 
   handleChange = value => {
-    this.setState({ value });
-  };
+    this.setState({ value })
+  }
 
   handleClick = onClick => {
     return e => {
       // Do something with the event.
-      console.log(e);
+      console.log(e)
 
       // Don't forget to call the handler (before or after).
-      onClick(e);
-    };
-  };
+      onClick(e)
+    }
+  }
 
   render() {
     return (
@@ -143,12 +143,12 @@ class App extends Component {
             {value ? value.label : 'Choose an option'}
           </button>
         )}
-        renderDropDown={({ style, ...props }) => (
+        renderDropdown={({ style, ...props }) => (
           // Merge the computed styles with some custom ones.
-          <div {...props} style={{ ...style, ...dropDownStyles }} />;
+          <div {...props} style={{ ...style, ...dropDownStyles }} />
         )}
       />
-    );
+    )
   }
 }
 ```
@@ -161,8 +161,8 @@ _Default value_:
 
 ```jsx
 function(item, filter, { getItemLabel }) {
-  const label = getItemLabel(item);
-  return label.toLowerCase().includes(filter.toLowerCase());
+  const label = getItemLabel(item)
+  return label.toLowerCase().includes(filter.toLowerCase())
 }
 ```
 
@@ -192,7 +192,7 @@ function({ getItemLabel, value }, props = {}) {
     <button {...props}>
       {value ? getItemLabel(value) : 'Choose an option'}
     </button>
-  );
+  )
 }
 ```
 
@@ -218,13 +218,13 @@ This object contains:
 - `onKeyPress`
 - `ref`
 
-### `renderDropDown`: `Function` (optional)
+### `renderDropdown`: `Function` (optional)
 
 _Default value_:
 
 ```jsx
 function(props = {}) {
-  return <div {...props} />;
+  return <div {...props} />
 }
 ```
 
@@ -236,7 +236,7 @@ Invoked to generate the render tree for the dropdown.
 This object contains:
 
 - `children`
-- `data-placement`
+- `x-placement`
 - `ref`
 - `style`
 
@@ -246,7 +246,7 @@ _Default value_:
 
 ```jsx
 function() {
-  return <li>No options.</li>;
+  return <li>No options.</li>
 }
 ```
 
@@ -259,7 +259,7 @@ _Default value_:
 
 ```jsx
 function(props = {}) {
-  return <input {...props} />;
+  return <input {...props} />
 }
 ```
 
@@ -283,7 +283,7 @@ _Default value_:
 
 ```jsx
 function({ getItemLabel, item }, props = {}) {
-  return <li {...props}>{getItemLabel(item)}</li>;
+  return <li {...props}>{getItemLabel(item)}</li>
 }
 ```
 
@@ -314,7 +314,7 @@ _Default value_:
 
 ```jsx
 function(props = {}) {
-  return <ul {...props} />;
+  return <ul {...props} />
 }
 ```
 

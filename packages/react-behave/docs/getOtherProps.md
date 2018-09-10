@@ -31,7 +31,7 @@ class App extends Component {
   render() {
     const otherProps = getOtherProps(App, this.props)
     // Instead of the object rest spread:
-    // const { prop1, prop2, prop3, ...otherProps } = this.props;
+    // const { prop1, prop2, prop3, ...otherProps } = this.props
     return <div {...otherProps} />
   }
 }

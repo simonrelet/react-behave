@@ -1,10 +1,15 @@
+const VERTICAL_REGEX = /^(top|bottom)/
+
 const minWidthModifier = {
   enabled: true,
   fn(data) {
     const referenceWidth = Math.floor(data.offsets.reference.width)
     const dropDownWidth = Math.floor(data.offsets.popper.width)
 
-    if (dropDownWidth <= referenceWidth) {
+    if (
+      VERTICAL_REGEX.test(data.placement) &&
+      dropDownWidth <= referenceWidth
+    ) {
       data.styles.minWidth = `${referenceWidth}px`
     }
 

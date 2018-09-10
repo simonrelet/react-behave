@@ -43,24 +43,24 @@ function getDerivedStateFromInputValue(props, inputValue) {
  * ## Usage
  *
  * ```jsx
- * import React, { Component } from 'react';
- * import { Select } from 'react-behave';
+ * import React, { Component } from 'react'
+ * import { Select } from 'react-behave'
  *
  * const items = [
  *   { value: 'apple', label: 'Apple' },
  *   { value: 'blueberry', label: 'Blueberry' },
  *   { value: 'grapefruit', label: 'Grapefruit' },
  *   // ...
- * ];
+ * ]
  *
  * class App extends Component {
  *   state = {
  *     value: items[0],
- *   };
+ *   }
  *
  *   handleChange = value => {
- *     this.setState({ value });
- *   };
+ *     this.setState({ value })
+ *   }
  *
  *   render() {
  *     return (
@@ -71,7 +71,7 @@ function getDerivedStateFromInputValue(props, inputValue) {
  *         getItemLabel={item => item.label}
  *         getItemValue={item => item.value}
  *       />
- *     );
+ *     )
  *   }
  * }
  * ```
@@ -117,37 +117,37 @@ class Select extends Component {
      * For example:
      *
      * ```jsx
-     * import React, { Component } from 'react';
-     * import { Select } from 'react-behave';
+     * import React, { Component } from 'react'
+     * import { Select } from 'react-behave'
      *
      * const items = [
      *   { value: 'apple', label: 'Apple' },
      *   // ...
-     * ];
+     * ]
      *
      * const dropDownStyles = {
      *   backgroundColor: '#fff',
      *   padding: '1rem',
-     * };
+     * }
      *
      * class App extends Component {
      *   state = {
      *     value: items[0],
-     *   };
+     *   }
      *
      *   handleChange = value => {
-     *     this.setState({ value });
-     *   };
+     *     this.setState({ value })
+     *   }
      *
      *   handleClick = onClick => {
      *     return e => {
      *       // Do something with the event.
-     *       console.log(e);
+     *       console.log(e)
      *
      *       // Don't forget to call the handler (before or after).
-     *       onClick(e);
-     *     };
-     *   };
+     *       onClick(e)
+     *     }
+     *   }
      *
      *   render() {
      *     return (
@@ -165,12 +165,12 @@ class Select extends Component {
      *             {value ? value.label : 'Choose an option'}
      *           </button>
      *         )}
-     *         renderDropDown={({ style, ...props }) => (
+     *         renderDropdown={({ style, ...props }) => (
      *           // Merge the computed styles with some custom ones.
-     *           <div {...props} style={{ ...style, ...dropDownStyles }} />;
+     *           <div {...props} style={{ ...style, ...dropDownStyles }} />
      *         )}
      *       />
-     *     );
+     *     )
      *   }
      * }
      * ```
@@ -238,11 +238,11 @@ class Select extends Component {
      * This object contains:
      *
      * - `children`
-     * - `data-placement`
+     * - `x-placement`
      * - `ref`
      * - `style`
      */
-    renderDropDown: PropTypes.func,
+    renderDropdown: PropTypes.func,
 
     /**
      * Invoked to generate the render tree for an empty item.
@@ -333,7 +333,7 @@ class Select extends Component {
       )
     },
 
-    renderDropDown(props = {}) {
+    renderDropdown(props = {}) {
       return <div {...props} />
     },
 
@@ -685,8 +685,13 @@ class Select extends Component {
     return React.cloneElement(this.props.renderItems(), props, ...children)
   }
 
-  renderDropDown(props, scheduleUpdateCb) {
+  renderDropdown(open, props, scheduleUpdateCb) {
     this._scheduleUpdateCb = scheduleUpdateCb
+
+    if (!open) {
+      return null
+    }
+
     const children = [this.renderItems()]
 
     if (this.props.filterable) {
@@ -706,10 +711,10 @@ class Select extends Component {
     }
 
     if (this.props.manualProps) {
-      return this.props.renderDropDown({ ...props, children })
+      return this.props.renderDropdown({ ...props, children })
     }
 
-    return React.cloneElement(this.props.renderDropDown(), props, ...children)
+    return React.cloneElement(this.props.renderDropdown(), props, ...children)
   }
 
   render() {
@@ -717,9 +722,10 @@ class Select extends Component {
       <Dropdown
         onClickOutside={this.handleClickOutside}
         open={this.state.open}
-        renderDropDown={(ref, { style, placement, scheduleUpdate }) =>
-          this.renderDropDown(
-            { 'data-placement': placement, ref, style },
+        renderDropdown={({ open, placement, ref, scheduleUpdate, style }) =>
+          this.renderDropdown(
+            open,
+            { 'x-placement': placement, ref, style },
             scheduleUpdate,
           )
         }

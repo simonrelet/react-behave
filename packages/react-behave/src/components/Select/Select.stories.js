@@ -123,7 +123,7 @@ function StyledSelect(props) {
               : 'Choose an option'}
         </button>
       )}
-      renderDropDown={({ style, ...props }) => (
+      renderDropdown={({ style, ...props }) => (
         <div {...props} style={{ ...style, ...dropDownStyle }} />
       )}
       renderEmpty={() => <li style={defaultItemStyle}>No options.</li>}

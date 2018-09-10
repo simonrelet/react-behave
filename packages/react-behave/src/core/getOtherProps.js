@@ -10,24 +10,24 @@ import omit from 'lodash.omit'
  * ## Usage
  *
  * ```jsx
- * import React, { Component } from 'react';
- * import PropTypes from 'prop-types';
- * import { getOtherProps } from 'react-behave';
+ * import React, { Component } from 'react'
+ * import PropTypes from 'prop-types'
+ * import { getOtherProps } from 'react-behave'
  *
  * class App extends Component {
  *   static propTypes = {
  *     prop1: PropTypes.string,
  *     prop2: PropTypes.func.isRequired,
  *     prop3: PropTypes.object,
- *   };
+ *   }
  *
  *   // Use `prop1`, `prop2`, and `prop3`.
  *
  *   render() {
- *     const otherProps = getOtherProps(App, this.props);
+ *     const otherProps = getOtherProps(App, this.props)
  *     // Instead of the object rest spread:
- *     // const { prop1, prop2, prop3, ...otherProps } = this.props;
- *     return <div {...otherProps} />;
+ *     // const { prop1, prop2, prop3, ...otherProps } = this.props
+ *     return <div {...otherProps} />
  *   }
  * }
  * ```

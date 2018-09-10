@@ -11,20 +11,20 @@ import getDisplayName from './getDisplayName'
  * ## Usage
  *
  * ```jsx
- * import React from 'react';
- * import { toInnerRef } from 'react-behave';
+ * import React from 'react'
+ * import { toInnerRef } from 'react-behave'
  *
  * const MyComponent = ({ innerRef, ...props }) => (
  *   <div ref={innerRef} {...props} />
- * );
+ * )
  *
  * // Instead of:
  * // export default React.forwardRef((props, ref) => (
  * //   <MyComponent innerRef={ref} {...props} />
- * // ));
+ * // ))
  *
  * // Simply write:
- * export default toInnerRef(MyComponent);
+ * export default toInnerRef(MyComponent)
  * ```
  *
  * @param {React.Component} Component - The React component.

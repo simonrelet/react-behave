@@ -135,7 +135,7 @@ function Select({
           </Button>
         )
       }}
-      renderDropDown={({ ref, ...props }) => (
+      renderDropdown={({ ref, ...props }) => (
         <StyledDropDown {...props} innerRef={ref} dense={dense} />
       )}
       renderEmpty={() => <StyledEmptyItem>{emptyLabel}</StyledEmptyItem>}

@@ -4,10 +4,10 @@
  * ## Usage
  *
  * ```js
- * import { getDisplayName } from 'react-behave';
- * import MyComponent from './MyComponent';
+ * import { getDisplayName } from 'react-behave'
+ * import MyComponent from './MyComponent'
  *
- * const displayName = getDisplayName(MyComponent);
+ * const displayName = getDisplayName(MyComponent)
  * ```
  *
  * @param {React.Component} component - The React component.

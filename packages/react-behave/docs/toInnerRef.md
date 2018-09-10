@@ -25,7 +25,7 @@ const MyComponent = ({ innerRef, ...props }) => (
 // Instead of:
 // export default React.forwardRef((props, ref) => (
 //   <MyComponent innerRef={ref} {...props} />
-// ));
+// ))
 
 // Simply write:
 export default toInnerRef(MyComponent)
