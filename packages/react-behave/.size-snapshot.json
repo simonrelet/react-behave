@@ -1,20 +1,20 @@
 {
   "build/react-behave.js": {
-    "bundled": 49488,
-    "minified": 18827,
-    "gzipped": 4743
+    "bundled": 50696,
+    "minified": 19127,
+    "gzipped": 4778
   },
   "build/react-behave.es.js": {
-    "bundled": 48603,
-    "minified": 18032,
-    "gzipped": 4635,
+    "bundled": 49754,
+    "minified": 18280,
+    "gzipped": 4669,
     "treeshaked": {
       "rollup": {
-        "code": 14098,
+        "code": 14175,
         "import_statements": 365
       },
       "webpack": {
-        "code": 15598
+        "code": 15679
       }
     }
   }
