@@ -15,6 +15,16 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Breaking changes
+
+- `Dropdown` no longer passes `open` to `props.renderDropdown`.
+
+### Enhancements
+
+- Added `Popper`, `PopperManager` and `PopperReference` components.
+
 ## 0.5.0 (September 10, 2018)
 
 ### Breaking changes

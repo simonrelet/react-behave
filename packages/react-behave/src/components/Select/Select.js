@@ -685,13 +685,8 @@ class Select extends Component {
     return React.cloneElement(this.props.renderItems(), props, ...children)
   }
 
-  renderDropdown(open, props, scheduleUpdateCb) {
+  renderDropdown(props, scheduleUpdateCb) {
     this._scheduleUpdateCb = scheduleUpdateCb
-
-    if (!open) {
-      return null
-    }
-
     const children = [this.renderItems()]
 
     if (this.props.filterable) {
@@ -722,15 +717,14 @@ class Select extends Component {
       <Dropdown
         onClickOutside={this.handleClickOutside}
         open={this.state.open}
-        renderDropdown={({ open, placement, ref, scheduleUpdate, style }) =>
+        renderDropdown={({ placement, ref, scheduleUpdate, style }) =>
           this.renderDropdown(
-            open,
             { 'x-placement': placement, ref, style },
             scheduleUpdate,
           )
         }
       >
-        {ref => (
+        {({ ref }) => (
           <MergeRefs refs={[ref, this._buttonRef, this.props.innerRef]}>
             {ref => this.renderButton(ref)}
           </MergeRefs>
