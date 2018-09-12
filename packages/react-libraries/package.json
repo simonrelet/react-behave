@@ -1,6 +1,6 @@
 {
   "name": "@simonrelet/react-libraries",
-  "version": "0.12.1",
+  "version": "0.13.0",
   "description": "Configuration and scripts for React libraries.",
   "repository": {
     "type": "git",

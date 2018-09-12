@@ -9314,20 +9314,6 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-behave@^0.4.0:
-  version "0.4.0"
-  resolved "http://nexus.adotmob.com/repository/npmjs/react-behave/-/react-behave-0.4.0.tgz#d6cfd76aa01619091b24ff3f12a3abc7e98e69a8"
-  dependencies:
-    dom-scroll-into-view "^1.2.1"
-    lodash.debounce "^4.0.8"
-    lodash.isequal "^4.5.0"
-    lodash.omit "^4.5.0"
-    memoize-one "^4.0.0"
-    prop-types "^15.5.7"
-    react-event-listener "^0.6.0"
-    react-popper "^1.0.0-beta.6"
-    resize-observer-polyfill "^1.5.0"
-
 react-color@^2.14.1:
   version "2.14.1"
   resolved "https://registry.yarnpkg.com/react-color/-/react-color-2.14.1.tgz#db8ad4f45d81e74896fc2e1c99508927c6d084e0"
