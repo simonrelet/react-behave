@@ -114,11 +114,29 @@ For example, the package name `@company/my-lib` gives `MyLib`.
 
 If an entry is not defined, the corresponding bundle will be skipped.
 
-#### SASS
+#### SASS and CSS modules
 
-The file _src/index.scss_ can be transform to CSS if an output file is defined in the _package.json_ by the entry `pkg.style` (ex: `"style": "build/my-lib.css"`).
+There are 3 ways of building SASS files:
 
-If the entry is not defined, the styles bundle will be skipped.
+1.  _src/index.scss_ entry point.
+
+    If the file _src/index.scss_ exists and an output file is defined in the _package.json_ by the entry `pkg.style` (ex: `"style": "build/my-lib.css"`), this file will be transformed to CSS.
+
+2.  Import SASS from JavaScript.
+
+    If a SASS file is imported from a JavaScript file (ex: `import './styles.scss'`) it will be transformed to CSS and added to a file in the _build/_ folder.
+    The generated file will have the same name as the bundle with the _.css_ extension.
+
+3.  Import SASS module from JavaScript.
+
+    If a SASS file is imported from a JavaScript file with the _.module.scss_ extension (ex: `import classes from './styles.module.scss'`) it will be transformed to a CSS module and added to a file in the _build/_ folder.
+    The generated file will have the same name as the bundle with the _.css_ extension.
+    The CSS class names will be generated.
+
+The solution 1. cannot be used along side 2. and 3..
+But 2. and 3. play along well, they will both output the CSS in the same file.
+
+The entry `pkg.style` in the _package.json_ is not required for solutions 2. and 3. but is still recommended.
 
 ### `bump-version`
 

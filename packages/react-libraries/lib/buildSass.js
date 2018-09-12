@@ -11,9 +11,10 @@ const snapshotCSSSize = require('./snapshotCSSSize')
 
 const pkg = fs.readJSONSync('package.json')
 const outputFile = pkg.style
+const inputFile = './src/index.scss'
 
 const config = {
-  file: './src/index.scss',
+  file: inputFile,
   includePaths: ['node_modules'],
 }
 
@@ -64,12 +65,13 @@ function start() {
   build()
 }
 
-module.exports = outputFile
-  ? {
-      build,
-      start,
-    }
-  : {
-      build: () => Promise.resolve(),
-      start: () => {},
-    }
+module.exports =
+  outputFile && fs.existsSync(inputFile)
+    ? {
+        build,
+        start,
+      }
+    : {
+        build: () => Promise.resolve(),
+        start: () => {},
+      }

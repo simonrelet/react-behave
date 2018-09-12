@@ -7,8 +7,11 @@ const fs = require('fs-extra')
 const replace = require('rollup-plugin-replace')
 const { sizeSnapshot } = require('rollup-plugin-size-snapshot')
 const { uglify } = require('rollup-plugin-uglify')
+const postcss = require('rollup-plugin-postcss')
 const reactSvg = require('rollup-plugin-react-svg')
 const changeCase = require('change-case')
+const path = require('path')
+const loaderUtils = require('loader-utils')
 const readEnv = require('../lib/readEnv')
 
 const pkg = fs.readJSONSync('package.json')
@@ -55,6 +58,27 @@ function getEnvReplacement(isProd) {
   return env
 }
 
+function generateScopedName(className, filePath) {
+  // Only transform the class name for modules files.
+  if (/\.module\.scss$/.test(filePath)) {
+    // Remove the .module that appears in every class name when based on the file.
+    const file = path.basename(filePath, '.module.scss')
+
+    // Create a hash based on a the file location and class name.
+    // Will be unique across a project, and close to globally unique.
+    const hash = loaderUtils.getHashDigest(
+      filePath + className,
+      'md5',
+      'base64',
+      5
+    )
+
+    return `${file}_${className}__${hash}`
+  }
+
+  return className
+}
+
 function createMainOptions(format, file) {
   const replacements = getEnvReplacement()
 
@@ -69,6 +93,13 @@ function createMainOptions(format, file) {
     plugins: [
       nodeResolve(),
       commonjs({ include: /node_modules/ }),
+      postcss({
+        extract: true,
+        modules: {
+          generateScopedName,
+          camelCase: true,
+        },
+      }),
       reactSvg(),
       babel({
         exclude: 'node_modules/**',
@@ -88,6 +119,13 @@ function createUMDOptions(isProd, file) {
   const plugins = [
     nodeResolve(),
     commonjs({ include: /node_modules/ }),
+    postcss({
+      extract: true,
+      modules: {
+        generateScopedName,
+        camelCase: true,
+      },
+    }),
     reactSvg(),
     babel({
       exclude: 'node_modules/**',
