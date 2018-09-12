@@ -25,7 +25,9 @@ class App extends Component {
         <ResizeObserver target={this.ref}>
           {({ height, width }) => (
             <p>
-              The width is {width}px, and the height is {height}px.
+              The width is {width}
+              px, and the height is {height}
+              px.
             </p>
           )}
         </ResizeObserver>

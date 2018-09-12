@@ -24,7 +24,10 @@ stories.add('Render function', () => {
     >
       {screenSize => (
         <div>
-          <h3>The screen size is '{screenSize}'.</h3>
+          <h3>
+            The screen size is '{screenSize}
+            '.
+          </h3>
           <em>Use the "Viewport" and "Knobs" tabs bellow to play around.</em>
         </div>
       )}
@@ -74,8 +77,14 @@ class LocalResponsive extends Component {
     return (
       <div ref={this.ref}>
         <ul>
-          <li>Width: {width}px</li>
-          <li>Height: {height}px</li>
+          <li>
+            Width: {width}
+            px
+          </li>
+          <li>
+            Height: {height}
+            px
+          </li>
           <li>Screen size: {this.getScreenSize(width)}</li>
         </ul>
       </div>

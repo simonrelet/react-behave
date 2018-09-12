@@ -11,7 +11,7 @@ import minWidthModifier from './minWidthModifier'
  * [popper-modifiers]: https://popper.js.org/popper-documentation.html#modifiers
  *
  * Render a popper.
- * 
+ *
  * This component is a wrapper around react-popper's [`Popper`][react-popper] component.
  *
  * ## Usage

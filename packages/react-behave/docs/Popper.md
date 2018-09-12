@@ -17,11 +17,7 @@ This component is a wrapper around react-popper's [`Popper`][react-popper] compo
 
 ```jsx
 import React from 'react'
-import {
-  Popper,
-  PopperManager,
-  PopperReference
-} from 'react-behave'
+import { Popper, PopperManager, PopperReference } from 'react-behave'
 
 class App extends React.Component {
   state = {
