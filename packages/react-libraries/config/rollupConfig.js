@@ -79,6 +79,19 @@ function generateScopedName(className, filePath) {
   return className
 }
 
+function babelPreset() {
+  return babel({
+    exclude: 'node_modules/**',
+    presets: [['@babel/preset-env', { modules: false }], '@babel/preset-react'],
+    plugins: [
+      '@babel/plugin-syntax-dynamic-import',
+      ['@babel/plugin-proposal-class-properties', { loose: false }],
+      '@babel/plugin-proposal-export-namespace-from',
+      '@babel/plugin-proposal-export-default-from',
+    ],
+  })
+}
+
 function createMainOptions(format, file) {
   const replacements = getEnvReplacement()
 
@@ -101,14 +114,7 @@ function createMainOptions(format, file) {
         },
       }),
       reactSvg(),
-      babel({
-        exclude: 'node_modules/**',
-        presets: [
-          ['@babel/preset-env', { modules: false }],
-          ['@babel/preset-stage-1', { decoratorsLegacy: true }],
-          '@babel/preset-react',
-        ],
-      }),
+      babelPreset(),
       Object.keys(replacements).length ? replace(replacements) : null,
       sizeSnapshot(),
     ].filter(Boolean),
@@ -127,14 +133,7 @@ function createUMDOptions(isProd, file) {
       },
     }),
     reactSvg(),
-    babel({
-      exclude: 'node_modules/**',
-      presets: [
-        ['@babel/preset-env', { modules: false }],
-        ['@babel/preset-stage-1', { decoratorsLegacy: true }],
-        '@babel/preset-react',
-      ],
-    }),
+    babelPreset(),
     replace(getEnvReplacement(isProd)),
     sizeSnapshot(),
   ]

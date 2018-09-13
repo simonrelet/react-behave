@@ -15,6 +15,12 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Bug fixes
+
+- Fix dependency versions ranges.
+
 ## 0.13.0 (September 12, 2018)
 
 ### Enhancements
