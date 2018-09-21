@@ -8,7 +8,7 @@ const replace = require('rollup-plugin-replace')
 const { sizeSnapshot } = require('rollup-plugin-size-snapshot')
 const { uglify } = require('rollup-plugin-uglify')
 const postcss = require('rollup-plugin-postcss')
-const reactSvg = require('rollup-plugin-react-svg')
+const reactSvg = require('@svgr/rollup').default
 const changeCase = require('change-case')
 const path = require('path')
 const loaderUtils = require('loader-utils')
@@ -89,6 +89,13 @@ function babelPreset() {
   )
 }
 
+function reactSvgPreset() {
+  return reactSvg({
+    ref: true,
+    dimensions: false,
+  })
+}
+
 function createMainOptions(format, file) {
   const replacements = getEnvReplacement()
 
@@ -110,7 +117,7 @@ function createMainOptions(format, file) {
           camelCase: true,
         },
       }),
-      reactSvg(),
+      reactSvgPreset(),
       babelPreset(),
       Object.keys(replacements).length ? replace(replacements) : null,
       sizeSnapshot(),
@@ -129,7 +136,7 @@ function createUMDOptions(isProd, file) {
         camelCase: true,
       },
     }),
-    reactSvg(),
+    reactSvgPreset(),
     babelPreset(),
     replace(getEnvReplacement(isProd)),
     sizeSnapshot(),

@@ -73,7 +73,7 @@ console.log('API_URL:', API_URL)
 
 ## Importing SVGs as React components
 
-The build uses a [specific loader](https://github.com/boopathi/react-svg-loader) allowing to transform SVG files into React components.
+The build uses a [specific loader](https://github.com/smooth-code/svgr/tree/master/packages/rollup) allowing to transform SVG files into React components.
 This means that the SVG React components will be included in the final bundle.
 
 Example:
