@@ -41,8 +41,6 @@ function IconDemo({ icon }) {
 
 stories.add('All icons', () => (
   <Grid>
-    {allIcons.map(icon => (
-      <IconDemo key={icon.name} icon={icon.component} />
-    ))}
+    {allIcons.map(icon => <IconDemo key={icon.name} icon={icon.component} />)}
   </Grid>
 ))

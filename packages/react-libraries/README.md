@@ -262,6 +262,17 @@ yarn add my-lib
 The documentation can be found [here](https://github.com/me/my-lib/tree/1.0.0/docs).
 ````
 
+### `test`
+
+_Usage_:
+
+```sh
+react-libraries test [--coverage]
+```
+
+Launches the test runner in the interactive watch mode.
+See create-react-app's the section about [running tests](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#running-tests) for more information.
+
 #### Documentation
 
 The JSDoc in the JavaScript files under the _src/_ folder will be parsed and rendered in a corresponding markdown file under the _docs/_ folder.

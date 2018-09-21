@@ -29,7 +29,7 @@
     "doc": "react-libraries doc",
     "start": "react-libraries build -w",
     "storybook": "start-storybook -c storybook -p 4000",
-    "test": "react-scripts test --env=jsdom"
+    "test": "react-libraries test --env=jsdom"
   },
   "peerDependencies": {
     "react": "^16.0.0",
@@ -59,7 +59,6 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "^1.1.4",
     "react-test-renderer": "^16.3.2"
   },
   "jest": {
