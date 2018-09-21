@@ -13,6 +13,7 @@ const changeCase = require('change-case')
 const path = require('path')
 const loaderUtils = require('loader-utils')
 const readEnv = require('../lib/readEnv')
+const createBabelConfig = require('./createBabelConfig')
 
 const pkg = fs.readJSONSync('package.json')
 
@@ -80,16 +81,12 @@ function generateScopedName(className, filePath) {
 }
 
 function babelPreset() {
-  return babel({
-    exclude: 'node_modules/**',
-    presets: [['@babel/preset-env', { modules: false }], '@babel/preset-react'],
-    plugins: [
-      '@babel/plugin-syntax-dynamic-import',
-      ['@babel/plugin-proposal-class-properties', { loose: false }],
-      '@babel/plugin-proposal-export-namespace-from',
-      '@babel/plugin-proposal-export-default-from',
-    ],
-  })
+  return babel(
+    Object.assign(
+      { exclude: 'node_modules/**' },
+      createBabelConfig({ modules: false })
+    )
+  )
 }
 
 function createMainOptions(format, file) {
