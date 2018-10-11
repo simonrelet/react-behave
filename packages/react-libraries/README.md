@@ -114,6 +114,21 @@ For example, the package name `@company/my-lib` gives `MyLib`.
 
 If an entry is not defined, the corresponding bundle will be skipped.
 
+By default, all dependencies and peer dependencies are excluded from the bundle.
+It is possible to add patterns (RegExp) to exclude using the `external` entry in the _package.json_.
+
+_Ex_: Exclude all imported file under an _/assets/_ folder.
+
+```json
+{
+  "name": "my-package",
+  "version": "1.0.0",
+  "react-libraries": {
+    "external": ["/assets/"]
+  }
+}
+```
+
 #### SASS and CSS modules
 
 There are 3 ways of building SASS files:

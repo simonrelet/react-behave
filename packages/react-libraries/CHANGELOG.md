@@ -15,6 +15,16 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Breaking changes
+
+- Remove size-snapshot plugin.
+
+### Enhancements
+
+- Add a external module configuration.
+
 ## 0.14.0 (September 21, 2018)
 
 ### Enhancements

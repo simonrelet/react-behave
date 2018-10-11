@@ -5,7 +5,6 @@ const commonjs = require('rollup-plugin-commonjs')
 const nodeResolve = require('rollup-plugin-node-resolve')
 const fs = require('fs-extra')
 const replace = require('rollup-plugin-replace')
-const { sizeSnapshot } = require('rollup-plugin-size-snapshot')
 const { uglify } = require('rollup-plugin-uglify')
 const postcss = require('rollup-plugin-postcss')
 const reactSvg = require('@svgr/rollup').default
@@ -13,6 +12,7 @@ const changeCase = require('change-case')
 const path = require('path')
 const loaderUtils = require('loader-utils')
 const readEnv = require('../lib/readEnv')
+const merge = require('lodash.merge')
 const createBabelConfig = require('./createBabelConfig')
 
 const pkg = fs.readJSONSync('package.json')
@@ -27,6 +27,7 @@ const cjsOutput = pkg.main
 const esOutput = pkg.module
 const umdDevOutput = pkg['unpkg-dev']
 const umdProdOutput = pkg.unpkg
+const config = merge({ external: [] }, pkg['react-libraries'])
 // Remove namespace from the exported name
 const exportedName = changeCase.pascalCase(pkg.name.replace(/^@.*\//, ''))
 
@@ -36,7 +37,10 @@ const exportedName = changeCase.pascalCase(pkg.name.replace(/^@.*\//, ''))
 // - `import 'my-module'`
 // - `import 'my-module/inner-path'`
 function createModulesMatcher(modulesNames) {
-  const patterns = modulesNames.map(name => new RegExp(`^${name}(\\/.+)*$`))
+  let patterns = modulesNames.map(name => new RegExp(`^${name}(\\/.+)*$`))
+  patterns = patterns.concat(
+    config.external.map(pattern => new RegExp(pattern))
+  )
   return id => patterns.some(pattern => pattern.test(id))
 }
 
@@ -120,7 +124,6 @@ function createMainOptions(format, file) {
       reactSvgPreset(),
       babelPreset(),
       Object.keys(replacements).length ? replace(replacements) : null,
-      sizeSnapshot(),
     ].filter(Boolean),
   }
 }
@@ -139,7 +142,6 @@ function createUMDOptions(isProd, file) {
     reactSvgPreset(),
     babelPreset(),
     replace(getEnvReplacement(isProd)),
-    sizeSnapshot(),
   ]
 
   if (isProd) {
