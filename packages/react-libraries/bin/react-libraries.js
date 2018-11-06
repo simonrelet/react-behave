@@ -9,6 +9,7 @@ const chalk = require('chalk')
 const fs = require('fs-extra')
 const path = require('path')
 const pkg = require('../package')
+const logger = require('../lib/logger')
 
 const args = process.argv.slice(2)
 const script = args[0]
@@ -21,16 +22,26 @@ const availableScripts = `The available scripts are: ${scripts
   .join(', ')}.`
 
 if (!script) {
-  console.error('Missing script name.')
-  console.error(availableScripts)
+  logger.error('Missing script name.', availableScripts)
   process.exit(1)
 }
 
 if (!scripts.includes(script)) {
-  console.error(`Unknown script ${chalk.cyan(script)}.`)
-  console.error(availableScripts)
-  console.error(`Perhaps you need to update ${chalk.cyan(pkg.name)}?`)
+  logger.error(
+    `Unknown script ${chalk.cyan(script)}.`,
+    availableScripts,
+    `Perhaps you need to update ${chalk.cyan(pkg.name)}?`
+  )
   process.exit(1)
 }
 
-require(`../scripts/${script}`)(args.slice(1))
+async function run() {
+  try {
+    const fn = require(`../scripts/${script}`)
+    await fn(args.slice(1))
+  } catch (err) {
+    process.exit(1)
+  }
+}
+
+run()

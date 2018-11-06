@@ -15,6 +15,14 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Breaking changes
+
+- Build using babel instead of rollup to allow tree shaking.
+- Removed UMD support.
+- SASS files are no longer transformed.
+
 ## 0.15.0 (October 11, 2018)
 
 ### Breaking changes

@@ -16,16 +16,17 @@
     "container",
     "component"
   ],
-  "main": "build/react-behave.js",
-  "module": "build/react-behave.es.js",
+  "main": "build/cjs",
+  "module": "build/es",
   "license": "MIT",
   "files": [
     "build",
     "docs"
   ],
+  "sideEffects": false,
   "scripts": {
     "build": "react-libraries build",
-    "build-storybook": "build-storybook -o build-storybook",
+    "build:storybook": "build-storybook -o build-storybook",
     "bump-version": "react-libraries bump-version",
     "clean": "react-libraries clean",
     "doc": "react-libraries doc",
@@ -67,13 +68,5 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.3.2"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.js",
-      "!src/**/*.stories.js",
-      "!src/**/index.js",
-      "!src/ReactSixteenAdapter.js"
-    ]
   }
 }

@@ -1,21 +1,27 @@
 'use strict'
 
-function createBabelConfig(options) {
+function createBabelConfig({ modules }) {
   return {
-    babelrc: false,
     presets: [
-      [require.resolve('@babel/preset-env'), options],
-      require.resolve('@babel/preset-react'),
+      [
+        require.resolve('@babel/preset-env'),
+        { modules: modules === 'es' ? false : modules },
+      ],
+      [require.resolve('@babel/preset-react'), { useBuiltIns: true }],
     ],
     plugins: [
       require.resolve('@babel/plugin-syntax-dynamic-import'),
       [
         require.resolve('@babel/plugin-proposal-class-properties'),
-        { loose: false },
+        { loose: true },
       ],
       require.resolve('@babel/plugin-proposal-export-namespace-from'),
       require.resolve('@babel/plugin-proposal-export-default-from'),
       require.resolve('@babel/plugin-transform-async-to-generator'),
+      [
+        require.resolve('@babel/plugin-proposal-object-rest-spread'),
+        { loose: true, useBuiltIns: true },
+      ],
     ],
   }
 }

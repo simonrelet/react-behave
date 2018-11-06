@@ -12,10 +12,14 @@ const logger = require('../lib/logger')
 const headers = require('../lib/headers')
 const canGenerateFile = require('../lib/canGenerateFile')
 
-const sources = 'src/**/*.js'
 const outputFolder = 'docs'
-const files = glob.sync(sources, {
-  ignore: ['**/index.js', '**/*.stories.js', '**/*.test.js'],
+const files = glob.sync('src/**/*.js', {
+  ignore: [
+    '**/*.{spec,test,stories}.js',
+    '**/__tests__/**',
+    '**/__mocks__/**',
+    '**/setupTests.js',
+  ],
 })
 
 function safeFormat(file, cb) {

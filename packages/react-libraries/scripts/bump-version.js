@@ -36,12 +36,12 @@ function bumpVersion(args) {
   const version = args[args.length - 1]
 
   if (!version) {
-    console.error('Missing version number.')
+    logger.error('Missing version number.')
     process.exit(1)
   }
 
   if (!semver.valid(version)) {
-    console.error(
+    logger.error(
       `The version ${chalk.cyan(version)}` +
         ` is not a valid semantic version number.`
     )
@@ -49,10 +49,10 @@ function bumpVersion(args) {
   }
 
   if (semver.lte(version, pkg.version)) {
-    console.log(
-      `The version number must be bigger than the current one.\n` +
-        `  Received: ${chalk.cyan(version)}\n` +
-        `  Current:  ${chalk.cyan(pkg.version)}`
+    logger.log(
+      `The version number must be bigger than the current one.`,
+      `  Received: ${chalk.cyan(version)}`,
+      `  Current:  ${chalk.cyan(pkg.version)}`
     )
     process.exit(1)
   }
