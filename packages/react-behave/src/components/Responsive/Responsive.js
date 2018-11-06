@@ -2,8 +2,7 @@ import debounce from 'lodash.debounce'
 import isEqual from 'lodash.isequal'
 import memoize from 'memoize-one'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
-import EventListener from 'react-event-listener'
+import { Component } from 'react'
 import getScreenSize from '../../core/getScreenSize'
 
 function smallerOrEqualTo(screenSizes, refScreenSize, screenSize) {
@@ -133,7 +132,12 @@ class Responsive extends Component {
 
   getScreenSize = memoize(getScreenSize, isEqual)
 
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize)
+  }
+
   componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize)
     this.handleResize.cancel()
   }
 
@@ -171,11 +175,7 @@ class Responsive extends Component {
   }
 
   render() {
-    return (
-      <EventListener target="window" onResize={this.handleResize}>
-        {this.renderChildren(window.innerWidth)}
-      </EventListener>
-    )
+    return this.renderChildren(window.innerWidth)
   }
 }
 

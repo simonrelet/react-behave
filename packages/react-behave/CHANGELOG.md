@@ -15,6 +15,12 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Breaking changes
+
+- Removed `Select` and `toInnerRef`.
+
 ## 0.6.0 (September 11, 2018)
 
 ### Breaking changes

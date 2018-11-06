@@ -115,14 +115,14 @@ describe('<Responsive />', () => {
 
   describe('<Responsive render />', () => {
     it('renders its content when there is no constraints', () => {
-      const render = jest.fn()
+      const render = jest.fn(() => null)
       window.innerWidth = screenSizes.md
       mount(<Responsive screenSizes={screenSizes} children={render} />)
       expect(render).toHaveBeenCalledWith('md', screenSizes.md)
     })
 
     it('renders its content when using `minimum`', () => {
-      const render = jest.fn()
+      const render = jest.fn(() => null)
       window.innerWidth = screenSizes.md
       mount(
         <Responsive screenSizes={screenSizes} minimum="md" children={render} />,
@@ -131,7 +131,7 @@ describe('<Responsive />', () => {
     })
 
     it("doesn't render its content when using `minimum`", () => {
-      const render = jest.fn()
+      const render = jest.fn(() => null)
       window.innerWidth = screenSizes.md - 1
       mount(
         <Responsive screenSizes={screenSizes} minimum="md" children={render} />,
@@ -140,7 +140,7 @@ describe('<Responsive />', () => {
     })
 
     it('renders its content when using `maximum`', () => {
-      const render = jest.fn()
+      const render = jest.fn(() => null)
       window.innerWidth = screenSizes.md
       mount(
         <Responsive screenSizes={screenSizes} maximum="md" children={render} />,
@@ -149,7 +149,7 @@ describe('<Responsive />', () => {
     })
 
     it("doesn't render its content when using `maximum`", () => {
-      const render = jest.fn()
+      const render = jest.fn(() => null)
       window.innerWidth = screenSizes.lg
       mount(
         <Responsive screenSizes={screenSizes} maximum="md" children={render} />,
@@ -158,7 +158,7 @@ describe('<Responsive />', () => {
     })
 
     it('renders its content when using `maximum` and `minimum`', () => {
-      const render = jest.fn()
+      const render = jest.fn(() => null)
       window.innerWidth = screenSizes.md
       mount(
         <Responsive
@@ -172,7 +172,7 @@ describe('<Responsive />', () => {
     })
 
     it("doesn't render its content when using `maximum` and `minimum`", () => {
-      const render = jest.fn()
+      const render = jest.fn(() => null)
       window.innerWidth = screenSizes.xl
       mount(
         <Responsive
@@ -187,7 +187,7 @@ describe('<Responsive />', () => {
 
     it('listen to window resizes', async () => {
       expect.assertions(1)
-      const render = jest.fn()
+      const render = jest.fn(() => null)
       window.innerWidth = screenSizes.lg
       const wrapper = mount(
         <Responsive

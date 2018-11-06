@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import EventListener from 'react-event-listener'
 
 /**
  * [create-ref]: https://reactjs.org/docs/react-api.html#reactcreateref
@@ -48,6 +47,14 @@ class ClickOutside extends Component {
 
   elementRef = React.createRef()
 
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside)
+  }
+
   handleClickOutside = e => {
     const elementRef = this.elementRef.current
     if (elementRef && !elementRef.contains(e.target)) {
@@ -56,11 +63,7 @@ class ClickOutside extends Component {
   }
 
   render() {
-    return (
-      <EventListener target="document" onClick={this.handleClickOutside}>
-        {this.props.children(this.elementRef)}
-      </EventListener>
-    )
+    return this.props.children(this.elementRef)
   }
 }
 
