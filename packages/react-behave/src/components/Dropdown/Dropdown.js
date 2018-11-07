@@ -38,13 +38,13 @@ import {
  *       <Dropdown
  *         onClickOutside={this.handleClickOutside}
  *         open={this.state.open}
- *         renderDropdown={({ ref, style }) =>
+ *         renderDropdown={({ ref, style }) => (
  *           <ul ref={ref} style={style}>
  *             <li>Item 1</li>
  *             <li>Item 2</li>
  *             <li>Item 3</li>
  *           </ul>
- *         }
+ *         )}
  *       >
  *         {({ ref }) => (
  *           <button ref={ref} onClick={this.toggleDropdown}>
