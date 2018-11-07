@@ -9,7 +9,7 @@
 > A library of React behavioral components.
 
 ⚠️ **Warning:** The current master can represent unreleased features of the library.
-[See lastest release](https://github.com/simonrelet/react-libraries/tree/react-behave-0.6.0/packages/react-behave).
+[See lastest release](https://github.com/simonrelet/react-libraries/tree/react-behave-0.7.0/packages/react-behave).
 
 ## ...Of what?
 
@@ -42,7 +42,7 @@ yarn add react-behave
 
 ## Documentation
 
-The documentation of each component can be found [here](https://github.com/simonrelet/react-libraries/tree/react-behave-0.6.0/packages/react-behave/docs).
+The documentation of each component can be found [here](https://github.com/simonrelet/react-libraries/tree/react-behave-0.7.0/packages/react-behave/docs).
 
 ---
 
