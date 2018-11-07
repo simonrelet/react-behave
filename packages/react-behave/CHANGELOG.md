@@ -15,6 +15,12 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+## Bug fixes
+
+- Remove import of `toInnerRef`.
+
 ## 0.7.0 (November 7, 2018)
 
 ### Breaking changes
