@@ -3,13 +3,15 @@
 const fs = require('fs-extra')
 const path = require('path')
 
+const testsSetupPath = 'src/setupTests.js'
+
 function resolve(relativePath) {
   return path.resolve(__dirname, '..', relativePath)
 }
 
-function createJestConfig(testsSetupPath) {
+function createJestConfig() {
   const setupTestsFile = fs.existsSync(testsSetupPath)
-    ? '<rootDir>/src/setupTests.js'
+    ? `<rootDir>/${testsSetupPath}`
     : undefined
 
   const config = {

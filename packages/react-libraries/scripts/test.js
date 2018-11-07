@@ -9,7 +9,7 @@ function test(args) {
     args.push('--watch')
   }
 
-  args.push('--config', JSON.stringify(createJestConfig('src/setupTests.js')))
+  args.push('--config', JSON.stringify(createJestConfig()))
 
   jest.run(args)
 }
