@@ -15,13 +15,13 @@ function generateReadme(src = 'README-template.md') {
 
     const readme = fs
       .readFileSync(src, 'utf8')
-      .replace(/(.)\$\{([^}]+)\}/g, (match, escapeChar, path) => {
-        if (escapeChar === '$') {
-          return match.substring(1)
+      .replace(/(.{2})?\{\{([^}]+)\}\}/g, (match, escapeChar, path) => {
+        if (escapeChar === '\\\\') {
+          return match.substring(2)
         }
 
         const value = get(pkg, path, null)
-        return `${escapeChar}${value}` || match
+        return value ? `${escapeChar || ''}${value}` : match
       })
 
     fs.writeFileSync(dst, `${header}${readme}`)

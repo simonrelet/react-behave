@@ -1,22 +1,22 @@
-# ${name}
+# {{name}}
 
-> ${description}
+> {{description}}
 
 ⚠️ **Warning:** The current master can represent unreleased features.
-[See lastest release](${repository.url}/tree/react-libraries-${version}/packages/react-libraries).
+[See lastest release]({{repository.url}}/tree/react-libraries-{{version}}/packages/react-libraries).
 
 ## Installation
 
 ### npm
 
 ```sh
-npm install --save-dev ${name}
+npm install --save-dev {{name}}
 ```
 
 ### yarn
 
 ```sh
-yarn add ${name} -D
+yarn add {{name}} -D
 ```
 
 ## Scripts
@@ -82,7 +82,7 @@ By default, the README template path is _README-template.md_.
 #### README template
 
 The _README.md_ file can be generated from a template file allowing you to inject values from your _package.json_.
-You can use the syntax `$${path}` where `path` is any valid object path in _package.json_.
+You can use the syntax `{{path}}` where `path` is any valid object path in _package.json_.
 
 Example:
 
@@ -105,32 +105,32 @@ _package.json_
 _README-template.md_
 
 ````md
-# $${name}
+# \\{{name}}
 
-> $${description}
+> \\{{description}}
 
 ## Installation
 
 ### npm
 
 ```sh
-npm install --save $${name}
+npm install --save \\{{name}}
 ```
 
 ### yarn
 
 ```sh
-yarn add $${name}
+yarn add \\{{name}}
 ```
 
 ### UMD
 
-- Production: https://unpkg.com/$${name}@$${version} or https://unpkg.com/$${name}@$${version}/$${unpkg}
-- Development: https://unpkg.com/$${name}@$${version}/$${unpkg-dev}
+- Production: https://unpkg.com/\\{{name}}@\\{{version}} or https://unpkg.com/\\{name}@\\{{version}}/\\{{unpkg}}
+- Development: https://unpkg.com/\\{{name}}@\\{{version}}/\\{{unpkg-dev}}
 
 ## Documentation
 
-The documentation can be found [here]($${repository.url}/tree/$${version}/docs).
+The documentation can be found [here](\\{{repository.url}}/tree/\\{{version}}/docs).
 ````
 
 _README.md_

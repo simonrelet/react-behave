@@ -1,9 +1,9 @@
-# ${name}
+# {{name}}
 
-> ${description}
+> {{description}}
 
 ⚠️ **Warning:** The current master can represent unreleased features of the library.
-[See lastest release](${repository.url}/tree/react-behave-${version}/packages/react-behave).
+[See lastest release]({{repository.url}}/tree/react-behave-{{version}}/packages/react-behave).
 
 ## ...Of what?
 
@@ -25,18 +25,18 @@ This means:
 ### npm
 
 ```sh
-npm install --save ${name}
+npm install --save {{name}}
 ```
 
 ### yarn
 
 ```sh
-yarn add ${name}
+yarn add {{name}}
 ```
 
 ## Documentation
 
-The documentation of each component can be found [here](${repository.url}/tree/react-behave-${version}/packages/react-behave/docs).
+The documentation of each component can be found [here]({{repository.url}}/tree/react-behave-{{version}}/packages/react-behave/docs).
 
 ---
 

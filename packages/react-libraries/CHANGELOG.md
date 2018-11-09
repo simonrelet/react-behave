@@ -15,6 +15,12 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Breaking changes
+
+- The injected values in the _README.md_ now uses the mustache syntax `{{path}}` to avoid conflict with the Markdown math syntax.
+
 ## 0.16.0 (November 7, 2018)
 
 ### Breaking changes
