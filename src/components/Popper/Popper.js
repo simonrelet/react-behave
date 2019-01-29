@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Popper as ReactPopper } from 'react-popper'
-import getOtherProps from '../../core/getOtherProps'
 import ClickOutside from '../ClickOutside'
 import MergeRefs from '../MergeRefs'
 import minWidthModifier from './minWidthModifier'
@@ -60,24 +59,20 @@ import minWidthModifier from './minWidthModifier'
  * }
  * ```
  */
-function Popper(props) {
-  const otherProps = getOtherProps(Popper, props)
+function Popper({ children, modifiers, onClickOutside, ...rest }) {
   return (
-    <ReactPopper
-      {...otherProps}
-      modifiers={{ minWidthModifier, ...props.modifiers }}
-    >
+    <ReactPopper {...rest} modifiers={{ minWidthModifier, ...modifiers }}>
       {popperProps => {
-        if (!props.onClickOutside) {
+        if (!onClickOutside) {
           // Don't add the `ClickOutside` component if nobody is listening.
-          return props.children(popperProps)
+          return children(popperProps)
         }
 
         return (
-          <ClickOutside onClickOutside={props.onClickOutside}>
+          <ClickOutside onClickOutside={onClickOutside}>
             {clickOutsideRef => (
               <MergeRefs refs={[clickOutsideRef, popperProps.ref]}>
-                {ref => props.children({ ...popperProps, ref })}
+                {ref => children({ ...popperProps, ref })}
               </MergeRefs>
             )}
           </ClickOutside>
@@ -88,6 +83,9 @@ function Popper(props) {
 }
 
 Popper.propTypes = {
+  /** @ignore */
+  children: PropTypes.func.isRequired,
+
   /**
    * Modifiers used to alter the behavior of your poppers.
    *
@@ -104,9 +102,6 @@ Popper.propTypes = {
    * Called for each click outside the popper component.
    */
   onClickOutside: PropTypes.func,
-
-  /** @ignore */
-  children: PropTypes.func.isRequired,
 }
 
 Popper.defaultProps = {

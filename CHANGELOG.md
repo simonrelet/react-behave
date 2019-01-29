@@ -15,9 +15,15 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Breaking changes
+
+- Remove `getOtherProps`.
+
 ## 0.7.1 (November 7, 2018)
 
-## Bug fixes
+### Bug fixes
 
 - Remove import of `toInnerRef`.
 

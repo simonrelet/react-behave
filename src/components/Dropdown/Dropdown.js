@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import getOtherProps from '../../core/getOtherProps'
 import {
   Popper,
   PopperManager,
@@ -57,17 +56,12 @@ import {
  * }
  * ```
  */
-function Dropdown(props) {
-  const otherProps = getOtherProps(Dropdown, props)
+function Dropdown({ children, open, placement, renderDropdown, ...rest }) {
   return (
     <PopperManager>
-      <PopperReference children={props.children} />
-      {props.open && (
-        <Popper
-          {...otherProps}
-          placement={props.placement}
-          children={props.renderDropdown}
-        />
+      <PopperReference children={children} />
+      {open && (
+        <Popper {...rest} placement={placement} children={renderDropdown} />
       )}
     </PopperManager>
   )
