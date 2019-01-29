@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MergeRefs /> merges refs 1`] = `
+<p>
+  Hello
+</p>
+`;
+
+exports[`<MergeRefs /> renders its content 1`] = `
+<p>
+  Hello
+</p>
+`;

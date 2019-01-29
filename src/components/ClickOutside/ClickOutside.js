@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
 /**
  * [create-ref]: https://reactjs.org/docs/react-api.html#reactcreateref
@@ -9,10 +9,10 @@ import React, { Component } from 'react'
  * ## Usage
  *
  * ```jsx
- * import React, { Component } from 'react'
+ * import React from 'react'
  * import { ClickOutside } from 'react-behave'
  *
- * class App extends Component {
+ * class App extends React.Component {
  *   handleClickOutside(event) {
  *     console.log('click', event)
  *   }
@@ -27,24 +27,7 @@ import React, { Component } from 'react'
  * }
  * ```
  */
-class ClickOutside extends Component {
-  static propTypes = {
-    /**
-     * _Parameters_: `ref: Object|Function`
-     *
-     * Renders the component.
-     * `ref` must be passed to the component in order to work.
-     */
-    children: PropTypes.func.isRequired,
-
-    /**
-     * _Parameters_: `event: MouseEvent`
-     *
-     * Called for each click outside the component.
-     */
-    onClickOutside: PropTypes.func.isRequired,
-  }
-
+class ClickOutside extends React.Component {
   elementRef = React.createRef()
 
   componentDidMount() {
@@ -65,6 +48,23 @@ class ClickOutside extends Component {
   render() {
     return this.props.children(this.elementRef)
   }
+}
+
+ClickOutside.propTypes = {
+  /**
+   * _Parameters_: `ref: Object|Function`
+   *
+   * Renders the component.
+   * `ref` must be passed to the component in order to work.
+   */
+  children: PropTypes.func.isRequired,
+
+  /**
+   * _Parameters_: `event: MouseEvent`
+   *
+   * Called for each click outside the component.
+   */
+  onClickOutside: PropTypes.func.isRequired,
 }
 
 export default ClickOutside

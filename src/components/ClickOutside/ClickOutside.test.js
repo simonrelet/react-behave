@@ -1,44 +1,41 @@
-// import { mount } from 'enzyme'
-// import React from 'react'
-// import ClickOutside from './ClickOutside'
+import React from 'react'
+import { fireEvent, render } from 'react-testing-library'
+import ClickOutside from './ClickOutside'
+
+function createProps(props) {
+  return {
+    children: jest.fn(ref => <p ref={ref}>Hello</p>),
+    onClickOutside: jest.fn(),
+    ...props,
+  }
+}
 
 describe('<ClickOutside />', () => {
+  it('renders its content', () => {
+    const props = createProps()
+    const { container } = render(<ClickOutside {...props} />)
+    expect(container.firstChild).toMatchSnapshot()
+    expect(props.children).toHaveBeenCalledTimes(1)
+  })
+
   it('notifies on a click outside', () => {
-    //   const cb = jest.fn()
-    //   const wrapper = mount(
-    //     <ClickOutside onClickOutside={cb}>
-    //       {ref => <p ref={ref}>Hello</p>}
-    //     </ClickOutside>,
-    //   )
-    //   const event = { target: document }
-    //   wrapper.find(EventListener).prop('onClick')(event)
-    //   expect(cb).toHaveBeenCalledWith(event)
+    const props = createProps()
+    const { container } = render(<ClickOutside {...props} />)
+    fireEvent.mouseDown(container)
+    expect(props.onClickOutside).toHaveBeenCalledTimes(1)
   })
 
   it("doesn't notify on a click inside", () => {
-    //   let insideRef
-    //   const cb = jest.fn()
-    //   const wrapper = mount(
-    //     <ClickOutside onClickOutside={cb}>
-    //       {ref => (
-    //         <p ref={ref}>
-    //           <span ref={inside => (insideRef = inside)}>inside</span> Hello
-    //         </p>
-    //       )}
-    //     </ClickOutside>,
-    //   )
-    //   const event = { target: insideRef }
-    //   wrapper.find(EventListener).prop('onClick')(event)
-    //   expect(cb).not.toHaveBeenCalled()
+    const props = createProps()
+    const { container } = render(<ClickOutside {...props} />)
+    fireEvent.mouseDown(container.firstChild)
+    expect(props.onClickOutside).not.toHaveBeenCalled()
   })
 
   it("doesn't notify if there is no ref", () => {
-    //   const cb = jest.fn()
-    //   const wrapper = mount(
-    //     <ClickOutside onClickOutside={cb}>{() => <p>Hello</p>}</ClickOutside>,
-    //   )
-    //   const event = { target: document }
-    //   wrapper.find(EventListener).prop('onClick')(event)
-    //   expect(cb).not.toHaveBeenCalled()
+    const props = createProps({ children: jest.fn(() => null) })
+    const { container } = render(<ClickOutside {...props} />)
+    fireEvent.mouseDown(container)
+    expect(props.onClickOutside).not.toHaveBeenCalled()
   })
 })

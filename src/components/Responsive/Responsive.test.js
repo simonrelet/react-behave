@@ -1,26 +1,13 @@
-import { mount } from 'enzyme'
 import React from 'react'
+import { render } from 'react-testing-library'
 import Responsive from './Responsive'
 
-const screenSizes = {
-  xs: 0,
-  sm: 600,
-  md: 960,
-  lg: 1280,
-  xl: 1920,
-}
-
-let initialInnerWidth
-
-async function wait(milliseconds = 0) {
-  return new Promise(resolve => {
-    setTimeout(() => resolve(), milliseconds)
-  })
-}
-
 describe('<Responsive />', () => {
+  let initialInnerWidth
+
   beforeEach(() => {
     initialInnerWidth = window.innerWidth
+    jest.useFakeTimers()
   })
 
   afterEach(() => {
@@ -28,181 +15,142 @@ describe('<Responsive />', () => {
   })
 
   describe('<Responsive children />', () => {
+    function createProps(props) {
+      return {
+        children: <p>Hello</p>,
+        ...props,
+      }
+    }
+
     it('renders its content when there is no constraints', () => {
-      const wrapper = mount(
-        <Responsive screenSizes={screenSizes}>
-          <p>Hello</p>
-        </Responsive>,
-      )
-      expect(wrapper.find('p').first()).toBeDefined()
+      const props = createProps()
+      const { container } = render(<Responsive {...props} />)
+      expect(container.firstChild).toMatchSnapshot()
     })
 
     it('renders its content when using `minimum`', () => {
-      window.innerWidth = screenSizes.md
-      const wrapper = mount(
-        <Responsive screenSizes={screenSizes} minimum="md">
-          <p>Hello</p>
-        </Responsive>,
-      )
-      expect(wrapper.find('p').first()).toBeDefined()
+      window.innerWidth = Responsive.defaultProps.screenSizes.md
+      const props = createProps({ minimum: 'md' })
+      const { container } = render(<Responsive {...props} />)
+      expect(container.firstChild).toMatchSnapshot()
     })
 
     it("doesn't render its content when using `minimum`", () => {
-      window.innerWidth = screenSizes.md - 1
-      const wrapper = mount(
-        <Responsive screenSizes={screenSizes} minimum="md">
-          <p>Hello</p>
-        </Responsive>,
-      )
-      expect(wrapper.find('p')).toHaveLength(0)
+      window.innerWidth = Responsive.defaultProps.screenSizes.md - 1
+      const props = createProps({ minimum: 'md' })
+      const { container } = render(<Responsive {...props} />)
+      expect(container.firstChild).toBeNull()
     })
 
     it('renders its content when using `maximum`', () => {
-      window.innerWidth = screenSizes.md
-      const wrapper = mount(
-        <Responsive screenSizes={screenSizes} maximum="md">
-          <p>Hello</p>
-        </Responsive>,
-      )
-      expect(wrapper.find('p').first()).toBeDefined()
+      window.innerWidth = Responsive.defaultProps.screenSizes.md
+      const props = createProps({ maximum: 'md' })
+      const { container } = render(<Responsive {...props} />)
+      expect(container.firstChild).toMatchSnapshot()
     })
 
     it("doesn't render its content when using `maximum`", () => {
-      window.innerWidth = screenSizes.lg
-      const wrapper = mount(
-        <Responsive screenSizes={screenSizes} maximum="md">
-          <p>Hello</p>
-        </Responsive>,
-      )
-      expect(wrapper.find('p')).toHaveLength(0)
+      window.innerWidth = Responsive.defaultProps.screenSizes.lg
+      const props = createProps({ maximum: 'md' })
+      const { container } = render(<Responsive {...props} />)
+      expect(container.firstChild).toBeNull()
     })
 
     it('renders its content when using `maximum` and `minimum`', () => {
-      window.innerWidth = screenSizes.md
-      const wrapper = mount(
-        <Responsive screenSizes={screenSizes} maximum="lg" minimum="sm">
-          <p>Hello</p>
-        </Responsive>,
-      )
-      expect(wrapper.first()).toBeDefined()
+      window.innerWidth = Responsive.defaultProps.screenSizes.md
+      const props = createProps({ minimum: 'sm', maximum: 'md' })
+      const { container } = render(<Responsive {...props} />)
+      expect(container.firstChild).toMatchSnapshot()
     })
 
     it("doesn't render its content when using `maximum` and `minimum`", () => {
-      window.innerWidth = screenSizes.xl
-      const wrapper = mount(
-        <Responsive screenSizes={screenSizes} maximum="lg" minimum="sm">
-          <p>Hello</p>
-        </Responsive>,
-      )
-      expect(wrapper.find('p')).toHaveLength(0)
+      window.innerWidth = Responsive.defaultProps.screenSizes.xl
+      const props = createProps({ minimum: 'sm', maximum: 'lg' })
+      const { container } = render(<Responsive {...props} />)
+      expect(container.firstChild).toBeNull()
     })
 
-    it('listen to window resizes', async () => {
-      expect.assertions(1)
-      window.innerWidth = screenSizes.lg
-      const wrapper = mount(
-        <Responsive screenSizes={screenSizes} minimum="md" resizeInterval={0}>
-          <div>Hello</div>
-        </Responsive>,
-      )
-      window.innerWidth = screenSizes.sm
+    it('listen to window resizes', () => {
+      window.innerWidth = Responsive.defaultProps.screenSizes.lg
+      const props = createProps({ minimum: 'md' })
+      const { container } = render(<Responsive {...props} />)
+
+      window.innerWidth = Responsive.defaultProps.screenSizes.sm
       window.dispatchEvent(new Event('resize'))
-      await wait()
-      wrapper.update()
-      expect(wrapper.find('div')).toHaveLength(0)
+      jest.runAllTimers()
+      expect(container.firstChild).toBeNull()
     })
   })
 
   describe('<Responsive render />', () => {
+    function createProps(props) {
+      return {
+        children: jest.fn(() => <p>Hello</p>),
+        ...props,
+      }
+    }
+
     it('renders its content when there is no constraints', () => {
-      const render = jest.fn(() => null)
-      window.innerWidth = screenSizes.md
-      mount(<Responsive screenSizes={screenSizes} children={render} />)
-      expect(render).toHaveBeenCalledWith('md', screenSizes.md)
+      const size = Responsive.defaultProps.screenSizes.md
+      window.innerWidth = size
+      const props = createProps()
+      const { container } = render(<Responsive {...props} />)
+      expect(props.children).toHaveBeenCalledWith('md', size)
+      expect(container.firstChild).toMatchSnapshot()
     })
 
     it('renders its content when using `minimum`', () => {
-      const render = jest.fn(() => null)
-      window.innerWidth = screenSizes.md
-      mount(
-        <Responsive screenSizes={screenSizes} minimum="md" children={render} />,
-      )
-      expect(render).toHaveBeenCalledWith('md', screenSizes.md)
+      const size = Responsive.defaultProps.screenSizes.md
+      window.innerWidth = size
+      const props = createProps({ minimum: 'md' })
+      const { container } = render(<Responsive {...props} />)
+      expect(props.children).toHaveBeenCalledWith('md', size)
+      expect(container.firstChild).toMatchSnapshot()
     })
 
     it("doesn't render its content when using `minimum`", () => {
-      const render = jest.fn(() => null)
-      window.innerWidth = screenSizes.md - 1
-      mount(
-        <Responsive screenSizes={screenSizes} minimum="md" children={render} />,
-      )
-      expect(render).not.toHaveBeenCalled()
+      const size = Responsive.defaultProps.screenSizes.md - 1
+      window.innerWidth = size
+      const props = createProps({ minimum: 'md' })
+      const { container } = render(<Responsive {...props} />)
+      expect(props.children).not.toHaveBeenCalled()
+      expect(container.firstChild).toBeNull()
     })
 
     it('renders its content when using `maximum`', () => {
-      const render = jest.fn(() => null)
-      window.innerWidth = screenSizes.md
-      mount(
-        <Responsive screenSizes={screenSizes} maximum="md" children={render} />,
-      )
-      expect(render).toHaveBeenCalledWith('md', screenSizes.md)
+      const size = Responsive.defaultProps.screenSizes.md
+      window.innerWidth = size
+      const props = createProps({ maximum: 'md' })
+      const { container } = render(<Responsive {...props} />)
+      expect(props.children).toHaveBeenCalledWith('md', size)
+      expect(container.firstChild).toMatchSnapshot()
     })
 
     it("doesn't render its content when using `maximum`", () => {
-      const render = jest.fn(() => null)
-      window.innerWidth = screenSizes.lg
-      mount(
-        <Responsive screenSizes={screenSizes} maximum="md" children={render} />,
-      )
-      expect(render).not.toHaveBeenCalled()
+      const size = Responsive.defaultProps.screenSizes.lg
+      window.innerWidth = size
+      const props = createProps({ maximum: 'md' })
+      const { container } = render(<Responsive {...props} />)
+      expect(props.children).not.toHaveBeenCalled()
+      expect(container.firstChild).toBeNull()
     })
 
     it('renders its content when using `maximum` and `minimum`', () => {
-      const render = jest.fn(() => null)
-      window.innerWidth = screenSizes.md
-      mount(
-        <Responsive
-          screenSizes={screenSizes}
-          maximum="lg"
-          minimum="sm"
-          children={render}
-        />,
-      )
-      expect(render).toHaveBeenCalledWith('md', screenSizes.md)
+      const size = Responsive.defaultProps.screenSizes.md
+      window.innerWidth = size
+      const props = createProps({ minimum: 'sm', maximum: 'lg' })
+      const { container } = render(<Responsive {...props} />)
+      expect(props.children).toHaveBeenCalledWith('md', size)
+      expect(container.firstChild).toMatchSnapshot()
     })
 
     it("doesn't render its content when using `maximum` and `minimum`", () => {
-      const render = jest.fn(() => null)
-      window.innerWidth = screenSizes.xl
-      mount(
-        <Responsive
-          screenSizes={screenSizes}
-          maximum="lg"
-          minimum="sm"
-          children={render}
-        />,
-      )
-      expect(render).not.toHaveBeenCalled()
-    })
-
-    it('listen to window resizes', async () => {
-      expect.assertions(1)
-      const render = jest.fn(() => null)
-      window.innerWidth = screenSizes.lg
-      const wrapper = mount(
-        <Responsive
-          screenSizes={screenSizes}
-          minimum="md"
-          children={render}
-          resizeInterval={0}
-        />,
-      )
-      render.mockReset()
-      window.innerWidth = screenSizes.sm
-      window.dispatchEvent(new Event('resize'))
-      await wait()
-      wrapper.update()
-      expect(render).not.toHaveBeenCalled()
+      const size = Responsive.defaultProps.screenSizes.xl
+      window.innerWidth = size
+      const props = createProps({ minimum: 'sm', maximum: 'lg' })
+      const { container } = render(<Responsive {...props} />)
+      expect(props.children).not.toHaveBeenCalled()
+      expect(container.firstChild).toBeNull()
     })
   })
 })
