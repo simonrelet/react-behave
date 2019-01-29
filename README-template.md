@@ -3,7 +3,7 @@
 > {{description}}
 
 ⚠️ **Warning:** The current master can represent unreleased features of the library.
-[See lastest release]({{repository.url}}/tree/react-behave-{{version}}/packages/react-behave).
+[See lastest release]({{repository.url}}/tree/{{version}}).
 
 ## ...Of what?
 
@@ -36,7 +36,7 @@ yarn add {{name}}
 
 ## Documentation
 
-The documentation of each component can be found [here]({{repository.url}}/tree/react-behave-{{version}}/packages/react-behave/docs).
+The documentation of each component can be found [here]({{repository.url}}/tree/{{version}}/docs).
 
 ---
 
