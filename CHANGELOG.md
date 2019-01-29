@@ -20,6 +20,11 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 ### Breaking changes
 
 - Remove `getOtherProps`.
+- Remove `Dropdown` and `Popper` and export `minWidthModifier` instead.
+
+### Enhancements
+
+- Add `minWidthModifier` to use in [PopperJS](https://popper.js.org).
 
 ## 0.7.1 (November 7, 2018)
 
