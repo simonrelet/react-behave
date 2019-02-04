@@ -9,7 +9,7 @@
 > A library of behaviors for React applications.
 
 ⚠️ **Warning:** The current master can represent unreleased features of the library.
-[See lastest release](https://github.com/simonrelet/react-behave/tree/0.7.1).
+[See lastest release](https://github.com/simonrelet/react-behave/tree/1.0.0-alpha.1).
 
 ## ...Of what?
 
@@ -42,7 +42,7 @@ yarn add react-behave
 
 ## Documentation
 
-The documentation of each component can be found [here](https://github.com/simonrelet/react-behave/tree/0.7.1/docs).
+The documentation of each component can be found [here](https://github.com/simonrelet/react-behave/tree/1.0.0-alpha.1/docs).
 
 ---
 
