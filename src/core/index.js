@@ -1,3 +1,5 @@
+export { default as callHandlers } from './callHandlers'
+export { default as composeHandlers } from './composeHandlers'
 export { default as getDisplayName } from './getDisplayName'
 export { default as getScreenSize } from './getScreenSize'
 export { default as minWidthModifier } from './minWidthModifier'

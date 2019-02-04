@@ -27,9 +27,8 @@ function setRefs(ref, handlers = []) {
     //
     // ```js
     // const child = React.Children.only(this.props.children)
-    // const childRef = child.ref
     // return React.cloneElement(child, {
-    //   ref: ref => setRefs(ref, [this.myRef, childRef])
+    //   ref: ref => setRefs(ref, [this.myRef, child.ref])
     // })
     // ```
     if (handler) {

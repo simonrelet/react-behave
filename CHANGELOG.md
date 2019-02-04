@@ -15,6 +15,11 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+- Create `callHandlers` function.
+- Create `composeHandlers` function.
+
 ## 1.0.0-alpha.3 (February 4, 2019)
 
 ### Bug fixes
