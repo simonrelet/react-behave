@@ -78,7 +78,7 @@ class FocusTrap extends React.Component {
 
     this.focusTrap = createFocusTrap(this.trappedElement.current, {
       ...rest,
-      fallbackFocus: this.fallbackRef,
+      fallbackFocus: this.fallbackElement,
 
       // We handle the return of the focus ourself because React can move the
       // focus into a children element before this lifecycle hook (did mount) is
