@@ -13,9 +13,22 @@ const style = {
 
 stories.addDecorator(centered).add('Render function', () => (
   <ClickOutside onClickOutside={action('onClickOutside')}>
-    {ref => (
+    {({ ref }) => (
       <p ref={ref} style={style}>
         Don't click on me.
+      </p>
+    )}
+  </ClickOutside>
+))
+
+stories.addDecorator(centered).add('Escape key', () => (
+  <ClickOutside
+    onClickOutside={action('onClickOutside')}
+    onEscape={action('onEscape')}
+  >
+    {({ ref }) => (
+      <p ref={ref} style={style}>
+        Don't click on me or press Escape.
       </p>
     )}
   </ClickOutside>

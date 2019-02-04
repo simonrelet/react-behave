@@ -4,7 +4,7 @@ import MergeRefs from './MergeRefs'
 
 function createProps(props) {
   return {
-    children: jest.fn(ref => <p ref={ref}>Hello</p>),
+    children: jest.fn(({ ref }) => <p ref={ref}>Hello</p>),
     refs: [],
     ...props,
   }

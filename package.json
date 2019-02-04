@@ -35,9 +35,9 @@
     "lint": "run-s lint:*",
     "lint:format": "prettier --list-different \"**/*.{js,json,md}\"",
     "lint:js": "eslint .",
-    "prebump-version": "npm-s clean build doc",
+    "prebump-version": "run-s clean build doc",
     "start": "react-libraries build -w",
-    "storybook": "start-storybook -p 4000",
+    "start:storybook": "start-storybook -p 4000 --ci",
     "test": "react-libraries test --env=jsdom"
   },
   "peerDependencies": {
@@ -45,14 +45,18 @@
     "react-dom": "^16.0.0"
   },
   "dependencies": {
+    "focus-trap": "^4.0.2",
+    "invariant": "^2.2.4",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
     "lodash.omit": "^4.5.0",
     "memoize-one": "^5.0.0",
     "prop-types": "^15.6.2",
-    "resize-observer-polyfill": "^1.5.1"
+    "resize-observer-polyfill": "^1.5.1",
+    "warning": "^4.0.2"
   },
   "devDependencies": {
+    "@reactions/component": "^2.0.2",
     "@simonrelet/react-libraries": "^0.17.0",
     "@storybook/addon-a11y": "^4.1.11",
     "@storybook/addon-actions": "^4.1.11",

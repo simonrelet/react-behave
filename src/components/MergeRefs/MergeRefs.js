@@ -1,11 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import setRef from './setRef'
+import setRefs from '../../core/setRefs'
 
 /**
- * [callback-refs]: https://reactjs.org/docs/refs-and-the-dom.html#callback-refs
- * [create-ref]: https://reactjs.org/docs/react-api.html#reactcreateref
- *
  * Merge multiple refs on a single component.
  *
  * ## Usage
@@ -27,7 +24,7 @@ import setRef from './setRef'
  *       <ComponentNeedsRef>
  *         {requiredRef => (
  *           <MergeRefs refs={[requiredRef, this.buttonRef]}>
- *             {ref => <button ref={ref}>Click me</button>}
+ *             {({ ref }) => <button ref={ref}>Click me</button>}
  *           </MergeRefs>
  *         )}
  *       </ComponentNeedsRef>
@@ -40,19 +37,17 @@ import setRef from './setRef'
  */
 class MergeRefs extends React.Component {
   mergeRefs = ref => {
-    this.props.refs.forEach(handler => {
-      setRef(ref, handler)
-    })
+    setRefs(ref, this.props.refs)
   }
 
   render() {
-    return this.props.children(this.mergeRefs)
+    return this.props.children({ ref: this.mergeRefs })
   }
 }
 
 MergeRefs.propTypes = {
   /**
-   * _Parameters_: `ref: Function`
+   * _Parameters_: `{ ref: Function }`
    *
    * Render the component.
    */
@@ -60,7 +55,8 @@ MergeRefs.propTypes = {
 
   /**
    * Array of refs.
-   * Each ref can either be a [callback ref][callback-refs] or an object created with [`React.createRef`][create-ref].
+   * Each ref can either be a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) or an object created with [`React.createRef`](https://reactjs.org/docs/react-api.html#reactcreateref).
+   * Falsy refs are ignored.
    */
   refs: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.func, PropTypes.object]),

@@ -13,18 +13,25 @@ Notify for each click outside a component.
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React from 'react'
 import { ClickOutside } from 'react-behave'
 
-class App extends Component {
-  handleClickOutside(event) {
-    console.log('click', event)
+class App extends React.Component {
+  handleClickOutside(mouseEvent) {
+    console.log('click outside', mouseEvent)
+  }
+
+  handleEscape(keyEvent) {
+    console.log('escape', keyEvent)
   }
 
   render() {
     return (
-      <ClickOutside onClickOutside={this.handleClickOutside}>
-        {ref => <p ref={ref}>Don't click on me.</p>}
+      <ClickOutside
+        onClickOutside={this.handleClickOutside}
+        onEscape={this.handleEscape}
+      >
+        {({ ref }) => <p ref={ref}>Don't click on me.</p>}
       </ClickOutside>
     )
   }
@@ -35,7 +42,7 @@ class App extends Component {
 
 ### `children`: `Function`
 
-_Parameters_: `ref: Object|Function`
+_Parameters_: `{ ref: Object|Function }`
 
 Renders the component.
 `ref` must be passed to the component in order to work.
@@ -45,3 +52,9 @@ Renders the component.
 _Parameters_: `event: MouseEvent`
 
 Called for each click outside the component.
+
+### `onEscape`: `Function` (optional)
+
+_Parameters_: `event: KeyboardEvent`
+
+Called each time the Escape key is pressed.

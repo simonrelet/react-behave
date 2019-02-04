@@ -6,7 +6,7 @@
 
 # react-behave
 
-> A library of React behavioral components.
+> A library of behaviors for React applications.
 
 ⚠️ **Warning:** The current master can represent unreleased features of the library.
 [See lastest release](https://github.com/simonrelet/react-behave/tree/0.7.1).

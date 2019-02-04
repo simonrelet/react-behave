@@ -21,10 +21,17 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 - Remove `getOtherProps`.
 - Remove `Dropdown` and `Popper` and export `minWidthModifier` instead.
+- The parameter of the `children` props for `ClickOutside`, `MergeRefs` are now an object containing the `ref` property.
 
 ### Enhancements
 
-- Add `minWidthModifier` to use in [PopperJS](https://popper.js.org).
+- Create `FocusTrap` component.
+- Create `setRefs` function to support both functions and objects refs.
+- Add `onEscape` prop to the `ClickOutside` component.
+
+### Enhancements
+
+- Create a `minWidthModifier` [PopperJS](https://popper.js.org) modifier.
 
 ## 0.7.1 (November 7, 2018)
 

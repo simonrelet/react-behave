@@ -13,14 +13,21 @@ import React from 'react'
  * import { ClickOutside } from 'react-behave'
  *
  * class App extends React.Component {
- *   handleClickOutside(event) {
- *     console.log('click', event)
+ *   handleClickOutside(mouseEvent) {
+ *     console.log('click outside', mouseEvent)
+ *   }
+ *
+ *   handleEscape(keyEvent) {
+ *     console.log('escape', keyEvent)
  *   }
  *
  *   render() {
  *     return (
- *       <ClickOutside onClickOutside={this.handleClickOutside}>
- *         {ref => <p ref={ref}>Don't click on me.</p>}
+ *       <ClickOutside
+ *         onClickOutside={this.handleClickOutside}
+ *         onEscape={this.handleEscape}
+ *       >
+ *         {({ ref }) => <p ref={ref}>Don't click on me.</p>}
  *       </ClickOutside>
  *     )
  *   }
@@ -32,10 +39,27 @@ class ClickOutside extends React.Component {
 
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClickOutside)
+
+    if (this.props.onEscape) {
+      document.addEventListener('keydown', this.handleEscape)
+    }
   }
 
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClickOutside)
+
+    if (this.props.onEscape) {
+      document.removeEventListener('keydown', this.handleEscape)
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    // We register the event listener only when needed.
+    if (prevProps.onEscape && !this.props.onEscape) {
+      document.removeEventListener('keydown', this.handleEscape)
+    } else if (!prevProps.onEscape && this.props.onEscape) {
+      document.addEventListener('keydown', this.handleEscape)
+    }
   }
 
   handleClickOutside = e => {
@@ -45,14 +69,20 @@ class ClickOutside extends React.Component {
     }
   }
 
+  handleEscape = e => {
+    if (e.key === 'Escape') {
+      this.props.onEscape(e)
+    }
+  }
+
   render() {
-    return this.props.children(this.elementRef)
+    return this.props.children({ ref: this.elementRef })
   }
 }
 
 ClickOutside.propTypes = {
   /**
-   * _Parameters_: `ref: Object|Function`
+   * _Parameters_: `{ ref: Object|Function }`
    *
    * Renders the component.
    * `ref` must be passed to the component in order to work.
@@ -65,6 +95,13 @@ ClickOutside.propTypes = {
    * Called for each click outside the component.
    */
   onClickOutside: PropTypes.func.isRequired,
+
+  /**
+   * _Parameters_: `event: KeyboardEvent`
+   *
+   * Called each time the Escape key is pressed.
+   */
+  onEscape: PropTypes.func,
 }
 
 export default ClickOutside

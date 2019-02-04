@@ -15,7 +15,7 @@ Render content depending on the screen size.
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React from 'react'
 import { Responsive } from 'react-behave'
 
 const screenSizes = {
@@ -26,7 +26,7 @@ const screenSizes = {
   xl: 1920,
 }
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <Responsive minimum="md" screenSizes={screenSizes}>

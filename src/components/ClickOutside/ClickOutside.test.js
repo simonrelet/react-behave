@@ -4,7 +4,7 @@ import ClickOutside from './ClickOutside'
 
 function createProps(props) {
   return {
-    children: jest.fn(ref => <p ref={ref}>Hello</p>),
+    children: jest.fn(({ ref }) => <p ref={ref}>Hello</p>),
     onClickOutside: jest.fn(),
     ...props,
   }
