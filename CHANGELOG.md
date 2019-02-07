@@ -17,6 +17,8 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 ## 1.0.0-alpha.4 (February 4, 2019)
 
+### Enhancements
+
 - Create `callHandlers` function.
 - Create `composeHandlers` function.
 
