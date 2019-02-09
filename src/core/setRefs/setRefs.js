@@ -21,7 +21,7 @@
  * @param {Array} handlers - The handlers.
  * @returns {void}
  */
-function setRefs(ref, handlers = []) {
+function setRefs(ref, handlers) {
   handlers.forEach(handler => {
     // Ingore falsy handlers to allow syntaxes like:
     //

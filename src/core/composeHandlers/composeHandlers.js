@@ -1,4 +1,4 @@
-import callHandlers from './callHandlers'
+import callHandlers from '../callHandlers'
 
 function composeHandlers(handlers = []) {
   return event => {

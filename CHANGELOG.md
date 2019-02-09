@@ -15,6 +15,12 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Enhancements
+
+- Add TypeScript type definitions.
+
 ## 1.0.0-alpha.4 (February 4, 2019)
 
 ### Enhancements
