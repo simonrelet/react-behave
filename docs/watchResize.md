@@ -1,6 +1,6 @@
 <!--
   THIS FILE WAS GENERATED!
-  Don't make any changes in it, update src/core/watchResize.js instead.
+  Don't make any changes in it, update src/core/watchResize/watchResize.js instead.
   If you still need to make changes in this file, remove this header so it won't be overridden.
 -->
 
