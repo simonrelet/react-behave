@@ -25,17 +25,17 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "react-libraries build -c \"**/*.ts\"",
+    "build": "react-libraries build -c \"src/**/*.ts\"",
     "build:clean": "run-s clean build",
     "build:storybook": "build-storybook -o build-storybook",
     "bump-version": "react-libraries bump-version",
     "clean": "react-libraries clean",
-    "doc": "react-libraries doc",
     "format": "prettier --write \"**/*.{js,ts,json,md}\"",
     "lint": "run-s lint:*",
     "lint:format": "prettier --list-different \"**/*.{js,ts,json,md}\"",
     "lint:js": "eslint .",
     "prebump-version": "run-s clean build doc",
+    "readme": "react-libraries readme",
     "start": "react-libraries build -w",
     "start:storybook": "start-storybook -p 4000 --ci",
     "test": "react-libraries test --env=jsdom"
@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@reactions/component": "^2.0.2",
-    "@simonrelet/react-libraries": "^0.17.0",
+    "@simonrelet/react-libraries": "^1.0.0-alpha.3",
     "@storybook/addon-a11y": "^4.1.11",
     "@storybook/addon-actions": "^4.1.11",
     "@storybook/addon-centered": "^4.1.11",

@@ -5,7 +5,7 @@ function callHandlers(event, handlers = []) {
     // ```js
     // const child = React.Children.only(this.props.children)
     // return React.cloneElement(child, {
-    //   onClick: e => callHandlers(e, [handleClick, child.onClick])
+    //   onClick: e => callHandlers(e, [this.handleClick, child.onClick])
     // })
     // ```
     if (handler) {

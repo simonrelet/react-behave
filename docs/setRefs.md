@@ -1,9 +1,3 @@
-<!--
-  THIS FILE WAS GENERATED!
-  Don't make any changes in it, update src/core/setRefs/setRefs.js instead.
-  If you still need to make changes in this file, remove this header so it won't be overridden.
--->
-
 # setRefs
 
 Set the ref for all the supplied handlers.
@@ -33,6 +27,6 @@ setRefs(ref, handlers): void
 **Parameters**:
 
 - `ref: HTMLElement`: The ref to apply.
-- `handlers: Array`: The handlers.
-
-**Return** `void`
+- `handlers: Array`:
+  The handlers.
+  All falsy handlers are skipped.

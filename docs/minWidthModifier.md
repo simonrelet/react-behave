@@ -2,7 +2,7 @@
 
 A [PopperJS modifier](https://popper.js.org/popper-documentation.html#modifiers) that ensures for top or bottom placements that the width of the popper is greater or equal to the width of the reference.
 
-## Usgae
+## Usage
 
 ```jsx
 import { Manager, Popper, Reference } from 'react-popper'

@@ -1,9 +1,3 @@
-<!--
-  THIS FILE WAS GENERATED!
-  Don't make any changes in it, update src/components/ClickOutside/ClickOutside.js instead.
-  If you still need to make changes in this file, remove this header so it won't be overridden.
--->
-
 # ClickOutside
 
 [create-ref]: https://reactjs.org/docs/react-api.html#reactcreateref
