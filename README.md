@@ -6,7 +6,10 @@
 
 # react-behave
 
-> A library of behaviors for React applications.
+[![npm version latest](https://img.shields.io/npm/v/react-behave/latest.svg?colorB=success&style=flat-square)](https://www.npmjs.com/package/react-behave)
+[![npm version next](https://img.shields.io/npm/v/react-behave/next.svg?colorB=blue&style=flat-square)](https://www.npmjs.com/package/react-behave/v/1.0.0-alpha.5)
+
+A library of behaviors for React applications.
 
 ⚠️ **Warning:** The current master can represent unreleased features of the library.
 [See lastest release](https://github.com/simonrelet/react-behave/tree/1.0.0-alpha.5).
