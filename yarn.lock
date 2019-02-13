@@ -967,10 +967,10 @@
   version "0.3.2"
   resolved "https://registry.npmjs.org/@sheerun/mutationobserver-shim/-/mutationobserver-shim-0.3.2.tgz#8013f2af54a2b7d735f71560ff360d3a8176a87b"
 
-"@simonrelet/react-libraries@^1.0.0-alpha.3":
-  version "1.0.0-alpha.3"
-  resolved "https://registry.npmjs.org/@simonrelet/react-libraries/-/react-libraries-1.0.0-alpha.3.tgz#72dff35f0956fc56451f84621f74a6d31c4cfdda"
-  integrity sha512-j2QEvrwpO4ug7uiP+dWESlwntf4sOw0u2zIX3AYUyDlqQ/MzUzWSWrY0P87gngT6tmcZlaQ4NJejRgehcYL7+A==
+"@simonrelet/react-libraries@^1.0.0-alpha.4":
+  version "1.0.0-alpha.4"
+  resolved "https://registry.npmjs.org/@simonrelet/react-libraries/-/react-libraries-1.0.0-alpha.4.tgz#ef0811decaf64d2d0c69f0a739ec60b9816746ee"
+  integrity sha512-pxDo2uw4j8N2dK1EvoLvUTalshei0rEu2q3RHDdJl62ge6kgPwYCxLL8GpU/4BO1MXp+EiYB5P2jnKTUvjsCqA==
   dependencies:
     "@babel/core" "^7.2.2"
     "@babel/plugin-proposal-class-properties" "^7.3.0"
