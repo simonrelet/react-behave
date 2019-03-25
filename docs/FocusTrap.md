@@ -61,6 +61,12 @@ The `props` object contains:
   This is required in order for the component to work.
 - `fallbackRef: Object`: The ref to apply on the fallback element if no focusable child has been found.
 
+### `active`: `Boolean` (optional)
+
+_Default value_: `true`
+
+Whether the trap is active or not.
+
 ### `returnFocusOnDeactivate`: `Boolean` (optional)
 
 Whether to give the focus back to the element that initialy had it.

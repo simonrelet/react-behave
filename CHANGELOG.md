@@ -15,6 +15,12 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Enhancements
+
+- Add the possibility to deactivate the `FocusTrap`.
+
 ## 1.0.0-alpha.5 (February 10, 2019)
 
 ### Enhancements

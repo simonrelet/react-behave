@@ -11,7 +11,38 @@ class FocusTrap extends React.Component {
   focusTrap = null
 
   componentDidMount() {
-    const { children, escapeDeactivates, fallbackFocus, ...rest } = this.props
+    if (this.props.active) {
+      this.activate()
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { active } = this.props
+
+    if (prevProps.active !== active) {
+      if (active) {
+        this.previouslyFocusedElement = document.activeElement
+        this.activate()
+      } else {
+        this.deactivate()
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.props.active) {
+      this.deactivate()
+    }
+  }
+
+  activate() {
+    const {
+      active,
+      children,
+      escapeDeactivates,
+      fallbackFocus,
+      ...rest
+    } = this.props
 
     invariant(
       this.trappedElement.current,
@@ -45,8 +76,9 @@ class FocusTrap extends React.Component {
     this.focusTrap.activate()
   }
 
-  componentWillUnmount() {
+  deactivate() {
     this.focusTrap.deactivate()
+    this.focusTrap = null
 
     if (this.previouslyFocusedElement && this.props.returnFocusOnDeactivate) {
       // For some reason if `focus` is called synchronously during the clean up,
@@ -64,8 +96,13 @@ class FocusTrap extends React.Component {
 }
 
 FocusTrap.propTypes = {
+  active: PropTypes.bool,
   children: PropTypes.func.isRequired,
   returnFocusOnDeactivate: PropTypes.bool,
+}
+
+FocusTrap.defaultProps = {
+  active: true,
 }
 
 export default FocusTrap

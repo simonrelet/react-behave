@@ -85,3 +85,32 @@ stories.addDecorator(centered).add('Trap focus', () => (
     }}
   </Component>
 ))
+
+stories.addDecorator(centered).add('Trap focus deactivation', () => (
+  <Component initialState={{ active: false }}>
+    {({ state, setState }) => {
+      const activate = () => setState({ active: true })
+      const deactivate = () => setState({ active: false })
+
+      return (
+        <>
+          <button autoFocus onClick={activate}>
+            Activate trap
+          </button>
+
+          <FocusTrap returnFocusOnDeactivate active={state.active}>
+            {({ ref }) => (
+              <p ref={ref}>
+                Here is a focus trap <a href="#1">with</a> <a href="#2">some</a>{' '}
+                <a href="#3">focusable</a>
+                parts.
+                <br />
+                <button onClick={deactivate}>Deactivate trap</button>
+              </p>
+            )}
+          </FocusTrap>
+        </>
+      )
+    }}
+  </Component>
+))
