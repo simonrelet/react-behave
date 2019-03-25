@@ -1,6 +1,6 @@
 {
   "name": "react-behave",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-alpha.6",
   "description": "A library of behaviors for React applications.",
   "repository": {
     "type": "git",
@@ -34,7 +34,7 @@
     "lint": "run-s lint:*",
     "lint:format": "prettier --list-different \"**/*.{js,ts,json,md}\"",
     "lint:js": "eslint .",
-    "prebump-version": "run-s clean build doc",
+    "prebump-version": "run-s clean build",
     "readme": "react-libraries readme",
     "start": "run-s \"build -w\"",
     "start:storybook": "start-storybook -p 4000 --ci",
