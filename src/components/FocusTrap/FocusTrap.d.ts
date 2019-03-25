@@ -6,6 +6,7 @@ export interface RenderProps {
 }
 
 export interface FocusTrapProps {
+  active?: boolean
   children(props: RenderProps): React.ReactNode
   returnFocusOnDeactivate?: boolean
 }
