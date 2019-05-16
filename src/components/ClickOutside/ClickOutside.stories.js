@@ -1,4 +1,3 @@
-import { action } from '@storybook/addon-actions'
 import centered from '@storybook/addon-centered'
 import { storiesOf } from '@storybook/react'
 import React from 'react'
@@ -12,7 +11,7 @@ const style = {
 }
 
 stories.addDecorator(centered).add('Render function', () => (
-  <ClickOutside onClickOutside={action('onClickOutside')}>
+  <ClickOutside onClickOutside={e => console.log('onClickOutside:', e)}>
     {({ ref }) => (
       <p ref={ref} style={style}>
         Don't click on me.
@@ -23,8 +22,8 @@ stories.addDecorator(centered).add('Render function', () => (
 
 stories.addDecorator(centered).add('Escape key', () => (
   <ClickOutside
-    onClickOutside={action('onClickOutside')}
-    onEscape={action('onEscape')}
+    onClickOutside={e => console.log('onClickOutside:', e)}
+    onEscape={e => console.log('onEscape:', e)}
   >
     {({ ref }) => (
       <p ref={ref} style={style}>

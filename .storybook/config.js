@@ -1,7 +1,6 @@
-import { checkA11y } from '@storybook/addon-a11y'
 import { withKnobs } from '@storybook/addon-knobs'
-import { setOptions } from '@storybook/addon-options'
-import { addDecorator, configure } from '@storybook/react'
+import { addDecorator, addParameters, configure } from '@storybook/react'
+import { create } from '@storybook/theming'
 import pkg from '../package.json'
 import './styles.css'
 
@@ -12,10 +11,17 @@ function loadStories() {
 }
 
 addDecorator(withKnobs)
-addDecorator(checkA11y)
 
-setOptions({
-  name: pkg.name,
+addParameters({
+  options: {
+    panelPosition: 'right',
+    sidebarAnimations: false,
+    theme: create({
+      base: 'light',
+      brandTitle: pkg.name,
+      brandUrl: pkg.homepage,
+    }),
+  },
 })
 
 configure(loadStories, module)
