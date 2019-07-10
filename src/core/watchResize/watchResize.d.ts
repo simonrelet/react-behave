@@ -1,5 +1,5 @@
 export default function watchResize(
   target: HTMLElement,
-  cb: (size: { width: number; height: number }) => void,
+  cb: (size: DOMRect) => void,
   options?: { resizeInterval?: number },
 ): () => void

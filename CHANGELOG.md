@@ -20,6 +20,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 ### Enhancements
 
 - Create `composeRefs` function.
+- The callback parameter of `watchResize` is now given the full [`DOMRect`](https://developer.mozilla.org/en-US/docs/Web/API/DOMRect) object.
 
 ### Bug fixes
 
