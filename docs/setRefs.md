@@ -21,12 +21,12 @@ setRefs(document.getElementById('user'), [callbackRef, objectRef])
 ## Type signature
 
 ```js
-setRefs(ref, handlers): void
+setRefs(element, handlers): void
 ```
 
 **Parameters**:
 
-- `ref: HTMLElement`: The ref to apply.
+- `element: HTMLElement`: The element to apply.
 - `handlers: Array`:
   The handlers.
   All falsy handlers are skipped.

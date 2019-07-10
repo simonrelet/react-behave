@@ -17,6 +17,10 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 ## Unreleased
 
+### Enhancements
+
+- Create `composeRefs` function.
+
 ### Bug fixes
 
 - The callback parameter of `watchResize` is no longer called once the watcher has been stopped.

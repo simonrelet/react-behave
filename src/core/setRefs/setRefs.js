@@ -1,4 +1,4 @@
-function setRefs(ref, handlers) {
+function setRefs(element, handlers) {
   handlers.forEach(handler => {
     // Ingore falsy handlers to allow syntaxes like:
     //
@@ -13,12 +13,12 @@ function setRefs(ref, handlers) {
 
       switch (type) {
         case 'function': {
-          handler(ref)
+          handler(element)
           break
         }
 
         case 'object': {
-          handler.current = ref
+          handler.current = element
           break
         }
 

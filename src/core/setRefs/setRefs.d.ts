@@ -1,8 +1,8 @@
 export interface RefFunction {
-  (ref: HTMLElement): void
+  (element: HTMLElement): void
 }
 
 export default function setRefs(
-  ref: HTMLElement,
+  element: HTMLElement,
   handlers: Array<RefFunction | React.RefObject<HTMLElement>>,
 ): void
