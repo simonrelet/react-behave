@@ -15,6 +15,12 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Bug fixes
+
+- The callback parameter of `watchResize` is no longer called once the watcher has been stopped.
+
 ## 1.0.0-alpha.7 (March 26, 2019)
 
 ### Bug fixes

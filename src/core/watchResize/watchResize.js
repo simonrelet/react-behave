@@ -17,13 +17,13 @@ const defaultOptions = {
 
 function watchResize(target, cb, options = {}) {
   const opts = { ...defaultOptions, ...options }
-  const resizeObserver = new ResizeObserver(
-    debounce(handleResize(target, cb), opts.resizeInterval),
-  )
+  const observer = debounce(handleResize(target, cb), opts.resizeInterval)
+  const resizeObserver = new ResizeObserver(observer)
 
   resizeObserver.observe(target)
 
   return () => {
+    observer.cancel()
     resizeObserver.unobserve(target)
   }
 }
