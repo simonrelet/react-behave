@@ -1,1 +1,1 @@
-export { default } from './MergeRefs'
+export * from './MergeRefs'

@@ -1,9 +1,9 @@
 import { object, select } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import React, { Component } from 'react'
-import watchResize from '../../core/watchResize'
-import getScreenSize from '../../core/getScreenSize'
-import Responsive from './Responsive'
+import { watchResize } from '../../core/watchResize'
+import { getScreenSize } from '../../core/getScreenSize'
+import { Responsive } from './Responsive'
 
 const defaultScreenSizes = Responsive.defaultProps.screenSizes
 

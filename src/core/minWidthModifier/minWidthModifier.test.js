@@ -1,4 +1,4 @@
-import minWidthModifier from './minWidthModifier'
+import { minWidthModifier } from './minWidthModifier'
 
 describe('minWidthModifier', () => {
   it('adds a `minWidth` if the drop down is smaller or equal than the reference', () => {

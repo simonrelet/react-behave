@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-class ClickOutside extends React.Component {
+export class ClickOutside extends React.Component {
   elementRef = React.createRef()
 
   componentDidMount() {
@@ -52,5 +52,3 @@ ClickOutside.propTypes = {
   onClickOutside: PropTypes.func.isRequired,
   onEscape: PropTypes.func,
 }
-
-export default ClickOutside

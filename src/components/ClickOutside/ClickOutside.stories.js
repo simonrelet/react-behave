@@ -1,7 +1,7 @@
 import centered from '@storybook/addon-centered'
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import ClickOutside from './ClickOutside'
+import { ClickOutside } from './ClickOutside'
 
 const stories = storiesOf('ClickOutside', module)
 

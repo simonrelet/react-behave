@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import setRefs from '../../core/setRefs'
+import { setRefs } from '../../core/setRefs'
 
-class MergeRefs extends React.Component {
+export class MergeRefs extends React.Component {
   mergeRefs = ref => {
     setRefs(ref, this.props.refs)
   }
@@ -18,5 +18,3 @@ MergeRefs.propTypes = {
     PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   ).isRequired,
 }
-
-export default MergeRefs

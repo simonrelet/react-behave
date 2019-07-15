@@ -1,1 +1,1 @@
-export { default } from './minWidthModifier'
+export * from './minWidthModifier'

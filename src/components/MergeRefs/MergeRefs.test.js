@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-testing-library'
-import MergeRefs from './MergeRefs'
+import { MergeRefs } from './MergeRefs'
 
 function createProps(props) {
   return {

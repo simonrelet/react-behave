@@ -3,7 +3,7 @@ import isEqual from 'lodash.isequal'
 import memoize from 'memoize-one'
 import PropTypes from 'prop-types'
 import React from 'react'
-import getScreenSize from '../../core/getScreenSize'
+import { getScreenSize } from '../../core/getScreenSize'
 
 function smallerOrEqualTo(screenSizes, refScreenSize, screenSize) {
   return screenSizes[screenSize] <= screenSizes[refScreenSize]
@@ -13,7 +13,7 @@ function biggerOrEqualTo(screenSizes, refScreenSize, screenSize) {
   return screenSizes[screenSize] >= screenSizes[refScreenSize]
 }
 
-class Responsive extends React.Component {
+export class Responsive extends React.Component {
   getScreenSize = memoize(getScreenSize, isEqual)
 
   componentDidMount() {
@@ -71,5 +71,3 @@ Responsive.defaultProps = {
     xl: 1920,
   },
 }
-
-export default Responsive

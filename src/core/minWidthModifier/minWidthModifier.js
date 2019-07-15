@@ -1,6 +1,6 @@
 const VERTICAL_REGEX = /^(top|bottom)/
 
-const minWidthModifier = {
+export const minWidthModifier = {
   enabled: true,
   fn(data) {
     const referenceWidth = Math.floor(data.offsets.reference.width)
@@ -19,5 +19,3 @@ const minWidthModifier = {
   // https://popper.js.org/popper-documentation.html#modifiers..computeStyle
   order: 851,
 }
-
-export default minWidthModifier

@@ -1,9 +1,7 @@
-import setRefs from '../setRefs'
+import { setRefs } from '../setRefs'
 
-function composeRefs(handlers = []) {
+export function composeRefs(handlers = []) {
   return element => {
     setRefs(element, handlers)
   }
 }
-
-export default composeRefs

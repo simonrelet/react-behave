@@ -6,7 +6,7 @@ const defaultOptions = {
   resizeInterval: 166,
 }
 
-function watchResize(target, cb, options = {}) {
+export function watchResize(target, cb, options = {}) {
   const opts = { ...defaultOptions, ...options }
 
   function handleResize(entries) {
@@ -25,5 +25,3 @@ function watchResize(target, cb, options = {}) {
     resizeObserver.unobserve(target)
   }
 }
-
-export default watchResize

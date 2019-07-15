@@ -11,6 +11,4 @@ export interface ResponsiveProps {
   screenSizes: { [key: string]: number }
 }
 
-declare const Responsive: React.ComponentType<ResponsiveProps>
-
-export default Responsive
+export declare const Responsive: React.ComponentType<ResponsiveProps>

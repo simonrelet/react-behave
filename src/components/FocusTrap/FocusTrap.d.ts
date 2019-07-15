@@ -11,6 +11,4 @@ export interface FocusTrapProps {
   returnFocusOnDeactivate?: boolean
 }
 
-declare const FocusTrap: React.ComponentType<FocusTrapProps>
-
-export default FocusTrap
+export declare const FocusTrap: React.ComponentType<FocusTrapProps>

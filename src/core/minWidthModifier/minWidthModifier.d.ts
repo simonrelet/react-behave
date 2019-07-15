@@ -4,6 +4,4 @@ export interface Modifier {
   fn(data: object): object
 }
 
-declare const minWidthModifier: Modifier
-
-export default minWidthModifier
+export declare const minWidthModifier: Modifier

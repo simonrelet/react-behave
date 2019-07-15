@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-testing-library'
-import Responsive from './Responsive'
+import { Responsive } from './Responsive'
 
 describe('<Responsive />', () => {
   let initialInnerWidth

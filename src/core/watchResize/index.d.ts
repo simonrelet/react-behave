@@ -1,1 +1,1 @@
-export { default } from './watchResize'
+export * from './watchResize'

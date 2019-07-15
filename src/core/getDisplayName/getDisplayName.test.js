@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import getDisplayName from './getDisplayName'
+import { getDisplayName } from './getDisplayName'
 
 describe('getDisplayName', () => {
   describe('using a defined `displayName`', () => {

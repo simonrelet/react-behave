@@ -1,6 +1,6 @@
 import React from 'react'
 import { fireEvent, render } from 'react-testing-library'
-import ClickOutside from './ClickOutside'
+import { ClickOutside } from './ClickOutside'
 
 function createProps(props) {
   return {

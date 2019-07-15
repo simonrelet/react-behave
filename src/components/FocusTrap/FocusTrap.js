@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import warning from 'warning'
 
-class FocusTrap extends React.Component {
+export class FocusTrap extends React.Component {
   previouslyFocusedElement = document.activeElement
   trappedElement = React.createRef()
   fallbackElement = React.createRef()
@@ -104,5 +104,3 @@ FocusTrap.propTypes = {
 FocusTrap.defaultProps = {
   active: true,
 }
-
-export default FocusTrap

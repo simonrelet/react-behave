@@ -1,4 +1,4 @@
-import setRefs from './setRefs'
+import { setRefs } from './setRefs'
 
 describe('setRefs', () => {
   it('calls the callback ref with the ref', () => {

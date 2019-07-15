@@ -1,9 +1,7 @@
 import callHandlers from '../callHandlers'
 
-function composeHandlers(handlers = []) {
+export function composeHandlers(handlers = []) {
   return event => {
     callHandlers(event, handlers)
   }
 }
-
-export default composeHandlers

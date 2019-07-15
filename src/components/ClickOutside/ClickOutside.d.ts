@@ -10,6 +10,4 @@ export interface ClickOutsideProps {
   onEscape?(event: React.KeyboardEvent): void
 }
 
-declare const ClickOutside: React.ComponentType<ClickOutsideProps>
-
-export default ClickOutside
+export declare const ClickOutside: React.ComponentType<ClickOutsideProps>

@@ -1,1 +1,1 @@
-export { default } from './composeHandlers'
+export * from './composeHandlers'

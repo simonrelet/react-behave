@@ -1,4 +1,4 @@
-function setRefs(element, handlers) {
+export function setRefs(element, handlers) {
   handlers.forEach(handler => {
     // Ingore falsy handlers to allow syntaxes like:
     //
@@ -30,5 +30,3 @@ function setRefs(element, handlers) {
     }
   })
 }
-
-export default setRefs

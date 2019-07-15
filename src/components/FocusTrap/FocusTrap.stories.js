@@ -2,9 +2,9 @@ import centered from '@storybook/addon-centered'
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Component from '@reactions/component'
-import FocusTrap from './FocusTrap'
-import ClickOutside from '../ClickOutside'
-import MergeRefs from '../MergeRefs'
+import { FocusTrap } from './FocusTrap'
+import { ClickOutside } from '../ClickOutside'
+import { MergeRefs } from '../MergeRefs'
 
 const stories = storiesOf('FocusTrap', module)
 

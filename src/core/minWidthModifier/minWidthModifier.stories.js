@@ -2,7 +2,7 @@ import { text } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import { Manager, Popper, Reference } from 'react-popper'
-import minWidthModifier from './minWidthModifier'
+import { minWidthModifier } from './minWidthModifier'
 
 const stories = storiesOf('minWidthModifier', module)
 
