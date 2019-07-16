@@ -1,7 +1,6 @@
 export * from './callHandlers'
 export * from './composeHandlers'
 export * from './composeRefs'
-export * from './getDisplayName'
 export * from './getScreenSize'
 export * from './minWidthModifier'
 export * from './setRefs'
