@@ -8,28 +8,41 @@ Compose the specified handlers into a single handler function.
 import React from 'react'
 import { composeHandlers } from 'react-behave'
 
-function MyComponent({ children }) {
-  function handleClick(event) {
+function FancyButton({ onFocus, ...rest }) {
+  function handleFocus(event) {
     console.log('event:', event)
   }
 
-  const child = React.Children.only(children)
-  return React.cloneElement(child, {
-    onClick: composeHandlers([handleClick, child.onClick]),
-  })
+  return <button onFocus={composeHandlers([handleFocus, onFocus])} {...rest} />
 }
 ```
 
-## Type signature
+## Parameters
 
-```js
-composeHandlers(handlers): (event) => void
-```
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr>
+      <td><code>handlers</code></td>
+      <td>
+        <strong>Array&lt;((event: any) => void) | null&gt;</strong>
+        <p>
+          The handlers to compose.
+          All falsy handlers are skipped.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-**Parameters**:
+## Return value
 
-- `handlers: Array`:
-  The handlers to compose.
-  All falsy handlers are skipped.
+**(event: any) => void**
 
-**Return** `Function`: A composed event handler.
+A composed event handler.
