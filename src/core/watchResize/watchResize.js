@@ -1,4 +1,4 @@
-import debounce from 'lodash.debounce'
+import throttle from 'lodash.throttle'
 import ResizeObserver from 'resize-observer-polyfill'
 
 const defaultOptions = {
@@ -15,7 +15,7 @@ export function watchResize(target, cb, options = {}) {
     }
   }
 
-  const observer = debounce(handleResize, opts.resizeInterval)
+  const observer = throttle(handleResize, opts.resizeInterval)
   const resizeObserver = new ResizeObserver(observer)
 
   resizeObserver.observe(target)

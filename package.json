@@ -45,15 +45,8 @@
     "react-dom": "^16.8.0"
   },
   "dependencies": {
-    "focus-trap": "^5.0.0",
-    "invariant": "^2.2.4",
-    "lodash.debounce": "^4.0.8",
-    "lodash.isequal": "^4.5.0",
-    "lodash.omit": "^4.5.0",
-    "memoize-one": "^5.0.4",
-    "prop-types": "^15.7.2",
-    "resize-observer-polyfill": "^1.5.1",
-    "warning": "^4.0.3"
+    "lodash.throttle": "^4.1.1",
+    "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
