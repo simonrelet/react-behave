@@ -2,8 +2,8 @@ import centered from '@storybook/addon-centered/react'
 import { object } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import React from 'react'
-import { getScreenSize } from '../../core/getScreenSize'
-import { watchResize } from '../../core/watchResize'
+import { getScreenSize } from '../getScreenSize'
+import { watchResize } from '../watchResize'
 
 const DEFAULT_SCREEN_SIZES = {
   xs: 0,
