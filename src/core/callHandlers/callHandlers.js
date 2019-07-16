@@ -1,4 +1,4 @@
-export function callHandlers(event, handlers = []) {
+export function callHandlers(event, handlers) {
   handlers.forEach(handler => {
     // Ingore falsy handlers to allow syntaxes like:
     //
