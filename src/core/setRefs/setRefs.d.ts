@@ -1,8 +1,10 @@
-export interface RefFunction {
-  (element: HTMLElement): void
+import * as React from 'react'
+
+export interface RefFunction<ELEMENT> {
+  (element: ELEMENT): void
 }
 
-export function setRefs(
-  element: HTMLElement,
-  handlers: Array<RefFunction | React.RefObject<HTMLElement>>,
+export function setRefs<ELEMENT>(
+  element: ELEMENT | null,
+  handlers: Array<RefFunction<ELEMENT> | React.RefObject<ELEMENT> | null>,
 ): void
