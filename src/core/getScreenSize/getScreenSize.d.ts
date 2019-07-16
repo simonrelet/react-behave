@@ -1,4 +1,8 @@
+export interface ScreenSizes {
+  [key: string]: number
+}
+
 export function getScreenSize(
-  screenSizes: { [key: string]: number },
+  screenSizes: ScreenSizes,
   width: number,
 ): string | null

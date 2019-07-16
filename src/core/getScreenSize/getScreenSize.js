@@ -1,5 +1,8 @@
 export function getScreenSize(screenSizes, width) {
-  return Object.keys(screenSizes)
+  const entry = Object.entries(screenSizes)
+    .sort((a, b) => a[1] - b[1])
     .reverse()
-    .find(screenSizeName => width >= screenSizes[screenSizeName])
+    .find(([, screenSizeWidth]) => width >= screenSizeWidth)
+
+  return entry == null ? null : entry[0]
 }
