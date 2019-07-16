@@ -5,40 +5,71 @@ Watch for resizes on a target element.
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React from 'react'
 import { watchResize } from 'react-behave'
 
-class App extends Component {
-  ref = React.createRef(null)
-  stopWatching = null
+function App() {
+  const element = React.useRef(null)
+  const [size, setSize] = React.useState(null)
 
-  componentDidMount() {
-    this.stopWatching = watchResize(this.ref.current, size => {
-      console.log(size)
-    })
-  }
+  React.useEffect(() => {
+    return watchResize(element.current, setSize)
+  }, [])
 
-  componentWillUnmount() {
-    this.stopWatching()
-  }
-
-  render() {
-    return <div ref={this.ref} />
-  }
+  return <div ref={element}>{JSON.stringify(size)}</div>
 }
 ```
 
-## Type signature
+## Parameters
 
-```js
-watchResize(target, cb, [options]): function
-```
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr>
+      <td><code>target</code></td>
+      <td>
+        <strong>HTMLElement</strong>
+        <p>The target to watch.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code>cb</code></td>
+      <td>
+        <strong>(size: DOMRect) => void</strong>
+        <p>
+          Invoked each time the target is resized.
+          See the <a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMRect"><code>DOMRect</code></a> API.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code>options?</code></td>
+      <td>
+        <strong>object</strong> <em>= <code>{}</code></em>
+        <p>Watch options.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code>options?.resizeInterval?</code></td>
+      <td>
+        <strong>number</strong> <em>= <code>166</code></em>
+        <p>
+          The minimum interval of time between two resizes.
+          <code>166</code> corresponds to 10 frames at 60 Hz.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-**Parameters**:
+## Return value
 
-- `target: Object`: The target to watch.
-- `cb: function`: Invoked each time the target is resized. The parameter is an [`DOMRect`](https://developer.mozilla.org/en-US/docs/Web/API/DOMRect).
-- `[options]: Object`: Options
-  - `[.resizeInterval]: Number`: The minimum interval between two resizes.
+**() => void**
 
-**Return** `function`: A callback to stop watching.
+A callback to stop watching.

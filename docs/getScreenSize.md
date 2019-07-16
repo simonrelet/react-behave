@@ -59,7 +59,7 @@ function App() {
 ### Responsive components
 
 `getScreenSize` can also be used to have responsive components.
-See [`watchResize`](/watchResize.md).
+See [`watchResize`](watchResize.md).
 
 ```js
 import React from 'react'
