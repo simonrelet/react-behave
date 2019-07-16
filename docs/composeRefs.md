@@ -1,6 +1,7 @@
 # composeRefs
 
 Compose the specified ref handlers into a single ref handler function.
+Each handler can either be a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) or an object created with [`React.createRef`](https://reactjs.org/docs/react-api.html#reactcreateref).
 
 ## Usage
 
@@ -8,27 +9,42 @@ Compose the specified ref handlers into a single ref handler function.
 import React from 'react'
 import { composeRefs } from 'react-behave'
 
-function MyComponent({ children }) {
-  const myElement = React.useRef(null)
-  const [myStateElement, setMyStateElement] = React.useState(null)
-  const child = React.Children.only(children)
+const FancyButton = React.forwardRef((props, ref) => {
+  const elementRef = React.useRef(null)
+  const [elementState, setElementState] = React.useState(null)
 
-  return React.cloneElement(child, {
-    ref: composeRefs([myElement, setMyStateElement, child.ref]),
-  })
-}
+  return (
+    <button ref={composeRefs([elementRef, setElementState, ref])} {...props} />
+  )
+})
 ```
 
-## Type signature
+## Parameters
 
-```js
-composeRefs(handlers): (element) => void
-```
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr>
+      <td><code>handlers</code></td>
+      <td>
+        <strong>Array&lt;React.RefObject | ((value: any) => void) | null&gt;</strong>
+        <p>
+          The handlers to call with the value.
+          All falsy handlers are skipped.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-**Parameters**:
+## Return value
 
-- `handlers: Array`:
-  The handlers to compose.
-  All falsy handlers are skipped.
+**(value: any) => void**
 
-**Return** `Function`: A composed ref handler.
+A composed ref handler.
