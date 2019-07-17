@@ -2,6 +2,11 @@ const VERTICAL_REGEX = /^(top|bottom)/
 
 export const minWidthModifier = {
   enabled: true,
+
+  // Just after the `computeStyle` modifier (850)
+  // https://popper.js.org/popper-documentation.html#modifiers..computeStyle
+  order: 851,
+
   fn(data) {
     const referenceWidth = Math.floor(data.offsets.reference.width)
     const dropDownWidth = Math.floor(data.offsets.popper.width)
@@ -15,7 +20,4 @@ export const minWidthModifier = {
 
     return data
   },
-  // Just after the `computeStyle` modifier (850)
-  // https://popper.js.org/popper-documentation.html#modifiers..computeStyle
-  order: 851,
 }

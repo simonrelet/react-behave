@@ -1,6 +1,6 @@
 # minWidthModifier
 
-A [PopperJS modifier](https://popper.js.org/popper-documentation.html#modifiers)
+A [Popper.js modifier](https://popper.js.org/popper-documentation.html#modifiers)
 that ensures for top or bottom placements that the width of the popper is
 greater or equal to the width of the reference.
 
@@ -8,36 +8,34 @@ greater or equal to the width of the reference.
 
 ```jsx
 import React from 'react'
-import { Manager, Popper, Reference } from 'react-popper'
-import { minWidthModifier } from 'react-behave'
+import { minWidthModifier, usePopper } from 'react-behave'
+
+// Prefer using a constant to avoid creating new references on each render.
+// Any other Popper.js modifier can be added here.
+const MODIFIERS = { minWidthModifier }
 
 function DropdownButton() {
+  const [reference, setReference] = React.useState(null)
+  const [popper, setPopper] = React.useState(null)
   const [open, setOpen] = React.useState(false)
 
-  function toggleDropdown() {
-    setOpen(open => !open)
-  }
+  const { style } = usePopper(reference, popper, {
+    placement: 'bottom-start',
+    modifiers: MODIFIERS,
+  })
 
   return (
-    <Manager>
-      <Reference>
-        {({ ref }) => (
-          <button ref={ref} onClick={toggleDropdown}>
-            Open dropdown
-          </button>
-        )}
-      </Reference>
+    <>
+      <button ref={setReference} onClick={() => setOpen(open => !open)}>
+        Open dropdown
+      </button>
 
       {open && (
-        <Popper placement="bottom-start" modifiers={{ minWidthModifier }}>
-          {({ ref, style }) => (
-            <div ref={ref} style={style}>
-              Popper element
-            </div>
-          )}
-        </Popper>
+        <div ref={setPopper} style={style}>
+          Popper element
+        </div>
       )}
-    </Manager>
+    </>
   )
 }
 ```

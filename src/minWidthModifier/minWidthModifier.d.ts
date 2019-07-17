@@ -1,7 +1,3 @@
-export interface Modifier {
-  enabled: boolean
-  order: number
-  fn(data: object): object
-}
+import { BaseModifier } from 'popper.js'
 
-export declare const minWidthModifier: Modifier
+export declare const minWidthModifier: BaseModifier
