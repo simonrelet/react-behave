@@ -18,14 +18,16 @@
   ],
   "main": "build/cjs",
   "module": "build/es",
+  "types": "index.d.ts",
   "license": "MIT",
   "files": [
     "build",
-    "docs"
+    "docs",
+    "index.d.ts"
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "react-libraries build -c \"src/**/*.ts\"",
+    "build": "react-libraries build",
     "build:clean": "run-s clean build",
     "build:storybook": "build-storybook -o build-storybook",
     "bump-version": "react-libraries bump-version",
