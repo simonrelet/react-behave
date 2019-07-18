@@ -67,3 +67,19 @@ export function watchResize(
   cb: (size: DOMRect) => void,
   options?: { resizeInterval?: number },
 ): () => void
+
+export type AsyncState<VALUE_TYPE> = {
+  value: VALUE_TYPE | null
+  error: Error | null
+  pending: boolean
+}
+
+export type UseAsyncMemoOptions<VALUE_TYPE> = {
+  initialValue?: VALUE_TYPE | null
+}
+
+export function useAsyncMemo<VALUE_TYPE>(
+  factory: () => Promise<VALUE_TYPE>,
+  deps: React.DependencyList,
+  options?: UseAsyncMemoOptions<VALUE_TYPE>,
+): [VALUE_TYPE | null, AsyncState<VALUE_TYPE>]
