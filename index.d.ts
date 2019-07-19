@@ -83,3 +83,13 @@ export function useAsyncMemo<VALUE_TYPE>(
   deps: React.DependencyList,
   options?: UseAsyncMemoOptions<VALUE_TYPE>,
 ): [VALUE_TYPE | null, AsyncState<VALUE_TYPE>]
+
+export type UseAsyncCallbackOptions<VALUE_TYPE> = {
+  initialValue?: VALUE_TYPE | null
+}
+
+export function useAsyncCallback<VALUE_TYPE>(
+  callback: (...arguments: any[]) => Promise<VALUE_TYPE>,
+  deps: React.DependencyList,
+  options?: UseAsyncCallbackOptions<VALUE_TYPE>,
+): [(...arguments: any[]) => Promise<VALUE_TYPE>, AsyncState<VALUE_TYPE>]
