@@ -15,6 +15,30 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Breaking changes
+
+- The `getDisplayName` function has been removed.
+- The `ClickOutside` component has been removed.
+- The `MergeRefs` component has been removed.
+- The `Responsive` component has been removed.
+- The `FocusTrap` component has been removed.
+
+### Enhancements
+
+- Add `usePopper` hook.
+- Add `useAsyncMemo` hook.
+- Add `useAsyncCallback` hook.
+
+### Bug fixes
+
+- The typings are no longer duplicated in CommonJS and ES modules folders.
+
+### Documentation
+
+- The documentation has been rewritten.
+
 ## 1.0.0-alpha.8 (July 10, 2019)
 
 ### Enhancements
