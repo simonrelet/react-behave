@@ -16,6 +16,14 @@ export function useAsyncCallback(callback, deps, { initialValue = null } = {}) {
 
   const cancelCurrentCallback = React.useRef(null)
 
+  React.useEffect(() => {
+    return () => {
+      if (cancelCurrentCallback.current != null) {
+        cancelCurrentCallback.current()
+      }
+    }
+  }, [])
+
   const run = React.useCallback(
     async (...args) => {
       if (cancelCurrentCallback.current != null) {
