@@ -9,23 +9,19 @@ import React from 'react'
 import { usePopper } from 'react-behave'
 
 function DropdownButton() {
-  // Use states to manage the HTML elements to trigger updates and make sure
-  // `usePopper` is up to date.
-  const [reference, setReference] = React.useState(null)
-  const [popper, setPopper] = React.useState(null)
-
-  const [open, setOpen] = React.useState(false)
-
-  const { style } = usePopper(reference, popper)
+  const referenceRef = React.useRef(null)
+  const popperRef = React.useRef(null)
+  const [opened, setOpened] = React.useState(false)
+  const { style } = usePopper(referenceRef, popperRef, { disabled: !opened })
 
   return (
     <>
-      <button ref={setReference} onClick={() => setOpen(open => !open)}>
+      <button ref={referenceRef} onClick={() => setOpened(opened => !opened)}>
         Open dropdown
       </button>
 
-      {open && (
-        <div ref={setPopper} style={style}>
+      {opened && (
+        <div ref={popperRef} style={style}>
           Popper element
         </div>
       )}
@@ -46,21 +42,21 @@ function DropdownButton() {
   
   <tbody>
     <tr>
-      <td><code>reference</code></td>
+      <td><code>referenceRef</code></td>
       <td>
-        <strong>HTMLElement | <a href="https://popper.js.org/popper-documentation.html#referenceObject">ReferenceObject</a> | null</strong>
+        <strong>MutableRefObject&lt;HTMLElement | <a href="https://popper.js.org/popper-documentation.html#referenceObject">ReferenceObject</a> | null&gt;</strong>
         <p>
-          The reference element used to position the popper.
+          Ref object of the reference element used to position the popper.
           See more in <a href="https://popper.js.org/popper-documentation.html#new_Popper_new">Popper.js's documentation</a>.
         </p>
       </td>
     </tr>
     <tr>
-      <td><code>popper</code></td>
+      <td><code>popperRef</code></td>
       <td>
-        <strong>HTMLElement | null</strong>
+        <strong>MutableRefObject&lt;HTMLElement | null&gt;</strong>
         <p>
-          The HTML element used as the popper.
+          Ref object of the HTML element used as the popper.
           See more in <a href="https://popper.js.org/popper-documentation.html#new_Popper_new">Popper.js's documentation</a>.
         </p>
       </td>
@@ -73,11 +69,21 @@ function DropdownButton() {
       </td>
     </tr>
     <tr>
-      <td><code>options?.arrow?</code></td>
+      <td><code>options?.disabled?</code></td>
       <td>
-        <strong>string | HTMLElement | null</strong>
+        <strong>boolean</strong> <em>= <code>false</code></em>
         <p>
-          Selector or node used as arrow.
+          Whether the entire hook should be disabled or not.
+          You can set this option to <code>true</code> if you need to "delay" the positionning until elements are ready.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code>options?.arrowRef?</code></td>
+      <td>
+        <strong>MutableRefObject&lt;string | HTMLElement | null&gt;</strong>
+        <p>
+          Ref object of the selector or node used as arrow.
           See more in <a href="https://popper.js.org/popper-documentation.html#modifiers..arrow.element">Popper.js's documentation</a>.
         </p>
       </td>
@@ -147,14 +153,14 @@ This object contains the following properties:
     <tr>
       <td><code>style</code></td>
       <td>
-        <strong>object</strong>
+        <strong><a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration">CSSStyleDeclaration</a></strong>
         <p>The CSS property to apply to the popper.</p>
       </td>
     </tr>
     <tr>
       <td><code>arrowStyle</code></td>
       <td>
-        <strong>object</strong>
+        <strong><a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration">CSSStyleDeclaration</a></strong>
         <p>The CSS property to apply to the popper arrow.</p>
       </td>
     </tr>

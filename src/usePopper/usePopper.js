@@ -39,87 +39,87 @@ function getCurrentValue(value, newValue) {
 
 const DEFAULT_MODIFIERS = {}
 
-usePopper.placements = PopperJS.placements
+usePopper.PLACEMENTS = PopperJS.placements
 
 export function usePopper(
-  reference,
-  popper,
+  referenceRef,
+  popperRef,
   {
-    arrow,
+    disabled = false,
+    arrowRef,
     placement = 'bottom',
     modifiers = DEFAULT_MODIFIERS,
     eventsEnabled = true,
     positionFixed = false,
   } = {},
 ) {
-  const popperJS = React.useRef(null)
+  const popperJSRef = React.useRef(null)
   const [state, setState] = React.useState(INITIAL_STATE)
 
-  React.useEffect(() => {
-    if (reference != null && popper != null) {
-      popperJS.current = new PopperJS(reference, popper, {
-        placement,
-        eventsEnabled,
-        positionFixed,
-        modifiers: {
-          ...modifiers,
-          arrow: {
-            enabled: arrow != null,
-            element: arrow,
-            ...modifiers.arrow,
-          },
-          applyStyle: {
-            // We apply the styles ourselves.
-            enabled: false,
-          },
-          updateStateModifier: {
-            enabled: true,
-            // The same as `applyStyle`.
-            // https://popper.js.org/popper-documentation.html#modifiers..applyStyle.order
-            order: 900,
-            fn: data => {
-              // The popper element might have lost his parent during the
-              // computation of the position.
-              // It can be due to a fast removal of the popper.
-              // In case it happenned we don't dispatch the computed state.
-              if (data.instance.popper.parentElement != null) {
-                setState(updateState(data))
-              }
+  React.useEffect(
+    () => {
+      if (
+        !disabled &&
+        referenceRef.current != null &&
+        popperRef.current != null
+      ) {
+        popperJSRef.current = new PopperJS(
+          referenceRef.current,
+          popperRef.current,
+          {
+            placement,
+            eventsEnabled,
+            positionFixed,
+            modifiers: {
+              ...modifiers,
+              arrow: {
+                enabled: arrowRef != null && arrowRef.current != null,
+                element: arrowRef == null ? null : arrowRef.current,
+                ...modifiers.arrow,
+              },
+              applyStyle: {
+                // We apply the styles ourselves.
+                enabled: false,
+              },
+              updateStateModifier: {
+                enabled: true,
+                // The same as `applyStyle`.
+                // https://popper.js.org/popper-documentation.html#modifiers..applyStyle.order
+                order: 900,
+                fn: data => {
+                  // The popper element might have lost his parent during the
+                  // computation of the position.
+                  // It can be due to a fast removal of the popper.
+                  // In case it happenned we don't dispatch the computed state.
+                  if (data.instance.popper.parentElement != null) {
+                    setState(updateState(data))
+                  }
 
-              return data
+                  return data
+                },
+              },
             },
           },
-        },
-      })
+        )
 
-      return () => {
-        setState(INITIAL_STATE)
-        popperJS.current.destroy()
-        popperJS.current = null
+        return () => {
+          setState(INITIAL_STATE)
+          popperJSRef.current.destroy()
+          popperJSRef.current = null
+        }
       }
-    }
-  }, [
-    reference,
-    popper,
-    arrow,
-    placement,
-    modifiers,
-    eventsEnabled,
-    positionFixed,
-  ])
+    },
+
+    // 'arrowRef', 'popperRef', and 'referenceRef' are React Ref objects.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [disabled, placement, modifiers, eventsEnabled, positionFixed],
+  )
 
   const scheduleUpdate = React.useCallback(() => {
-    if (popperJS.current != null) {
-      popperJS.current.scheduleUpdate()
+    if (popperJSRef.current != null) {
+      popperJSRef.current.scheduleUpdate()
     }
   }, [])
-
-  React.useLayoutEffect(() => {
-    // Schedule an update if the placement has changed.
-    // The styles (i.e. margins) of the popper might depend on the placement
-    // which can affect its position.
-    scheduleUpdate()
-  }, [scheduleUpdate, state.placement])
 
   return { ...state, scheduleUpdate }
 }

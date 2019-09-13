@@ -1,8 +1,7 @@
-import { boolean, select, text } from '@storybook/addon-knobs'
+import { select, text } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 import { scrollableDecorator } from '../../.storybook/decorators'
-import { minWidthModifier } from '../minWidthModifier'
 import { usePopper } from './usePopper'
 
 const stories = storiesOf('usePopper', module)
@@ -10,27 +9,18 @@ stories.addDecorator(scrollableDecorator)
 
 stories.add('Place a popper next to a reference', () => (
   <PopperStory
-    placement={select('placement', usePopper.placements, 'bottom')}
+    placement={select('placement', usePopper.PLACEMENTS, 'bottom')}
     referenceText={text('Reference text', 'Reference')}
     popperText={text('Popper text', 'Popper')}
-    addMinWidthModifier={!!boolean('Add minWidthModifier', false)}
   />
 ))
 
-const POPPER_MODIFIERS = { minWidthModifier }
+function PopperStory({ placement, referenceText, popperText }) {
+  const referenceRef = React.useRef(null)
+  const popperRef = React.useRef(null)
 
-function PopperStory({
-  placement,
-  referenceText,
-  popperText,
-  addMinWidthModifier,
-}) {
-  const [reference, setReference] = React.useState(null)
-  const [popper, setPopper] = React.useState(null)
-
-  const { style, scheduleUpdate } = usePopper(reference, popper, {
+  const { style, scheduleUpdate } = usePopper(referenceRef, popperRef, {
     placement,
-    modifiers: addMinWidthModifier ? POPPER_MODIFIERS : undefined,
   })
 
   React.useLayoutEffect(() => {
@@ -39,8 +29,8 @@ function PopperStory({
 
   return (
     <>
-      <Reference ref={setReference}>{referenceText}</Reference>
-      <Popper ref={setPopper} style={style}>
+      <Reference ref={referenceRef}>{referenceText}</Reference>
+      <Popper ref={popperRef} style={style}>
         {popperText}
       </Popper>
     </>
@@ -76,3 +66,39 @@ const Block = React.forwardRef(({ style, ...props }, ref) => {
     />
   )
 })
+
+stories.add('Toggle popper', () => (
+  <TogglePopperStory
+    placement={select('placement', usePopper.PLACEMENTS, 'bottom')}
+    referenceText={text('Reference text', 'Open popper')}
+    popperText={text('Popper text', 'Popper')}
+  />
+))
+
+function TogglePopperStory({ placement, referenceText, popperText }) {
+  const referenceRef = React.useRef(null)
+  const popperRef = React.useRef(null)
+  const [opened, setOpened] = React.useState(false)
+  const { style, scheduleUpdate } = usePopper(referenceRef, popperRef, {
+    disabled: !opened,
+    placement,
+  })
+
+  React.useLayoutEffect(() => {
+    scheduleUpdate()
+  }, [scheduleUpdate, referenceText, popperText])
+
+  return (
+    <>
+      <button ref={referenceRef} onClick={() => setOpened(opened => !opened)}>
+        {referenceText}
+      </button>
+
+      {opened && (
+        <div ref={popperRef} style={style}>
+          {popperText}
+        </div>
+      )}
+    </>
+  )
+}

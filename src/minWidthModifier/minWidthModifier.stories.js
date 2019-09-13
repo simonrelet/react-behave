@@ -18,23 +18,24 @@ stories.add('Apply min width if needed', () => (
 const MODIFIERS = { minWidthModifier }
 
 function DropdownButton({ buttonText, popperText }) {
-  const [reference, setReference] = React.useState(null)
-  const [popper, setPopper] = React.useState(null)
-  const [open, setOpen] = React.useState(false)
+  const referenceRef = React.useRef(null)
+  const popperRef = React.useRef(null)
+  const [opened, setOpened] = React.useState(false)
 
-  const { style } = usePopper(reference, popper, {
+  const { style } = usePopper(referenceRef, popperRef, {
+    disabled: !opened,
     placement: 'bottom-start',
     modifiers: MODIFIERS,
   })
 
   return (
     <>
-      <button ref={setReference} onClick={() => setOpen(open => !open)}>
+      <button ref={referenceRef} onClick={() => setOpened(opened => !opened)}>
         {buttonText}
       </button>
 
-      {open && (
-        <div ref={setPopper} style={{ ...style, backgroundColor: '#eee' }}>
+      {opened && (
+        <div ref={popperRef} style={{ ...style, backgroundColor: '#eee' }}>
           {popperText}
         </div>
       )}

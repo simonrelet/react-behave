@@ -1,4 +1,4 @@
-import { BaseModifier, Modifiers, Placement, ReferenceObject } from 'popper.js'
+import * as PopperJS from 'popper.js'
 import * as React from 'react'
 
 /**
@@ -38,12 +38,13 @@ export function getScreenSize(
   width: number,
 ): string | null
 
-export declare const minWidthModifier: BaseModifier
+export declare const minWidthModifier: PopperJS.BaseModifier
 
 export type UsePopperOptions = {
-  arrow?: string | HTMLElement | null
-  placement?: Placement
-  modifiers?: Modifiers
+  disabled?: boolean
+  arrowRef?: React.MutableRefObject<string | HTMLElement | null>
+  placement?: PopperJS.Placement
+  modifiers?: PopperJS.Modifiers
   eventsEnabled?: boolean
   positionFixed?: boolean
 }
@@ -51,14 +52,16 @@ export type UsePopperOptions = {
 export type UsePopperReturnValue = {
   style: CSSStyleDeclaration
   arrowStyle: CSSStyleDeclaration
-  placement: Placement | null
+  placement: PopperJS.Placement | null
   outOfBoundaries: boolean
   scheduleUpdate(): void
 }
 
 export function usePopper(
-  reference: HTMLElement | ReferenceObject | null,
-  popper: HTMLElement | null,
+  referenceRef: React.MutableRefObject<
+    HTMLElement | PopperJS.ReferenceObject | null
+  >,
+  popperRef: React.MutableRefObject<HTMLElement | null>,
   options?: UsePopperOptions,
 ): UsePopperReturnValue
 

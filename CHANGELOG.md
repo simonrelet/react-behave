@@ -15,6 +15,26 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Breaking changes
+
+- `usePopper` now takes Ref objects as parameter in combination with a
+  `disabled` option instead of HTML elements to avoid extra updates due to
+  setState calls:
+
+```diff
+- const [reference, setReference] = React.useState(null)
+- const [popper, setPopper] = React.useState(null)
++ const reference = React.useRef(null)
++ const popper = React.useRef(null)
+  const [opened, setOpened] = React.useState(false)
+
+  const { style } = usePopper(reference, popper, {
++   disabled: !opened,
+  })
+```
+
 ## 1.0.0-rc.4 (August 20, 2019)
 
 ### Bug fixes
