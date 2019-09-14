@@ -1,7 +1,8 @@
 # setRefs
 
 Set a value for all the supplied ref handlers.
-Each handler can either be a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) or an object created with [`React.createRef`](https://reactjs.org/docs/react-api.html#reactcreateref).
+Each handler can either be a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs)
+or an object created with [`React.createRef`](https://reactjs.org/docs/react-api.html#reactcreateref).
 
 ## Usage
 

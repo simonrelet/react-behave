@@ -1,7 +1,8 @@
 # composeRefs
 
-Compose the specified ref handlers into a single ref handler function.
-Each handler can either be a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) or an object created with [`React.createRef`](https://reactjs.org/docs/react-api.html#reactcreateref).
+Compose the specified ref handlers into a single one.
+Each handler can either be a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs)
+or a Ref object (e.g. created by [`React.useRef`](https://reactjs.org/docs/hooks-reference.html#useref)).
 
 ## Usage
 
@@ -11,11 +12,8 @@ import { composeRefs } from 'react-behave'
 
 const FancyButton = React.forwardRef((props, ref) => {
   const elementRef = React.useRef(null)
-  const [elementState, setElementState] = React.useState(null)
 
-  return (
-    <button ref={composeRefs([elementRef, setElementState, ref])} {...props} />
-  )
+  return <button ref={composeRefs([elementRef, ref])} {...props} />
 })
 ```
 
@@ -45,6 +43,6 @@ const FancyButton = React.forwardRef((props, ref) => {
 
 ## Return value
 
-**(value: any) => void**
+**React.RefObject**
 
-A composed ref handler.
+A composed Ref object.

@@ -2,7 +2,8 @@
 
 Returns an asynchronous memoized value.
 
-This hook can been seen as a [`React.useMemo`](https://reactjs.org/docs/hooks-reference.html#usememo) for asynchronous factories.
+This hook can been seen as a [`React.useMemo`](https://reactjs.org/docs/hooks-reference.html#usememo)
+for asynchronous factories.
 
 ## Usage
 

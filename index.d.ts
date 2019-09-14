@@ -22,12 +22,16 @@ export interface RefFunction<ELEMENT> {
 
 export function setRefs<ELEMENT>(
   element: ELEMENT | null,
-  handlers: Array<RefFunction<ELEMENT> | React.RefObject<ELEMENT> | null>,
+  handlers: Array<
+    RefFunction<ELEMENT> | React.MutableRefObject<ELEMENT> | null
+  >,
 ): void
 
 export function composeRefs<ELEMENT>(
-  handlers: Array<RefFunction<ELEMENT> | React.RefObject<ELEMENT> | null>,
-): RefFunction<ELEMENT>
+  handlers: Array<
+    RefFunction<ELEMENT> | React.MutableRefObject<ELEMENT> | null
+  >,
+): React.MutableRefObject<ELEMENT>
 
 export interface ScreenSizes {
   [key: string]: number

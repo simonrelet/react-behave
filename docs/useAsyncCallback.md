@@ -2,7 +2,8 @@
 
 Returns an asynchronous memoized callback.
 
-This hook can been seen as a [`React.useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback) for asynchronous inline callbacks.
+This hook can been seen as a [`React.useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback)
+for asynchronous inline callbacks.
 
 ## Usage
 

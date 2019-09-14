@@ -1,7 +1,16 @@
 import { setRefs } from '../setRefs'
 
 export function composeRefs(handlers) {
-  return element => {
-    setRefs(element, handlers)
+  let element = undefined
+
+  return {
+    get current() {
+      return element
+    },
+
+    set current(value) {
+      setRefs(value, handlers)
+      element = value
+    },
   }
 }

@@ -35,6 +35,8 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
   })
 ```
 
+- `composeRefs` now returns an object that behaves like a Ref object.
+
 ## 1.0.0-rc.4 (August 20, 2019)
 
 ### Bug fixes
