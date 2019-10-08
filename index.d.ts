@@ -42,8 +42,6 @@ export function getScreenSize(
   width: number,
 ): string | null
 
-export declare const minWidthModifier: PopperJS.BaseModifier
-
 export type UsePopperOptions = {
   disabled?: boolean
   arrowRef?: React.MutableRefObject<string | HTMLElement | null>

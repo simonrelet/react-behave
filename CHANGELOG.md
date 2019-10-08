@@ -36,6 +36,29 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 ```
 
 - `composeRefs` now returns an object that behaves like a Ref object.
+- `minWidthModifier` has been removed as the same behaviour can easily be
+  achieved with inline styles:
+
+```jsx
+function MinWidthPopper() {
+  const referenceRef = React.useRef(null)
+  const popperRef = React.useRef(null)
+
+  React.useEffect(() => {
+    const referenceRect = referenceRef.current.getBoundingClientRect()
+    popperRef.current.style.minWidth = `${referenceRect.width}px`
+  })
+
+  const { style } = usePopper(referenceRef, popperRef, { placement: 'bottom' })
+
+  return (
+    <div>
+      <span ref={referenceRef} />
+      <span ref={popperRef} style={style} />
+    </div>
+  )
+}
+```
 
 ## 1.0.0-rc.4 (August 20, 2019)
 
