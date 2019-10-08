@@ -19,7 +19,12 @@ function Story() {
   return (
     <div
       ref={element}
-      style={{ height: '50vh', width: '50vw', backgroundColor: '#eee' }}
+      style={{
+        height: '50vh',
+        width: '50vw',
+        backgroundColor: '#eee',
+        overflow: 'auto',
+      }}
     >
       <p>Resize me</p>
 

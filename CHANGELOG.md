@@ -60,6 +60,10 @@ function MinWidthPopper() {
 }
 ```
 
+### Documentation
+
+- Fix the overflow in the `watchResize` and `getScreenSize` stories.
+
 ## 1.0.0-rc.4 (August 20, 2019)
 
 ### Bug fixes
