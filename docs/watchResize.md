@@ -58,10 +58,10 @@ function App() {
     <tr>
       <td><code>options?.resizeInterval?</code></td>
       <td>
-        <strong>number</strong> <em>= <code>166</code></em>
+        <strong>number</strong> <em>= <code>16</code></em>
         <p>
           The minimum interval of time between two resizes.
-          <code>166</code> corresponds to 10 frames at 60 Hz.
+          <code>16</code> corresponds to 1 frame.
         </p>
       </td>
     </tr>

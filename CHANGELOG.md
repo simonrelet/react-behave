@@ -15,6 +15,12 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Enhancements
+
+- The default value of the `resizeInterval` option of `watchResize` is now 16ms (was 166ms).
+
 ## 1.0.0 (October 8, 2019)
 
 ### Breaking changes
