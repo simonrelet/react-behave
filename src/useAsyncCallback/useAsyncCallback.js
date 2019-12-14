@@ -49,8 +49,6 @@ export function useAsyncCallback(callback, deps, { initialValue = null } = {}) {
         if (!canceled) {
           dispatch({ type: ERROR, error })
         }
-
-        throw error
       }
     },
     // We don't add `callback` to deps to let the caller manage it himself.

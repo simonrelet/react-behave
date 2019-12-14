@@ -15,6 +15,26 @@ All notable changes to this project will be documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Bug fixes
+
+- `useAsyncCallback` no longer re-throw the error, it can still be catched from
+  within the callback:
+
+```js
+useAsyncCallback(async () => {
+  try {
+    return await asyncFunction()
+  } catch (error) {
+    // Do something with the error.
+
+    // Re-throw it to let `useAsyncCallback` update its state.
+    throw error
+  }
+}, [])
+```
+
 ## 1.1.0 (October 10, 2019)
 
 ### Enhancements
