@@ -7,12 +7,12 @@
 # react-behave
 
 [![npm version latest](https://img.shields.io/npm/v/react-behave/latest.svg?colorB=success&style=flat-square)](https://www.npmjs.com/package/react-behave)
-[![npm version next](https://img.shields.io/npm/v/react-behave/next.svg?colorB=blue&style=flat-square)](https://www.npmjs.com/package/react-behave/v/1.1.0)
+[![npm version next](https://img.shields.io/npm/v/react-behave/next.svg?colorB=blue&style=flat-square)](https://www.npmjs.com/package/react-behave/v/1.1.1)
 
 A library of behaviors for React applications.
 
 ⚠️ **Warning:** The current master can represent unreleased features of the library.
-[See lastest release](https://github.com/simonrelet/react-behave/tree/1.1.0).
+[See lastest release](https://github.com/simonrelet/react-behave/tree/1.1.1).
 
 ## ...Of what?
 
@@ -45,7 +45,7 @@ yarn add react-behave
 
 ## Documentation
 
-The documentation of each component can be found [here](https://github.com/simonrelet/react-behave/tree/1.1.0/docs).
+The documentation of each component can be found [here](https://github.com/simonrelet/react-behave/tree/1.1.1/docs).
 
 ---
 
