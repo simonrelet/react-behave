@@ -85,7 +85,7 @@ export type UseAsyncMemoOptions<VALUE_TYPE> = {
 
 export function useAsyncMemo<VALUE_TYPE>(
   factory: () => Promise<VALUE_TYPE>,
-  deps: React.DependencyList,
+  dependencies: React.DependencyList,
   options?: UseAsyncMemoOptions<VALUE_TYPE>,
 ): [VALUE_TYPE | null, AsyncState<VALUE_TYPE>]
 

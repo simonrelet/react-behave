@@ -95,7 +95,7 @@ function Book({ bookID }) {
       </td>
     </tr>
     <tr>
-      <td><code>deps</code></td>
+      <td><code>dependencies</code></td>
       <td>
         <strong>Array</strong>
         <p>The array of dependencies.</p>

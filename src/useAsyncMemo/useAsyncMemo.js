@@ -7,7 +7,11 @@ import {
   SUCCESS,
 } from '../asyncState'
 
-export function useAsyncMemo(factory, deps, { initialValue = null } = {}) {
+export function useAsyncMemo(
+  factory,
+  dependencies,
+  { initialValue = null } = {},
+) {
   const [state, dispatch] = React.useReducer(
     asyncStateReducer,
     initialValue,
@@ -40,11 +44,12 @@ export function useAsyncMemo(factory, deps, { initialValue = null } = {}) {
         canceled = true
       }
     },
-    // We don't add `callback` to deps to let the caller manage it himself.
-    // This is _ok_ as the latest `callback` will only be used if `deps`
+    // We don't add `callback` to dependencies to let the caller manage it
+    // himself.
+    // This is _ok_ as the latest `callback` will only be used if `dependencies`
     // changes, which is the behaviour of `React.useMemo`.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    deps,
+    dependencies,
   )
 
   return [state.value, state]
