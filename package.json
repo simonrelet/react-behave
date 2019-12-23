@@ -43,36 +43,40 @@
     "test": "react-libraries test --env=jsdom"
   },
   "peerDependencies": {
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2"
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   },
   "dependencies": {
+    "@babel/runtime": "^7.7.7",
     "lodash.isequal": "^4.5.0",
     "lodash.throttle": "^4.1.1",
-    "popper.js": "^1.15.0",
+    "popper.js": "^1.16.0",
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.2",
-    "@simonrelet/react-libraries": "^1.1.0",
-    "@storybook/addon-centered": "^5.2.3",
-    "@storybook/addon-knobs": "^5.2.3",
-    "@storybook/addon-viewport": "^5.2.3",
-    "@storybook/addons": "^5.2.3",
-    "@storybook/react": "^5.2.3",
-    "@storybook/theming": "^5.2.3",
+    "@babel/core": "^7.7.7",
+    "@simonrelet/react-libraries": "^2.0.0",
+    "@storybook/addon-centered": "^5.2.8",
+    "@storybook/addon-knobs": "^5.2.8",
+    "@storybook/addon-viewport": "^5.2.8",
+    "@storybook/addons": "^5.2.8",
+    "@storybook/react": "^5.2.8",
+    "@storybook/theming": "^5.2.8",
+    "@testing-library/react": "^9.4.0",
+    "@typescript-eslint/eslint-plugin": "^2.12.0",
+    "@typescript-eslint/parser": "^2.12.0",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
-    "eslint": "^6.5.1",
-    "eslint-config-react-app": "^5.0.2",
+    "eslint": "^6.8.0",
+    "eslint-config-react-app": "^5.1.0",
     "eslint-plugin-flowtype": "^3.13.0",
-    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.18.2",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2"
+    "prettier": "^1.19.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   }
 }
