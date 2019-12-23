@@ -31,6 +31,7 @@ function ComplexFormula({ parameters }) {
     <section>
       <button onClick={computeFormula}>Compute formula</button>
       <p>Result: {displayedResult}</p>
+
       {formulaState.error != null && (
         <p>Could not compute formula: {formulaState.error.message}</p>
       )}
@@ -61,7 +62,10 @@ function ComplexFormula({ parameters }) {
       <td><code>deps</code></td>
       <td>
         <strong>Array</strong>
-        <p>The array of dependencies.</p>
+        <p>
+          The array of dependencies.
+          When a dependency changes while a call is in progress the result will be ignored as if the call was canceled.
+        </p>
       </td>
     </tr>
     <tr>
@@ -106,7 +110,7 @@ following properties:
       <td>
         <strong>any | null</strong>
         <p>
-          The current value (same as the first element of the returned array).
+          The current value.
         </p>
       </td>
     </tr>

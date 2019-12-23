@@ -30,6 +30,7 @@ function ComplexFormula({ parameters }) {
   return (
     <section>
       <p>Result: {displayedResult}</p>
+
       {formulaState.error != null && (
         <p>Could not compute formula: {formulaState.error.message}</p>
       )}
@@ -46,26 +47,32 @@ import { useAsyncMemo } from 'react-behave'
 
 function Book({ bookID }) {
   const [book, bookRequest] = useAsyncMemo(async () => {
-    // We can handle the errors manually.
-    try {
-      return await fetchBook(bookID)
-    } catch (error) {
-      console.error('Could not fetch book:', error)
-      return null
+    const result = await fetch(`${MY_API_URL}/books/${bookID}`)
+
+    if (!result.ok) {
+      throw new Error(
+        `Could not get book ${bookID}: ${result.statusText || result.status}`,
+      )
     }
+
+    return await result.json()
   }, [bookID])
+
+  if (book !== null) {
+    return <h1>{book.title}</h1>
+  }
 
   // Until rendering can be Suspended in Concurrent React.
   if (bookRequest.pending) {
     return <p>Pending...</p>
   }
 
-  // On the first rendering the asynchronous task has not started yet.
-  if (book == null) {
-    return null
+  if (bookRequest.error) {
+    return <p>{bookRequest.error.message}</p>
   }
 
-  return <h1>{book.title}</h1>
+  // On the first rendering the asynchronous factory has not been called yet.
+  return null
 }
 ```
 
