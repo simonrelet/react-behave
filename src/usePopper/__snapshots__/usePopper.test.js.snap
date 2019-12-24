@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`usePopper should include the arrow in the computed state 1`] = `
+Array [
+  Array [
+    "reference",
+    "popper",
+    Object {
+      "eventsEnabled": true,
+      "modifiers": Object {
+        "applyStyle": Object {
+          "enabled": false,
+        },
+        "arrow": Object {
+          "element": "arrow",
+          "enabled": true,
+        },
+        "updateStateModifier": Object {
+          "enabled": true,
+          "fn": [Function],
+          "order": 900,
+        },
+      },
+      "placement": "bottom",
+      "positionFixed": false,
+    },
+  ],
+]
+`;
+
+exports[`usePopper should return the computed state 1`] = `
+Array [
+  Array [
+    "reference",
+    "popper",
+    Object {
+      "eventsEnabled": true,
+      "modifiers": Object {
+        "applyStyle": Object {
+          "enabled": false,
+        },
+        "arrow": Object {
+          "element": null,
+          "enabled": false,
+        },
+        "updateStateModifier": Object {
+          "enabled": true,
+          "fn": [Function],
+          "order": 900,
+        },
+      },
+      "placement": "bottom",
+      "positionFixed": false,
+    },
+  ],
+]
+`;

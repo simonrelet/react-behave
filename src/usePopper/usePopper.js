@@ -15,26 +15,21 @@ const INITIAL_STATE = {
   },
 }
 
-function updateState(newState) {
-  return state => {
-    // `state` and `newState` might have different references and still be deeply
-    // equal due to Popper.js.
-    const arrowStyle = getCurrentValue(state.arrowStyle, newState.arrowStyles)
-    const outOfBoundaries = newState.hide
-    const placement = newState.placement
-    const style = getCurrentValue(state.style, newState.styles)
-
-    return arrowStyle === state.arrowStyle &&
-      outOfBoundaries === state.outOfBoundaries &&
-      placement === state.placement &&
-      style === state.style
-      ? state
-      : { arrowStyle, outOfBoundaries, placement, style }
-  }
-}
-
 function getCurrentValue(value, newValue) {
   return isEqual(value, newValue) ? value : newValue
+}
+
+function updateState(newState) {
+  return state => {
+    return {
+      // Preserve the references if the objects are deeply equal.
+      style: getCurrentValue(state.style, newState.styles),
+      arrowStyle: getCurrentValue(state.arrowStyle, newState.arrowStyles),
+
+      outOfBoundaries: newState.hide,
+      placement: newState.placement,
+    }
+  }
 }
 
 const DEFAULT_MODIFIERS = {}
