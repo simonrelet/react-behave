@@ -95,6 +95,6 @@ export type UseAsyncCallbackOptions<VALUE_TYPE> = {
 
 export function useAsyncCallback<VALUE_TYPE>(
   callback: (...arguments: any[]) => Promise<VALUE_TYPE>,
-  deps: React.DependencyList,
+  dependencies: React.DependencyList,
   options?: UseAsyncCallbackOptions<VALUE_TYPE>,
 ): [(...arguments: any[]) => Promise<VALUE_TYPE>, AsyncState<VALUE_TYPE>]

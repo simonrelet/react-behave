@@ -59,7 +59,7 @@ function ComplexFormula({ parameters }) {
       </td>
     </tr>
     <tr>
-      <td><code>deps</code></td>
+      <td><code>dependencies</code></td>
       <td>
         <strong>Array</strong>
         <p>
