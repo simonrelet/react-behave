@@ -1,8 +1,14 @@
 export function getScreenSize(screenSizes, width) {
-  const entry = Object.entries(screenSizes)
-    .sort((a, b) => a[1] - b[1])
-    .reverse()
-    .find(([, screenSizeWidth]) => width >= screenSizeWidth)
+  let bestMatch = null
 
-  return entry == null ? null : entry[0]
+  Object.entries(screenSizes).forEach(([screenSize, rangeStart]) => {
+    if (
+      rangeStart <= width &&
+      (bestMatch == null || rangeStart > screenSizes[bestMatch])
+    ) {
+      bestMatch = screenSize
+    }
+  })
+
+  return bestMatch
 }
