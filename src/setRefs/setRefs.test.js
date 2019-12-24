@@ -19,7 +19,7 @@ describe('setRefs', () => {
     const ref = 'my-ref'
     const handlerObject = { current: null }
     const handlerFn = jest.fn()
-    setRefs(ref, [null, handlerObject, undefined, handlerFn, '', false])
+    setRefs(ref, [null, handlerObject, undefined, handlerFn, 0, '', false])
     expect(handlerObject.current).toEqual(ref)
     expect(handlerFn).toHaveBeenCalledWith(ref)
   })

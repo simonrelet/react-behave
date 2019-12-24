@@ -27,6 +27,7 @@ describe('composeRefs', () => {
       handlerObject,
       undefined,
       handlerFn,
+      0,
       '',
       false,
     ])
